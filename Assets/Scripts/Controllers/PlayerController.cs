@@ -1,13 +1,14 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 
-public class PlayerController : MonoBehaviour
+partial class PlayerController : MonoBehaviour
 {
     public PlayerProfile profile;
+
+    [Space]
+    public Transform displayTransform;
     public Transform movementTransform;
 
     private Rigidbody _rigidbody;
-    private Vector3 _movement;
 
     void Start()
     {
@@ -19,17 +20,12 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        
+        displayTransform.LookAt(transform.position + _look);
+        displayTransform.rotation = Quaternion.Euler(0.0f, displayTransform.rotation.eulerAngles.y, 0.0f);
     }
 
     void FixedUpdate()
     {
         _rigidbody.linearVelocity = _movement.normalized * profile.speed;
-    }
-
-    public void Move(InputAction.CallbackContext context)
-    {
-        Vector2 movementInput = context.ReadValue<Vector2>();
-        _movement = (movementTransform.right * movementInput.x) + (movementTransform.forward * movementInput.y);
     }
 }
