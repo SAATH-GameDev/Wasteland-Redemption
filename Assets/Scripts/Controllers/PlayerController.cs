@@ -3,6 +3,7 @@ using UnityEngine;
 partial class PlayerController : MonoBehaviour
 {
     public PlayerProfile profile;
+    public PlayerCharacterProfile characterProfile;
 
     [Space]
     public Transform displayTransform;
@@ -26,6 +27,6 @@ partial class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        _rigidbody.linearVelocity = _movement.normalized * profile.speed;
+        _rigidbody.linearVelocity = _movement.normalized * (profile.speed * characterProfile.speed);
     }
 }
