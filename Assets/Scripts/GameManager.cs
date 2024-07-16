@@ -9,9 +9,11 @@ public class GameManager : MonoBehaviour
 
     public int GetScreenCount()
     {
-        List<DisplayInfo> info = new List<DisplayInfo>();
-        Screen.GetDisplayLayout(info);
-        return info.Count;
+        return Display.displays.Length;
+        
+        //List<DisplayInfo> info = new List<DisplayInfo>();
+        //Screen.GetDisplayLayout(info);
+        //return info.Count;
     }
 
     public void AddPlayerCamera(Camera camera)
@@ -24,6 +26,9 @@ public class GameManager : MonoBehaviour
     void Awake()
     {
         Instance = this;
+        int screenCount = GetScreenCount();
+        for(int i = 0; i < screenCount; i++)
+            Display.displays[i].Activate();
     }
 
     void Start()
