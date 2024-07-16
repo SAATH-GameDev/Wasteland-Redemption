@@ -11,6 +11,18 @@ partial class PlayerController : MonoBehaviour
 
     private Rigidbody _rigidbody;
 
+    static public int count = 0;
+
+    void OnEnable()
+    {
+        count++;
+    }
+
+    void OnDisable()
+    {
+        count--;
+    }
+
     void Start()
     {
         if(movementTransform == null)
