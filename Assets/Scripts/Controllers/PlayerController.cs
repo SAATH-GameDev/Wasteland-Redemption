@@ -1,11 +1,13 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System.Collections;
 
 partial class PlayerController : MonoBehaviour, IDamageable
 {
     [Header("Player")]
     public PlayerProfile profile;
     public PlayerCharacterProfile characterProfile;
+    public GameObject capsuleMesh;
 
     [Space]
     [Header("Health")]
@@ -48,10 +50,9 @@ partial class PlayerController : MonoBehaviour, IDamageable
         displayTransform.LookAt(transform.position + _look);
         displayTransform.rotation = Quaternion.Euler(0.0f, displayTransform.rotation.eulerAngles.y, 0.0f);
 
-        if (Keyboard.current.aKey.wasPressedThisFrame)
-        {
+        //DEBUGGING
+        if (Keyboard.current.qKey.wasPressedThisFrame)
             TakeDamage(damage);
-        }
     }
 
     void FixedUpdate()
@@ -63,7 +64,7 @@ partial class PlayerController : MonoBehaviour, IDamageable
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
-
+        
         if (currentHealth <= 0)
         {
             currentHealth = 0;
@@ -71,8 +72,48 @@ partial class PlayerController : MonoBehaviour, IDamageable
         }
         else
         {
-            Debug.Log($"Player took {damage} damage, current health: {currentHealth}");
+            print($"Player took {damage} damage, current health: {currentHealth}");
+            StartCoroutine(EnablingDamageEffect());
         }
     }
 
+    private IEnumerator EnablingDamageEffect()
+    {
+        var renderer = capsuleMesh.GetComponentInChildren<Renderer>();
+        var material = renderer.material;
+
+        // Enable emission
+        material.EnableKeyword("_EMISSION");
+        material.SetColor("_EmissionColor", Color.white);
+
+        
+        // Scale down
+        float duration = 0.075f;
+        Vector3 originalScale = capsuleMesh.transform.localScale;
+        Vector3 targetScale = originalScale * 1.1f;
+        float elapsedTime = 0f;
+
+        while (elapsedTime < duration)
+        {
+            capsuleMesh.transform.localScale = Vector3.Lerp(originalScale, targetScale, elapsedTime / duration);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        capsuleMesh.transform.localScale = targetScale;
+
+        // Scale back up
+        elapsedTime = 0f;
+        while (elapsedTime < duration)
+        {
+            capsuleMesh.transform.localScale = Vector3.Lerp(targetScale, originalScale, elapsedTime / duration);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        capsuleMesh.transform.localScale = originalScale;
+
+        yield return new WaitForSeconds(0.075f);
+        material.DisableKeyword("_EMISSION");
+    }
 }
