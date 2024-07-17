@@ -9,11 +9,13 @@ public class GameManager : MonoBehaviour
 
     public int GetScreenCount()
     {
+        #if UNITY_EDITOR
+        List<DisplayInfo> info = new List<DisplayInfo>();
+        Screen.GetDisplayLayout(info);
+        return info.Count;
+        #else
         return Display.displays.Length;
-        
-        //List<DisplayInfo> info = new List<DisplayInfo>();
-        //Screen.GetDisplayLayout(info);
-        //return info.Count;
+        #endif
     }
 
     public void AddPlayerCamera(Camera camera)
@@ -26,9 +28,13 @@ public class GameManager : MonoBehaviour
     void Awake()
     {
         Instance = this;
+        
+        #if UNITY_EDITOR
+        #else
         int screenCount = GetScreenCount();
         for(int i = 0; i < screenCount; i++)
             Display.displays[i].Activate();
+        #endif
     }
 
     void Start()
