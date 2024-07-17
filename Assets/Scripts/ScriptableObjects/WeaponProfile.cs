@@ -9,7 +9,7 @@ public class WeaponProfile : Profile
     public float firingRate;
     public float cooldown;
 
-    //public Projectile projectile;
+    public ProjectileProfile projectile;
 
     public int burst;
     public float angleBurst;

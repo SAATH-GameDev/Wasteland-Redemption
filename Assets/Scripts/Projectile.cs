@@ -2,10 +2,23 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
+    public ProjectileProfile profile;
+
     private Rigidbody rb;
 
-    public void SetVelocity(float speed)
+    public void Set(ProjectileProfile profile)
     {
-        rb.linearVelocity = transform.forward * speed;
+        if(!profile) return;
+
+        this.profile = profile;
+        rb.linearVelocity = transform.forward * profile.speed;
+        Destroy(gameObject, profile.destroyTime);
+    }
+
+    void Start()
+    {
+        rb = GetComponent<Rigidbody>();
+
+        Set(profile);
     }
 }
