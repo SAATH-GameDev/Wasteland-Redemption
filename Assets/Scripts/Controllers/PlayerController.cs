@@ -17,7 +17,7 @@ partial class PlayerController : MonoBehaviour, IDamageable
     [Header("References")]
     public Transform displayTransform;
     public Transform movementTransform;
-    public float _smoothTime = 0.05f;
+    public float smoothTime = 0.05f;
 
     private Rigidbody _rigidbody;
     private Vector3 _currentVelocity;
@@ -57,7 +57,7 @@ partial class PlayerController : MonoBehaviour, IDamageable
     void FixedUpdate()
     {
         Vector3 targetVelocity = _movement.normalized * (profile.speed * characterProfile.speed);
-        _rigidbody.linearVelocity = Vector3.SmoothDamp(_rigidbody.linearVelocity, targetVelocity, ref _currentVelocity, _smoothTime);
+        _rigidbody.linearVelocity = Vector3.SmoothDamp(_rigidbody.linearVelocity, targetVelocity, ref _currentVelocity, smoothTime);
     }
 
     public void TakeDamage(int damage)
