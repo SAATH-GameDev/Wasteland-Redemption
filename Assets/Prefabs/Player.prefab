@@ -120,6 +120,7 @@ MonoBehaviour:
   damage: 50
   displayTransform: {fileID: 6264840364923780171}
   movementTransform: {fileID: 0}
+  _smoothTime: 0.08
 --- !u!114 &899070081788865946
 MonoBehaviour:
   m_ObjectHideFlags: 0
