@@ -9,7 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eeafb63ad742f8145b06971ad44f22d7, type: 3}
-  m_Name: Default
+  m_Script: {fileID: 11500000, guid: 48d88ed8f47371b4ea7362e69f6b19f8, type: 3}
+  m_Name: Hasty
   m_EditorClassIdentifier: 
-  speed: 10
+  health: 0.75
+  attack: 0.75
+  stamina: 1.25
+  speed: 2
+  hunger: 0.75

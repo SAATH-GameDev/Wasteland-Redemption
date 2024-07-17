@@ -10,10 +10,13 @@ public class CameraController : MonoBehaviour
     void Start()
     {
         focus = transform.parent;
+        GameManager.Instance.AddPlayerCamera(GetComponentInChildren<Camera>());
     }
 
     void LateUpdate()
     {
+        if(!target) return;
+
         focus.transform.position = Vector3.Lerp(focus.transform.position, target.transform.position, Time.deltaTime * lerpFactor);
     }
 }

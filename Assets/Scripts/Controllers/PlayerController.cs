@@ -3,12 +3,25 @@ using UnityEngine;
 partial class PlayerController : MonoBehaviour
 {
     public PlayerProfile profile;
+    public PlayerCharacterProfile characterProfile;
 
     [Space]
     public Transform displayTransform;
     public Transform movementTransform;
 
     private Rigidbody _rigidbody;
+
+    static public int count = 0;
+
+    void OnEnable()
+    {
+        count++;
+    }
+
+    void OnDisable()
+    {
+        count--;
+    }
 
     void Start()
     {
@@ -26,6 +39,6 @@ partial class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        _rigidbody.linearVelocity = _movement.normalized * profile.speed;
+        _rigidbody.linearVelocity = _movement.normalized * (profile.speed * characterProfile.speed);
     }
 }

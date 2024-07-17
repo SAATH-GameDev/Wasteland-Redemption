@@ -8,12 +8,16 @@ partial class PlayerController : MonoBehaviour
 
     public void Move(InputAction.CallbackContext context)
     {
+        if(!movementTransform) return;
+
         Vector2 movementInput = context.ReadValue<Vector2>();
         _movement = (movementTransform.right * movementInput.x) + (movementTransform.forward * movementInput.y);
     }
 
     public void Look(InputAction.CallbackContext context)
     {
+        if(!movementTransform) return;
+        
         Vector2 lookInput = context.ReadValue<Vector2>();
 
         //Dealing with mouse input (position)
