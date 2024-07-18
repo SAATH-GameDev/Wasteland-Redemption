@@ -11,6 +11,10 @@ public class WeaponProfile : Profile
     public ProjectileProfile projectile;
 
     [Space]
+    public int magazine;
+    public float reloadDelay;
+
+    [Space]
     public int burst;
     public float angleBurst;
 
