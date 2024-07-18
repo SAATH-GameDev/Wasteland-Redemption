@@ -38,4 +38,12 @@ partial class PlayerController : GameEntity
         else if(context.canceled)
             weapon.Attack(false);
     }
+
+    public void Interact(InputAction.CallbackContext context)
+    {
+        if(!context.started) return;
+
+        if(DialogueManager.Instance.IsActive())
+            DialogueManager.Instance.Proceed();
+    }
 }
