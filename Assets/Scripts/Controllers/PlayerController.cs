@@ -7,6 +7,9 @@ partial class PlayerController : MonoBehaviour, IDamageable
     [Header("Player")]
     public PlayerProfile profile;
     public PlayerCharacterProfile characterProfile;
+    
+    [Space]
+    public WeaponController weapon;
     public GameObject capsuleMesh;
 
     [Space]
@@ -82,11 +85,9 @@ partial class PlayerController : MonoBehaviour, IDamageable
         var renderer = capsuleMesh.GetComponentInChildren<Renderer>();
         var material = renderer.material;
 
-        // Enable emission
         material.EnableKeyword("_EMISSION");
         material.SetColor("_EmissionColor", Color.white);
 
-        
         // Scale down
         float duration = 0.075f;
         Vector3 originalScale = capsuleMesh.transform.localScale;

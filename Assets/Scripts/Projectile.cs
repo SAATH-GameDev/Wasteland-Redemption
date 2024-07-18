@@ -8,6 +8,8 @@ public class Projectile : MonoBehaviour
 
     public void Set(ProjectileProfile profile)
     {
+        rb = GetComponent<Rigidbody>();
+
         if(!profile) return;
 
         this.profile = profile;
@@ -17,8 +19,6 @@ public class Projectile : MonoBehaviour
 
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
-
         Set(profile);
     }
 }
