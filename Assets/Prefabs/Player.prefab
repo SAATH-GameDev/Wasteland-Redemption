@@ -148,13 +148,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3a4341d5d575f6469cdad65f2a8dccb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  displayTransform: {fileID: 6264840364923780171}
+  health: 0
   profile: {fileID: 11400000, guid: 82ef7bccb603a724faa38a39e8781421, type: 2}
   characterProfile: {fileID: 11400000, guid: fb59b8ae9295cef458c1bf053d7b1435, type: 2}
   weapon: {fileID: 499525523550956944}
   capsuleMesh: {fileID: 1378361398276655553}
-  maxHealth: 100
-  damage: 10
-  displayTransform: {fileID: 6264840364923780171}
   movementTransform: {fileID: 0}
   smoothTime: 0.08
 --- !u!114 &899070081788865946
@@ -805,7 +804,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7741838669030600498, guid: eb8a84d7db454754bafb68f79ff264c8, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7741838669030600498, guid: eb8a84d7db454754bafb68f79ff264c8, type: 3}
       propertyPath: m_LocalPosition.z

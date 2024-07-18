@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5807673001874637361}
   - component: {fileID: 401824678937069770}
+  - component: {fileID: 5729697386516259539}
   - component: {fileID: 3888468222046379387}
   m_Layer: 0
   m_Name: BasicProjectilePrerfab
@@ -47,6 +48,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   profile: {fileID: 11400000, guid: 7a292d33b9f8a214bae3aec3a2757f25, type: 2}
+--- !u!114 &5729697386516259539
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7856561872536005176}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb25c231abd149e4fb7e51079a7a0883, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 5
+  destroyOnContact: 1
 --- !u!54 &3888468222046379387
 Rigidbody:
   m_ObjectHideFlags: 0

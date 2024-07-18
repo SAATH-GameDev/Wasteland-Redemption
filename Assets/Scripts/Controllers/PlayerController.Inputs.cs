@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-partial class PlayerController : MonoBehaviour
+partial class PlayerController : GameEntity
 {
     private Vector3 _movement;
     private Vector3 _look;
