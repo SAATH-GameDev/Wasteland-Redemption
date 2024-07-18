@@ -5,10 +5,7 @@ public class WeaponProfile : Profile
 {
     public bool isContinous;
     public float damage;
-
-    [Space]
-    public float firingRate;
-    public float cooldown;
+    public float delay;
 
     [Space]
     public ProjectileProfile projectile;

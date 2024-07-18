@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 401824678937069770}
   - component: {fileID: 5729697386516259539}
   - component: {fileID: 3888468222046379387}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BasicProjectilePrerfab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -101,7 +101,7 @@ GameObject:
   - component: {fileID: 7391665869803744012}
   - component: {fileID: 1448549546143681942}
   - component: {fileID: 8386881880277969577}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}

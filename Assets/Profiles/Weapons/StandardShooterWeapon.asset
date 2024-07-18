@@ -12,13 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a157ee1f8b1a7d947967853e864a1fea, type: 3}
   m_Name: StandardShooterWeapon
   m_EditorClassIdentifier: 
-  isContinous: 0
+  isContinous: 1
   damage: 0
-  firingRate: 0
-  cooldown: 0
+  delay: 0.1
   projectile: {fileID: 11400000, guid: 7a292d33b9f8a214bae3aec3a2757f25, type: 2}
-  burst: 0
-  angleBurst: 0
+  burst: 3
+  angleBurst: 5
   consecutiveCount: 0
   consecutiveDelay: 0
   criticalHitChance: 0
