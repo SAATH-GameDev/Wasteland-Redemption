@@ -142,7 +142,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: I am dying of hunger. Gotta find some food out in the wild, yeah!
+  m_text: I am dying of hunger.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0a0ffff5a969f4c41a5f771bf7f7e5db, type: 2}
   m_sharedMaterial: {fileID: 6699346152814050484, guid: 0a0ffff5a969f4c41a5f771bf7f7e5db, type: 2}
