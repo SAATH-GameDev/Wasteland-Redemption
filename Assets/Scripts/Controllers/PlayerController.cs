@@ -1,15 +1,21 @@
 using UnityEngine;
 
-partial class PlayerController : MonoBehaviour
+partial class PlayerController : GameEntity
 {
+    [Header("Player")]
     public PlayerProfile profile;
     public PlayerCharacterProfile characterProfile;
 
     [Space]
-    public Transform displayTransform;
+    public WeaponController weapon;
+    public GameObject capsuleMesh;
+
+    [Space]
     public Transform movementTransform;
+    public float smoothTime = 0.05f;
 
     private Rigidbody _rigidbody;
+    private Vector3 _currentVelocity;
 
     static public int count = 0;
 
@@ -23,12 +29,15 @@ partial class PlayerController : MonoBehaviour
         count--;
     }
 
-    void Start()
+    override protected void Start()
     {
-        if(movementTransform == null)
+        base.Start();
+
+        if (movementTransform == null)
             movementTransform = transform;
 
         _rigidbody = GetComponent<Rigidbody>();
+        health = profile.health;
     }
 
     void Update()
@@ -39,6 +48,7 @@ partial class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        _rigidbody.linearVelocity = _movement.normalized * (profile.speed * characterProfile.speed);
+        Vector3 targetVelocity = _movement.normalized * (profile.speed * characterProfile.speed);
+        _rigidbody.linearVelocity = Vector3.SmoothDamp(_rigidbody.linearVelocity, targetVelocity, ref _currentVelocity, smoothTime);
     }
 }

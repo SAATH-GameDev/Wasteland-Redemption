@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-partial class PlayerController : MonoBehaviour
+partial class PlayerController : GameEntity
 {
     private Vector3 _movement;
     private Vector3 _look;
@@ -29,5 +29,21 @@ partial class PlayerController : MonoBehaviour
         }
 
         _look = (movementTransform.right * lookInput.x) + (movementTransform.forward * lookInput.y);
+    }
+
+    public void Attack(InputAction.CallbackContext context)
+    {
+        if(context.started)
+            weapon.Attack(true);
+        else if(context.canceled)
+            weapon.Attack(false);
+    }
+
+    public void Interact(InputAction.CallbackContext context)
+    {
+        if(!context.started) return;
+
+        if(DialogueManager.Instance.IsActive())
+            DialogueManager.Instance.Proceed();
     }
 }
