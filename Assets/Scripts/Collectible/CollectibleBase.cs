@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public abstract class CollectibleBase : MonoBehaviour, ICollectible
+public class CollectibleBase : MonoBehaviour, ICollectible
 {
     public ItemProfile itemProfile;
 
