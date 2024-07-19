@@ -36,9 +36,14 @@ public class GameEntity : MonoBehaviour, IDamageable
 
     private IEnumerator EnablingDamageEffect()
     {
-        foreach(var renderer in renderers)
+        if(renderers == null)
+            Start();
+
+        foreach(Renderer renderer in renderers)
         {
-            var material = renderer.material;
+            if(!renderer || !renderer.material) continue;
+
+            Material material = renderer.material;
             material.EnableKeyword("_EMISSION");
             material.SetColor("_EmissionColor", Color.white);
         }
