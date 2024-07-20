@@ -9,6 +9,7 @@ public class WeaponProfile : Profile
 
     [Space]
     public ProjectileProfile projectile;
+    public float maxDispersionAngle;
 
     [Space]
     public int magazine;
@@ -17,6 +18,7 @@ public class WeaponProfile : Profile
     [Space]
     public int burst;
     public float angleBurst;
+    public int burstRandomRange;
 
     [Space]
     public int consecutiveCount;
