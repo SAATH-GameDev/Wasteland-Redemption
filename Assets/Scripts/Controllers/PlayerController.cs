@@ -42,12 +42,16 @@ partial class PlayerController : GameEntity
 
     void Update()
     {
+        if(Time.timeScale <= 0.0f) return;
+
         displayTransform.LookAt(transform.position + _look);
         displayTransform.rotation = Quaternion.Euler(0.0f, displayTransform.rotation.eulerAngles.y, 0.0f);
     }
 
     void FixedUpdate()
     {
+        if(Time.timeScale <= 0.0f) return;
+        
         Vector3 targetVelocity = _movement.normalized * (profile.speed * characterProfile.speed);
         _rigidbody.linearVelocity = Vector3.SmoothDamp(_rigidbody.linearVelocity, targetVelocity, ref _currentVelocity, smoothTime);
     }

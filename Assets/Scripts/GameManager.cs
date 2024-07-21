@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    //commit 
     public int forceScreens = 0;
 
     public static GameManager Instance;

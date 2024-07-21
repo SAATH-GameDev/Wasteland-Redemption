@@ -110,6 +110,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7019435604170696868}
   - component: {fileID: 3024652447763854936}
+  - component: {fileID: 2639575148183368002}
   - component: {fileID: 899070081788865946}
   - component: {fileID: 3558543980104783015}
   m_Layer: 0
@@ -156,6 +157,19 @@ MonoBehaviour:
   capsuleMesh: {fileID: 1378361398276655553}
   movementTransform: {fileID: 0}
   smoothTime: 0.08
+--- !u!114 &2639575148183368002
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2407407691484470730}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 135e472776dd4234681ee8a74e85a1cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventory: []
 --- !u!114 &899070081788865946
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -806,6 +820,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6264840364923780171}
     m_Modifications:
+    - target: {fileID: 2798193193002875376, guid: eb8a84d7db454754bafb68f79ff264c8, type: 3}
+      propertyPath: profile
+      value: 
+      objectReference: {fileID: 11400000, guid: 0f1ebf27e0075ab4da14dda54d9aaa2d, type: 2}
     - target: {fileID: 4172610313048164544, guid: eb8a84d7db454754bafb68f79ff264c8, type: 3}
       propertyPath: m_Name
       value: Weapon

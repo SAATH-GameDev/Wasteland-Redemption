@@ -11,10 +11,12 @@ public class GameEntity : MonoBehaviour, IDamageable
     public int health;
 
     protected List<Renderer> renderers;
+    protected Vector3 baseScale;
 
     virtual protected void Start()
     {
         renderers = displayTransform.GetComponentsInChildren<Renderer>().ToList();
+        baseScale = displayTransform.transform.localScale;
     }
 
     public void TakeDamage(int damage)
@@ -24,34 +26,36 @@ public class GameEntity : MonoBehaviour, IDamageable
         if (health <= 0)
         {
             health = 0;
-            //print($"{gameObject.name} has died");
             Destroy(gameObject);
         }
         else
         {
-            //print($"{gameObject.name} took {damage} damage, current health: {health}");
             StartCoroutine(EnablingDamageEffect());
         }
     }
 
     private IEnumerator EnablingDamageEffect()
     {
-        foreach(var renderer in renderers)
+        if(renderers == null)
+            Start();
+
+        foreach(Renderer renderer in renderers)
         {
-            var material = renderer.material;
+            if(!renderer || !renderer.material) continue;
+
+            Material material = renderer.material;
             material.EnableKeyword("_EMISSION");
             material.SetColor("_EmissionColor", Color.white);
         }
 
         // Scale down
-        float duration = 0.075f;
-        Vector3 originalScale = displayTransform.transform.localScale;
-        Vector3 targetScale = originalScale * 1.1f;
+        float duration = 0.05f;
+        Vector3 targetScale = baseScale * 1.1f;
         float elapsedTime = 0f;
 
         while (elapsedTime < duration)
         {
-            displayTransform.transform.localScale = Vector3.Lerp(originalScale, targetScale, elapsedTime / duration);
+            displayTransform.transform.localScale = Vector3.Lerp(baseScale, targetScale, elapsedTime / duration);
             elapsedTime += Time.deltaTime;
             yield return null;
         }
@@ -62,14 +66,14 @@ public class GameEntity : MonoBehaviour, IDamageable
         elapsedTime = 0f;
         while (elapsedTime < duration)
         {
-            displayTransform.transform.localScale = Vector3.Lerp(targetScale, originalScale, elapsedTime / duration);
+            displayTransform.transform.localScale = Vector3.Lerp(targetScale, baseScale, elapsedTime / duration);
             elapsedTime += Time.deltaTime;
             yield return null;
         }
 
-        displayTransform.transform.localScale = originalScale;
+        displayTransform.transform.localScale = baseScale;
 
-        yield return new WaitForSeconds(0.075f);
+        yield return new WaitForSeconds(0.05f);
 
         foreach(var renderer in renderers)
         {
