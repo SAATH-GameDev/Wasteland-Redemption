@@ -14,12 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isContinous: 0
   damage: 0
-  delay: 0.25
+  delay: 0.06
   projectile: {fileID: 11400000, guid: 7a292d33b9f8a214bae3aec3a2757f25, type: 2}
-  magazine: 0
-  reloadDelay: 0
+  maxDispersionAngle: 1.25
+  magazine: 12
+  reloadDelay: 2
   burst: 0
   angleBurst: 0
+  burstRandomRange: 0
   consecutiveCount: 0
   consecutiveDelay: 0
   criticalHitChance: 0

@@ -823,7 +823,7 @@ PrefabInstance:
     - target: {fileID: 2798193193002875376, guid: eb8a84d7db454754bafb68f79ff264c8, type: 3}
       propertyPath: profile
       value: 
-      objectReference: {fileID: 11400000, guid: cf49049e243341e41a48c1c1821be7c8, type: 2}
+      objectReference: {fileID: 11400000, guid: 0f1ebf27e0075ab4da14dda54d9aaa2d, type: 2}
     - target: {fileID: 4172610313048164544, guid: eb8a84d7db454754bafb68f79ff264c8, type: 3}
       propertyPath: m_Name
       value: Weapon
