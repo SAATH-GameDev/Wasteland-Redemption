@@ -4,44 +4,44 @@ using UnityEngine;
 
 public class DialogueManager : MonoBehaviour
 {
-    public int index = -1;
-    public int targetIndex = -1;
+    public DialogueGroup group;
 
-    public List<string> dialogues = new List<string>();
+    public List<string> currentDialogues = new List<string>();
 
     public GameObject dialogueBox;
     public TextMeshProUGUI dialogueText;
 
     static public DialogueManager Instance;
 
-    public void PlaySingleDialogue(int fromIndex = -1)
+    public void Play(int index)
     {
-        if(fromIndex > -1) index = fromIndex;
-        targetIndex = fromIndex + 1;
+        currentDialogues.AddRange(group.Get(index));
+
+        dialogueText.text = currentDialogues[0];
+        currentDialogues.RemoveAt(0);
     }
 
-    public void PlayDialogues(int fromIndex = -1, int toIndex = -1)
+    public void Play(string tag)
     {
-        if(fromIndex > -1) index = fromIndex;
-        if(toIndex > -1) targetIndex = toIndex;
-    }
+        currentDialogues.AddRange(group.Get(tag));
 
-    public void PlayDialoguesForLength(int fromIndex = -1, int length = 0)
-    {
-        if(fromIndex > -1) index = fromIndex;
-        if(length > 0) targetIndex = index + length;
+        dialogueText.text = currentDialogues[0];
+        currentDialogues.RemoveAt(0);
     }
 
     void Awake()
     {
         Instance = this;
+
+        //TEMPORARY; for testing
+        Play(0);
     }
 
     void Update()
     {
         if(PlayerController.count <= 0) return;
         
-        if(index > -1 && index < dialogues.Count - 1 && index < targetIndex)
+        if(currentDialogues.Count > 0)
         {
             dialogueBox.SetActive(true);
             Time.timeScale = 0.0f;
@@ -55,10 +55,10 @@ public class DialogueManager : MonoBehaviour
 
     public bool Proceed()
     {
-        if(index < dialogues.Count - 1 && index < targetIndex)
+        if(currentDialogues.Count > 0)
         {
-            index++;
-            dialogueText.text = dialogues[index];
+            dialogueText.text = currentDialogues[0];
+            currentDialogues.RemoveAt(0);
             return true;
         }
 
