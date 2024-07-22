@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bd71d4889cf4084a74993cf5d1b7419, type: 3}
+  m_Name: Enemy Spawner Test
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 6064945029731501671, guid: 7553dfff93ac3cd4b99e9942672189a0, type: 3}
+  rate: 2
+  limit: 10
+  cooldown: 2
