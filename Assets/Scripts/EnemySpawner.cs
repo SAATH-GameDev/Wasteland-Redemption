@@ -36,6 +36,9 @@ public class EnemySpawner : MonoBehaviour
 
         for (int i = 0; i < rate; i++)
         {
+            // todo #1 - replace spawn position to be determined by the profile with respect to player position
+            // todo #2 - use pooling instead of instantiating?
+    
             Instantiate(profile.prefab, transform.position, Quaternion.identity);
             limit--;
         }
