@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class AIController : GameEntity
+public class AIControllerOld : GameEntity
 {
     public AIControllerBase currentState;
 

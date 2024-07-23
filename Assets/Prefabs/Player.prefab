@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6264840364923780171}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Display
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45,7 +45,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3902998814792455752}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -77,7 +77,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6448231213813319546}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Physics
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -113,7 +113,7 @@ GameObject:
   - component: {fileID: 2639575148183368002}
   - component: {fileID: 899070081788865946}
   - component: {fileID: 3558543980104783015}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -353,7 +353,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8600747259829887382}
   - component: {fileID: 3488390790809944051}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -409,7 +409,7 @@ GameObject:
   - component: {fileID: 8325827376632802281}
   - component: {fileID: 8044375498352051587}
   - component: {fileID: 4232447258455997446}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: ViewLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -530,7 +530,7 @@ GameObject:
   - component: {fileID: 4677083380535329068}
   - component: {fileID: 4078303779314276334}
   - component: {fileID: 8572438991569075275}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: TopLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -651,7 +651,7 @@ GameObject:
   - component: {fileID: 1645218075437094762}
   - component: {fileID: 4871928998781791681}
   - component: {fileID: 3376863204993811463}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Look
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -737,7 +737,7 @@ GameObject:
   - component: {fileID: 8302816492217602196}
   - component: {fileID: 3754330541206344763}
   - component: {fileID: 6429867034633054083}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -823,10 +823,30 @@ PrefabInstance:
     - target: {fileID: 2798193193002875376, guid: eb8a84d7db454754bafb68f79ff264c8, type: 3}
       propertyPath: profile
       value: 
-      objectReference: {fileID: 11400000, guid: 0f1ebf27e0075ab4da14dda54d9aaa2d, type: 2}
+      objectReference: {fileID: 11400000, guid: cf49049e243341e41a48c1c1821be7c8, type: 2}
+    - target: {fileID: 3062753049156754285, guid: eb8a84d7db454754bafb68f79ff264c8, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4172610313048164544, guid: eb8a84d7db454754bafb68f79ff264c8, type: 3}
       propertyPath: m_Name
       value: Weapon
+      objectReference: {fileID: 0}
+    - target: {fileID: 4172610313048164544, guid: eb8a84d7db454754bafb68f79ff264c8, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5893634458589785205, guid: eb8a84d7db454754bafb68f79ff264c8, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6813818704082973406, guid: eb8a84d7db454754bafb68f79ff264c8, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7056677880416949383, guid: eb8a84d7db454754bafb68f79ff264c8, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7741838669030600498, guid: eb8a84d7db454754bafb68f79ff264c8, type: 3}
       propertyPath: m_LocalPosition.x
