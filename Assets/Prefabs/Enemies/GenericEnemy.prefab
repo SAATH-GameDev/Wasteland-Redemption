@@ -554,7 +554,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   displayTransform: {fileID: 5252180228975227596}
-  health: 1000
+  health: 100
   currentTarget: {fileID: 0}
   enemyProfile: {fileID: 11400000, guid: e522dfc5d0523ac49a58b159c7c212f9, type: 2}
   chaseRange: 12
