@@ -4,9 +4,11 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
     public EnemySpawnerProfile profile;
-    public Transform spawnTransform = null;
+   
+    // todo: can be a list of transforms for multiple spawn points to be chosen randomly from.
+    // public Transform spawnTransform = null;
     
-    private List<Enemy> enemies = new List<Enemy>();
+    private List<AIController> enemies = new List<AIController>();
     
     private float cooldown;
     
@@ -41,29 +43,29 @@ public class EnemySpawner : MonoBehaviour
             case SpawnLocation.MAPBOUNDARY:
                 spawnPosition = new Vector3(Random.Range(profile.minMapBoundaryX.x, profile.minMapBoundaryX.y), 0, Random.Range(profile.minMapBoundaryZ.x, profile.minMapBoundaryZ.y));
                 break;
-            case SpawnLocation.CUSTOMTRANSFORM:
-                spawnPosition = spawnTransform !? spawnTransform.position : transform.position;
+            case SpawnLocation.RANDOMTRANSFORM:
+               // spawnPosition = spawnTransform !? spawnTransform.position : transform.position;
                 break;
         }
 
         for (int i = 0; i < rate; i++)
         {
-            Enemy newEnemy = Instantiate(profile.prefab, spawnPosition, Quaternion.identity);
-            enemies.Add(newEnemy);
+            AIController newAIController = Instantiate(profile.prefab, spawnPosition, Quaternion.identity);
+            enemies.Add(newAIController);
             limit--;
         }
     }
     
-    public void DespawnEnemy(Enemy enemy)
+    public void DespawnEnemy(AIController aiController)
     {
         currentRemainingEnemies--;
-        enemies.Remove(enemy);
-        Destroy(enemy.gameObject);
+        enemies.Remove(aiController);
+        Destroy(aiController.gameObject);
     }
     
     public void KillAllEnemies()
     {
-        foreach (Enemy enemy in enemies)
+        foreach (AIController enemy in enemies)
         {
             Destroy(enemy.gameObject);
         }
