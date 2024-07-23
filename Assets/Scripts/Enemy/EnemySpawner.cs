@@ -29,6 +29,9 @@ public class EnemySpawner : MonoBehaviour
 
     private void Update()
     {
+        if(PlayerController.count <= 0)
+            return;
+
         // test spawn   
         if (cooldown <= 0)
         {
