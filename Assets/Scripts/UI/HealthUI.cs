@@ -8,6 +8,12 @@ public class HealthUI : MonoBehaviour
     [SerializeField] private string cameraToLookTag;
     [SerializeField] private bool lookToCamera;
     [SerializeField] private Image fillBar; // for changing fill value later on
+    [SerializeField] private float _currentHealth;
+    [SerializeField] private float _maxHealth = 10000f;
+
+    public int damageTaken = 0;
+    public bool DT = false;
+
 
     private void Start()
     {
@@ -22,6 +28,8 @@ public class HealthUI : MonoBehaviour
         {
             StartCoroutine(WaitForPlayer());
         }
+
+        _currentHealth = _maxHealth;
     }
 
     private IEnumerator WaitForPlayer()
@@ -43,5 +51,21 @@ public class HealthUI : MonoBehaviour
         LookAtConstraint lookAtConstraint = gameObject.AddComponent<LookAtConstraint>();
         lookAtConstraint.AddSource(new ConstraintSource { sourceTransform = targetObject.transform, weight = 1f });
         lookAtConstraint.constraintActive = true;
+    }
+
+    void Update()
+    {
+        if (DT == true)
+        {
+            _currentHealth -= damageTaken;
+            _currentHealth = Mathf.Clamp(_currentHealth, 0, _maxHealth);
+            DecreaseHealth();
+            DT = false;
+        }
+    }
+    void DecreaseHealth()
+    {
+        float _healthPercentage = _currentHealth / _maxHealth;
+        fillBar.rectTransform.localScale = new Vector3(_healthPercentage, 1, 1);
     }
 }
