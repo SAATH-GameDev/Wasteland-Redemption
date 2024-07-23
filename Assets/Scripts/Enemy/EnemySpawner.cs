@@ -1,5 +1,7 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class EnemySpawner : MonoBehaviour
 {
@@ -23,6 +25,20 @@ public class EnemySpawner : MonoBehaviour
         limit = profile.limit;
         currentRemainingEnemies = limit;
         rate = profile.rate;
+    }
+
+    private void Update()
+    {
+        // test spawn   
+        if (cooldown <= 0)
+        {
+            SpawnEnemy();
+            cooldown = profile.cooldown;
+        }
+        else
+        {
+            cooldown -= Time.deltaTime;
+        }
     }
 
 

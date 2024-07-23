@@ -5,8 +5,6 @@ public class EnemyIdleState : State<AIController>
     public override void Enter(AIController owner)
     {
         base.Enter(owner);
-
-      
     }
 
     public override void Update(AIController owner)
@@ -20,7 +18,7 @@ public class EnemyIdleState : State<AIController>
            // todo: Implement change state to patrolling if required later after timer runs out 
         }
 
-        if (owner.PlayerInRange(owner.chaseRange))
+        if (owner.TargetInRange(owner.chaseRange))
         {
             owner.StateMachine.ChangeState(typeof(EnemyChaseState));
         }

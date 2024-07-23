@@ -552,6 +552,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c357a5de9a04647bf40633ddfe7a2a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  displayTransform: {fileID: 5252180228975227596}
+  health: 1000
+  currentTarget: {fileID: 0}
+  enemyProfile: {fileID: 11400000, guid: e522dfc5d0523ac49a58b159c7c212f9, type: 2}
+  chaseRange: 12
+  attackRange: 3
+  idleTimer: 1
 --- !u!114 &8209026092134025652
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -559,7 +566,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7856703429447425785}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 084b036eb2696ee41a7268dcf71902ef, type: 3}
   m_Name: 

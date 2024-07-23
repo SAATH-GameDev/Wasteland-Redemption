@@ -2,23 +2,40 @@ using UnityEngine;
 
 public class AIController : GameEntity
 {
-    public float idleTimer = 1f;
+    // todo: in coop multiple players target can be implemented here
+    public Transform currentTarget;
 
+    public EnemyProfile enemyProfile;
+    
+    [Space]
     public float chaseRange = 5f;
     public float attackRange = 3f;
-    
-    // todo: in coop multiple players target can be implemented here
-    public Transform player;
-    
+
+    [Space]
+    public float idleTimer = 1f;
+
     public StateMachine<AIController> StateMachine { get; private set; }
 
+    private Vector3 _directionToTarget;
+    
+    private Rigidbody _rigidbody;
+    
+    
     private void Awake()
     {
+        _rigidbody = GetComponent<Rigidbody>();
+        
         StateMachine = new EnemyStateMachine(this);
+        
         StateMachine.AddState(new EnemyIdleState());
+        StateMachine.AddState(new EnemyChaseState());    
+        
         StateMachine.InitState(typeof(EnemyIdleState));
+        
 
-        player = FindFirstObjectByType<PlayerController>().transform;
+        currentTarget = FindFirstObjectByType<PlayerController>().transform;
+        
+        // health = (int) enemyProfile.health;
     }
     
     private void Update()
@@ -26,21 +43,43 @@ public class AIController : GameEntity
         StateMachine?.Update();
     }
     
-    public bool PlayerInRange(float range)
+    public void MoveAndRotateTowardsTarget()
     {
-        return DistanceToPlayer() <= range;
-    }
-    
-    public float DistanceToPlayer()
-    {
-        return Vector3.Distance(transform.position, player.position);
+        _directionToTarget = (currentTarget.position - transform.position).normalized;
+        RotateTowards();
+        MoveTowardsTarget();
     }
 
-    public void MoveTowards(Transform ownerPlayer)
+    
+    public bool TargetInRange(float range)
     {
-        Vector3 direction = (ownerPlayer.position - transform.position).normalized;
-        transform.position += direction * Time.deltaTime;
+        return DistanceToTarget() <= range;
+    }
+    
+    public bool TargetOutOfRange(float range)
+    {
+        return DistanceToTarget() > range;
+    }
+    
+    public float DistanceToTarget()
+    {
+        return Vector3.Distance(transform.position, currentTarget.position);
+    }
+    
+    private void RotateTowards()
+    {
+        if(Time.timeScale <= 0.0f) return;
         
-        transform.LookAt(ownerPlayer);
+        displayTransform.LookAt(transform.position + _directionToTarget);
+        displayTransform.rotation = Quaternion.Euler(0.0f, displayTransform.rotation.eulerAngles.y, 0.0f);
+    }
+
+    private void MoveTowardsTarget()
+    {
+        if(Time.timeScale <= 0.0f) return;
+        
+        Vector3 targetVelocity = _directionToTarget * (enemyProfile.speed);
+        transform.position += targetVelocity * Time.deltaTime;
     }
 }
+

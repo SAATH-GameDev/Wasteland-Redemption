@@ -9,13 +9,17 @@ public class EnemyChaseState : State<AIController>
     {
         base.Update(owner);
 
-        if (owner.PlayerInRange(owner.attackRange))
+        if (owner.TargetInRange(owner.attackRange))
         {
-            // todo change state to attack
+            // todo change state to attack after implementing attack state
+        }
+        else if(owner.TargetOutOfRange(owner.chaseRange))
+        {
+            owner.StateMachine.ChangeState(typeof(EnemyIdleState));
         }
         else
         {
-            owner.MoveTowards(owner.player);
+          owner.MoveAndRotateTowardsTarget();
         }
     }
 
