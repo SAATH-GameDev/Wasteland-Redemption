@@ -593,6 +593,7 @@ MonoBehaviour:
   chaseRange: 12
   attackRange: 3
   idleTimer: 1
+  chaseAfterContact: 0
 --- !u!114 &8209026092134025652
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -742,7 +743,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c439f868b1f7e144299ce5e45cf301f4, type: 2}
+  - {fileID: 2100000, guid: df788d31bccbb2c408d5fffc8face6cd, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
