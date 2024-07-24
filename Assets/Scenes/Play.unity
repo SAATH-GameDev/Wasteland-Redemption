@@ -2124,38 +2124,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4770753818877138106, guid: 520fc44614a0d1e44850d167b89d8181, type: 3}
   m_PrefabInstance: {fileID: 314197597}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &330582713
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 330582714}
-  m_Layer: 0
-  m_Name: ----CanvasHolder----
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &330582714
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 330582713}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 2045802755}
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &334190432
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -38818,6 +38786,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e8035c71f189194cb2e0b0fb3e42409, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canvas: {fileID: 2045802755}
   forceScreens: 1
 --- !u!114 &690201855
 MonoBehaviour:
@@ -48825,7 +48794,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 330582714}
+    m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 856354293631396332, guid: d68f73128e9d88e4397ba49241d216a0, type: 3}
       propertyPath: m_Name
@@ -49306,7 +49275,7 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 1199890604}
-  - {fileID: 330582714}
+  - {fileID: 4213932403361372328}
   - {fileID: 791217274}
   - {fileID: 639691845}
   - {fileID: 778354403}
