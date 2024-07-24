@@ -13,7 +13,7 @@ public class EnemyChaseState : State<AIController>
         {
             // todo change state to attack after implementing attack state
         }
-        else if(owner.TargetOutOfRange(owner.chaseRange))
+        else if(owner.TargetOutOfRange(owner.chaseRange) && !owner.chaseAfterContact)
         {
             owner.StateMachine.ChangeState(typeof(EnemyIdleState));
         }
@@ -26,5 +26,7 @@ public class EnemyChaseState : State<AIController>
     public override void Exit(AIController owner)
     {
         base.Exit(owner);
+        
+        owner.chaseAfterContact = false;
     }
 }

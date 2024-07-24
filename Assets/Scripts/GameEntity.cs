@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,8 @@ public class GameEntity : MonoBehaviour, IDamageable
 
     [Space]
     public int health;
+
+    public Action OnDamage;
 
     protected List<Renderer> renderers;
     protected Vector3 baseScale;
@@ -22,6 +25,7 @@ public class GameEntity : MonoBehaviour, IDamageable
     public void TakeDamage(int damage)
     {
         health -= damage;
+        OnDamage?.Invoke();
         
         if (health <= 0)
         {

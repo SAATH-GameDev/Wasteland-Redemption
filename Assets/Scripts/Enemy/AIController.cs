@@ -15,15 +15,19 @@ public class AIController : GameEntity
     public float idleTimer = 1f;
 
     public StateMachine<AIController> StateMachine { get; private set; }
-
+    
     private Vector3 _directionToTarget;
+
+    public bool chaseAfterContact;
     
     private Rigidbody _rigidbody;
+    private DamageOnContact _damageOnContact;
     
     
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();
+        _damageOnContact = GetComponent<DamageOnContact>();
         
         StateMachine = new EnemyStateMachine(this);
         
@@ -37,7 +41,17 @@ public class AIController : GameEntity
         
         // health = (int) enemyProfile.health;
     }
-    
+
+    private void OnEnable()
+    {
+        OnDamage += OnContact;
+    }
+
+    private void OnDisable()
+    {
+        OnDamage -= OnContact;
+    }
+
     private void Update()
     {
         StateMachine?.Update();
@@ -81,5 +95,14 @@ public class AIController : GameEntity
         Vector3 targetVelocity = _directionToTarget * (enemyProfile.speed);
         transform.position += targetVelocity * Time.deltaTime;
     }
+    
+    
+    private void OnContact()
+    {
+       chaseAfterContact = true;
+       Debug.Log("OnContact");
+       StateMachine.ChangeState(typeof(EnemyChaseState));
+    }
+
 }
 
