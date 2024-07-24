@@ -58,8 +58,11 @@ public class GameEntity : MonoBehaviour, IDamageable
             Destroy(healthBar);
             Destroy(gameObject);
 
-            Instantiate(destroyedVersion, transform.position, transform.rotation);
-            Destroy(gameObject);
+            if (destroyedVersion != null)
+            {
+                Instantiate(destroyedVersion, transform.position, transform.rotation);
+                Destroy(gameObject);
+            }
         }
         else
         {

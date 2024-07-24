@@ -41529,6 +41529,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Crate (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 8476388433002320156, guid: 39ccf148f3b5dac4c8d9cd911d158339, type: 3}
+      propertyPath: OnDamage.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8476388433002320156, guid: 39ccf148f3b5dac4c8d9cd911d158339, type: 3}
+      propertyPath: OnDamage.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8476388433002320156, guid: 39ccf148f3b5dac4c8d9cd911d158339, type: 3}
+      propertyPath: OnDamage.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

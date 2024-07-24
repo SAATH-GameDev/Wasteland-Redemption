@@ -152,3 +152,8 @@ MonoBehaviour:
   displayTransform: {fileID: 6829628941827070431}
   destroyedVersion: {fileID: 5303168228112921310, guid: 135fd070cc7b3ea4786a62d565d6c70a, type: 3}
   health: 25
+  OnDamage:
+    m_PersistentCalls:
+      m_Calls: []
+  healthBarPrefab: {fileID: 0}
+  healthBarOffset: {x: 0, y: 0, z: 0}
