@@ -16,8 +16,10 @@ partial class PlayerController : GameEntity
 
     private Rigidbody _rigidbody;
     private Vector3 _currentVelocity;
-
+    [Space]
+    public float hungerValue;
     static public int count = 0;
+ 
 
     void OnEnable()
     {
@@ -37,11 +39,13 @@ partial class PlayerController : GameEntity
             movementTransform = transform;
 
         _rigidbody = GetComponent<Rigidbody>();
-        health = profile.health;
+        maxHealth = health = profile.health;
     }
 
-    void Update()
+    override protected void Update()
     {
+        base.Update();
+
         if(Time.timeScale <= 0.0f) return;
 
         displayTransform.LookAt(transform.position + _look);

@@ -3,11 +3,10 @@ using UnityEngine;
 public class AIControllerOld : GameEntity
 {
     public AIControllerBase currentState;
-
-
+    
     void Update()
     {
-    RunCurrentState();
+        RunCurrentState();
     }
 
     private void RunCurrentState()
