@@ -7,6 +7,7 @@ using UnityEngine;
 public class GameEntity : MonoBehaviour, IDamageable
 {
     public Transform displayTransform;
+    public GameObject destroyedVersion;
 
     [Space]
     public int health;
@@ -30,6 +31,9 @@ public class GameEntity : MonoBehaviour, IDamageable
         if (health <= 0)
         {
             health = 0;
+            Destroy(gameObject);
+
+            Instantiate(destroyedVersion, transform.position, transform.rotation);
             Destroy(gameObject);
         }
         else
