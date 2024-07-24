@@ -13,12 +13,13 @@ public class AIController : GameEntity
 
     [Space]
     public float idleTimer = 1f;
+    public float chaseTimer = 5f;
 
     public StateMachine<AIController> StateMachine { get; private set; }
     
     private Vector3 _directionToTarget;
 
-    public bool chaseAfterContact;
+    public bool chaseAfterDamage;
     
     private Rigidbody _rigidbody;
     private DamageOnContact _damageOnContact;
@@ -100,9 +101,11 @@ public class AIController : GameEntity
     
     private void OnContact()
     {
-       chaseAfterContact = true;
-       Debug.Log("OnContact");
-       StateMachine.ChangeState(typeof(EnemyChaseState));
+        if(chaseAfterDamage) return;
+        
+        chaseAfterDamage = true;
+        Debug.Log("OnContact");
+        StateMachine.ChangeState(typeof(EnemyChaseState));
     }
 
 }

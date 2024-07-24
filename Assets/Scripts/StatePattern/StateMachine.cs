@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 public abstract class StateMachine<T>
 {
@@ -22,6 +23,13 @@ public abstract class StateMachine<T>
     
     public void ChangeState(Type newState)
     {
+        if (newState == CurrentState.GetType())
+        {
+            Debug.Log("Re-entering the same state not allowed");
+            return;
+        }
+           
+        
         if (CurrentState != null)
         {
             CurrentState.Exit(owner);
