@@ -16,8 +16,10 @@ partial class PlayerController : GameEntity
 
     private Rigidbody _rigidbody;
     private Vector3 _currentVelocity;
-
+    [Space]
+    public float hungerValue;
     static public int count = 0;
+ 
 
     void OnEnable()
     {

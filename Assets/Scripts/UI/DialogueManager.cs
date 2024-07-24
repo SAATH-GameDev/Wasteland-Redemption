@@ -12,7 +12,7 @@ public class DialogueManager : MonoBehaviour
     public TextMeshProUGUI dialogueText;
 
     static public DialogueManager Instance;
-
+    public bool isDialogEnd;
     public void Play(int index)
     {
         currentDialogues.AddRange(group.Get(index));
@@ -61,7 +61,7 @@ public class DialogueManager : MonoBehaviour
             currentDialogues.RemoveAt(0);
             return true;
         }
-
+        isDialogEnd = true;
         dialogueBox.SetActive(false);
         Time.timeScale = 1.0f;
         return false;

@@ -18,12 +18,14 @@ public class GameEntity : MonoBehaviour, IDamageable
     [Space]
     public GameObject healthBarPrefab;
     public Vector3 healthBarOffset;
-
+    [Space]
+    public float hungerVal;
     protected List<Renderer> renderers;
     protected Vector3 baseScale;
     
     protected int maxHealth;
     protected GameObject healthBar;
+    
 
     virtual protected void Start()
     {
