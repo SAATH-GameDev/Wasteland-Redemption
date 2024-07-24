@@ -39,21 +39,22 @@ public class AIController : GameEntity
 
         currentTarget = FindFirstObjectByType<PlayerController>().transform;
         
-        // health = (int) enemyProfile.health;
+        maxHealth = health = enemyProfile.health;
     }
 
     private void OnEnable()
     {
-        OnDamage += OnContact;
+        OnDamage.AddListener(OnContact);
     }
 
     private void OnDisable()
     {
-        OnDamage -= OnContact;
+        OnDamage.RemoveListener(OnContact);
     }
 
-    private void Update()
+    override protected void Update()
     {
+        base.Update();
         StateMachine?.Update();
     }
     
