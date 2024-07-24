@@ -3,12 +3,20 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    //commit 
+    public Transform canvas;
     public int forceScreens = 0;
 
     public static GameManager Instance;
 
     private List<Camera> playerCameras = new List<Camera>();
+
+    public Vector3 WorldToScreenPosition(Vector3 worldPosition, int playerIndex = 0)
+    {
+        if(playerCameras.Count <= 0)
+            return Vector3.zero;
+
+        return playerCameras[playerIndex].WorldToScreenPoint(worldPosition);
+    }
 
     public int GetScreenCount()
     {

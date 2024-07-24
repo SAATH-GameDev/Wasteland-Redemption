@@ -152,6 +152,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   displayTransform: {fileID: 6264840364923780171}
   health: 0
+  OnDamage:
+    m_PersistentCalls:
+      m_Calls: []
+  healthBarPrefab: {fileID: 572851942239386238, guid: c08494691989e3a4595aad75a9d5662e, type: 3}
+  healthBarOffset: {x: 0, y: 64, z: 0}
   profile: {fileID: 11400000, guid: 82ef7bccb603a724faa38a39e8781421, type: 2}
   characterProfile: {fileID: 11400000, guid: fb59b8ae9295cef458c1bf053d7b1435, type: 2}
   weapon: {fileID: 499525523550956944}
