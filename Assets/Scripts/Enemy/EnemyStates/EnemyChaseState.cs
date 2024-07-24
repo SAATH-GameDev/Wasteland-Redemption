@@ -5,7 +5,7 @@ public class EnemyChaseState : State<AIController>
     public override void Enter(AIController owner)
     {
         base.Enter(owner);
-        timer = owner.chaseTime;
+        timer = owner.chaseTime;            
     }
 
     public override void Update(AIController owner)
