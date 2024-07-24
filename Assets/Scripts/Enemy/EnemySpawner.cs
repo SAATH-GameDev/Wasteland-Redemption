@@ -69,7 +69,12 @@ public class EnemySpawner : MonoBehaviour
 
         for (int i = 0; i < rate; i++)
         {
-            AIController newAIController = Instantiate(profile.prefab, spawnPosition, Quaternion.identity);
+            float randomOffsetX = Random.Range(-rate * 1f, rate);
+            float randomOffsetZ = Random.Range(-rate * 1f, rate);
+            
+            Vector3 offset = new Vector3(randomOffsetX, 0, randomOffsetZ);
+            
+            AIController newAIController = Instantiate(profile.prefab, spawnPosition + offset, Quaternion.identity);
             enemies.Add(newAIController);
             limit--;
         }
