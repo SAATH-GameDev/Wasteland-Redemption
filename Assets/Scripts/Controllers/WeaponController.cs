@@ -6,7 +6,7 @@ public class WeaponController : MonoBehaviour
 
     public Transform muzzle;
 
-    private bool isAttacking = false;
+    protected bool isAttacking = false;
 
     private int currentMagazine = 0;
     private float reloadTimer = 0.0f;
@@ -14,7 +14,7 @@ public class WeaponController : MonoBehaviour
     private int consecutiveCount = 0;
     private float consecutiveTimer = 0.0f;
 
-    private float timer = 0.0f;
+    protected float timer = 0.0f;
 
     public void Set(WeaponProfile profile = null)
     {
@@ -32,7 +32,7 @@ public class WeaponController : MonoBehaviour
         Set();
     }
 
-    void Update()
+    public virtual void HandleShooting()
     {
         if(profile.isContinous && isAttacking)
             Attack();
@@ -41,7 +41,7 @@ public class WeaponController : MonoBehaviour
         timer -= Time.deltaTime;
     }
 
-    void AttackingConsecutive()
+    protected void AttackingConsecutive()
     {
         if(consecutiveCount > 0)
         {
@@ -89,7 +89,7 @@ public class WeaponController : MonoBehaviour
         while(burstCount > 0);
     }
 
-    void ReloadingMagazine()
+    protected void ReloadingMagazine()
     {
         if(profile.magazine > 0 && currentMagazine <= 0)
         {

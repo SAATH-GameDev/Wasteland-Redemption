@@ -14,26 +14,26 @@ public class AIController : GameEntity
     [Space]
     public float idleTimer = 1f;
     public float chaseTimer = 5f;
-
+    public float attackTimer = 2f;
+    
+    [Space]
+    public bool chaseAfterDamage;
+    
     public StateMachine<AIController> StateMachine { get; private set; }
     
     private Vector3 _directionToTarget;
 
-    public bool chaseAfterDamage;
-    
-    private Rigidbody _rigidbody;
-    private DamageOnContact _damageOnContact;
-    
+    private EnemyWeaponController _weaponController;
     
     private void Awake()
     {
-        _rigidbody = GetComponent<Rigidbody>();
-        _damageOnContact = GetComponent<DamageOnContact>();
+        _weaponController = GetComponentInChildren<EnemyWeaponController>();
         
         StateMachine = new EnemyStateMachine(this);
         
         StateMachine.AddState(new EnemyIdleState());
         StateMachine.AddState(new EnemyChaseState());    
+        StateMachine.AddState(new EnemyAttackState());
         
         StateMachine.InitState(typeof(EnemyIdleState));
         
@@ -57,11 +57,12 @@ public class AIController : GameEntity
     {
         base.Update();
         StateMachine?.Update();
+        
+        _directionToTarget = (currentTarget.position - transform.position).normalized;
     }
     
     public void MoveAndRotateTowardsTarget()
     {
-        _directionToTarget = (currentTarget.position - transform.position).normalized;
         RotateTowards();
         MoveTowardsTarget();
     }
@@ -82,7 +83,13 @@ public class AIController : GameEntity
         return Vector3.Distance(transform.position, currentTarget.position);
     }
     
-    private void RotateTowards()
+    public void Attack()
+    {
+        _weaponController.HandleShooting();
+    }
+    
+    
+    public void RotateTowards()
     {
         if(Time.timeScale <= 0.0f) return;
         

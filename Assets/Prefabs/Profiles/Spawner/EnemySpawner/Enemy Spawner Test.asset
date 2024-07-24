@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Enemy Spawner Test
   m_EditorClassIdentifier: 
   prefab: {fileID: 6064945029731501671, guid: 7553dfff93ac3cd4b99e9942672189a0, type: 3}
-  rate: 2
-  limit: 10
-  cooldown: 2
+  rate: 1
+  limit: 1
+  cooldown: 1
   spawnLocation: 0
   spawnRadius: 15
   minMapBoundaryX: {x: 0, y: 0}
