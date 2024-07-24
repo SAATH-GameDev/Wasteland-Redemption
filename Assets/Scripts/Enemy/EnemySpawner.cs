@@ -56,14 +56,21 @@ public class EnemySpawner : MonoBehaviour
         
         switch (profile.spawnLocation)
         {
-            case SpawnLocation.RANDOMPOSITIONINRADIUS:
+            case SpawnLocation.RandomPositionInRadius:
                 spawnPosition = new Vector3(Random.Range(-profile.spawnRadius, profile.spawnRadius), 0, Random.Range(-profile.spawnRadius, profile.spawnRadius));
                 break;
-            case SpawnLocation.MAPBOUNDARY:
+            case SpawnLocation.MapBoundary:
                 spawnPosition = new Vector3(Random.Range(profile.minMapBoundaryX.x, profile.minMapBoundaryX.y), 0, Random.Range(profile.minMapBoundaryZ.x, profile.minMapBoundaryZ.y));
                 break;
-            case SpawnLocation.RANDOMTRANSFORM:
+            case SpawnLocation.CustomTransforms:
                // spawnPosition = spawnTransform !? spawnTransform.position : transform.position;
+                break;
+            case SpawnLocation.AroundTarget:
+                float randomAngle = Random.Range(0, 360);
+                float randomRadius = Random.Range(-profile.spawnRadius, profile.spawnRadius);
+                
+                // todo: consider adding target transform so that the position is around the target
+                spawnPosition = new Vector3(Mathf.Cos(randomAngle) * randomRadius, 0, Mathf.Sin(randomAngle) * randomRadius);
                 break;
         }
 

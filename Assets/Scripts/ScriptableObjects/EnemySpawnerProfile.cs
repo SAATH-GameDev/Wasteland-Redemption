@@ -15,7 +15,8 @@ public class EnemySpawnerProfile : SpawnerProfile<AIController>
 
 public enum SpawnLocation
 {
-    RANDOMPOSITIONINRADIUS,
-    MAPBOUNDARY,
-    RANDOMTRANSFORM
+    RandomPositionInRadius,
+    MapBoundary,
+    CustomTransforms,
+    AroundTarget
 }

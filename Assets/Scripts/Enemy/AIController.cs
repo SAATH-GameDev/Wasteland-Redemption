@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class AIController : GameEntity
 {
@@ -13,21 +14,19 @@ public class AIController : GameEntity
 
     [Space]
     public float idleTimer = 1f;
+    public float chaseTime = 4f;
 
     public StateMachine<AIController> StateMachine { get; private set; }
     
     private Vector3 _directionToTarget;
 
-    public bool chaseAfterContact;
+    public bool chaseAfterDamage;
     
     private Rigidbody _rigidbody;
-    private DamageOnContact _damageOnContact;
-    
     
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();
-        _damageOnContact = GetComponent<DamageOnContact>();
         
         StateMachine = new EnemyStateMachine(this);
         
@@ -44,12 +43,12 @@ public class AIController : GameEntity
 
     private void OnEnable()
     {
-        OnDamage += OnContact;
+        OnDamage += ChaseAfterDamage;
     }
 
     private void OnDisable()
     {
-        OnDamage -= OnContact;
+        OnDamage -= ChaseAfterDamage;
     }
 
     private void Update()
@@ -97,9 +96,9 @@ public class AIController : GameEntity
     }
     
     
-    private void OnContact()
+    private void ChaseAfterDamage()
     {
-       chaseAfterContact = true;
+       chaseAfterDamage = true;
        Debug.Log("OnContact");
        StateMachine.ChangeState(typeof(EnemyChaseState));
     }

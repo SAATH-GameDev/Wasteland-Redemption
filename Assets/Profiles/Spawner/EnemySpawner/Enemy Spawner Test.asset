@@ -16,3 +16,7 @@ MonoBehaviour:
   rate: 2
   limit: 10
   cooldown: 2
+  spawnLocation: 0
+  spawnRadius: 15
+  minMapBoundaryX: {x: 0, y: 0}
+  minMapBoundaryZ: {x: 0, y: 0}
