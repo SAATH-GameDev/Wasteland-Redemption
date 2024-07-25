@@ -63,9 +63,10 @@ public class GameEntity : MonoBehaviour, IDamageable
 
             if (destroyedVersion != null)
             {
-                GameObject go = Instantiate(destroyedVersion, transform.position, transform.rotation) as GameObject;
+                Instantiate(destroyedVersion, transform.position, transform.rotation);
                 Destroy(gameObject);
-                Destroy(go, 5); //Destroy after 5 seconds.
+
+    
             }
         }
         else
