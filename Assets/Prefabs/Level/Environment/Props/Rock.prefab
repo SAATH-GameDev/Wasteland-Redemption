@@ -174,4 +174,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destroyedVersion: {fileID: 6720861419886027067, guid: b642d87cdce6d4e49af642aadefbd671, type: 3}
-  maxPieceForce: 10
+  maxPieceForce: 600
+  minPieceDestroyTime: 3
+  maxPieceDestroyTime: 12
