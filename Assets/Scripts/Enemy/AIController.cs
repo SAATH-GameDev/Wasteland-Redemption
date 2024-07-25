@@ -15,6 +15,9 @@ public class AIController : GameEntity
     public float idleTimer = 1f;
     public float chaseTimer = 5f;
     public float attackTimer = 2f;
+
+    public float targetSearchInterval = 0.5f;
+
     
     [Space]
     public bool chaseAfterDamage;
@@ -24,6 +27,8 @@ public class AIController : GameEntity
     private Vector3 _directionToTarget;
 
     private EnemyWeaponController _weaponController;
+    private float targetSearchTimer;
+
     
     private void Awake()
     {
@@ -41,6 +46,7 @@ public class AIController : GameEntity
         currentTarget = FindFirstObjectByType<PlayerController>().transform;
         
         maxHealth = health = enemyProfile.health;
+        targetSearchTimer = targetSearchInterval;
     }
 
     private void OnEnable()
@@ -57,6 +63,14 @@ public class AIController : GameEntity
     {
         base.Update();
         StateMachine?.Update();
+        
+        targetSearchTimer -= Time.deltaTime;
+        
+        if(targetSearchTimer <= 0)
+        {
+            GetNearestTarget();
+            targetSearchTimer = targetSearchInterval;
+        }
         
         _directionToTarget = (currentTarget.position - transform.position).normalized;
     }
@@ -113,6 +127,23 @@ public class AIController : GameEntity
         chaseAfterDamage = true;
         Debug.Log("OnContact");
         StateMachine.ChangeState(typeof(EnemyChaseState));
+    }
+    
+    public void GetNearestTarget()
+    {
+        var players = PlayerController.activePlayers;
+        if(players.Count == 0) return;
+        
+        float minDistance = float.MaxValue;
+        foreach (var player in players)
+        {
+            float distance = Vector3.Distance(transform.position, player.transform.position);
+            if(distance < minDistance)
+            {
+                minDistance = distance;
+                currentTarget = player.transform;
+            }
+        }
     }
 
 }

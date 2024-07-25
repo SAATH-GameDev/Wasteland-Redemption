@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -25,15 +26,19 @@ partial class PlayerController : GameEntity
     private Image hungerBarImage;
     
     static public int count = 0;
+    
+    public static List<Transform> activePlayers = new List<Transform>();
 
     void OnEnable()
     {
         count++;
+        activePlayers.Add(transform);
     }
 
     void OnDisable()
     {
         count--;
+        activePlayers.Remove(transform);
     }
 
     override protected void Start()
