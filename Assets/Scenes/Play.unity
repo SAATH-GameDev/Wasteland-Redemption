@@ -38771,7 +38771,6 @@ GameObject:
   - component: {fileID: 690201854}
   - component: {fileID: 690201853}
   - component: {fileID: 690201855}
-  - component: {fileID: 690201856}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -38850,6 +38849,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e8035c71f189194cb2e0b0fb3e42409, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameplay: {fileID: 11400000, guid: cfecb904fa8e6904db8f71a212059710, type: 2}
   canvas: {fileID: 2045802755}
   forceScreens: 1
 --- !u!114 &690201855
@@ -38868,31 +38868,6 @@ MonoBehaviour:
   currentDialogues: []
   dialogueBox: {fileID: 1982132778}
   dialogueText: {fileID: 1982132777}
-  isDialogEnd: 0
---- !u!114 &690201856
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 690201851}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 13546003c65a4494bb5c122ea9e04094, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  displayTransform: {fileID: 0}
-  destroyedVersion: {fileID: 0}
-  toRemoveBreakables: 0
-  health: 0
-  OnDamage:
-    m_PersistentCalls:
-      m_Calls: []
-  healthBarPrefab: {fileID: 0}
-  healthBarOffset: {x: 0, y: 0, z: 0}
-  hungerVal: 1
-  currentHunger: 0
-  hungerBar: {fileID: 924068391}
 --- !u!1 &696310454
 GameObject:
   m_ObjectHideFlags: 0
@@ -41321,17 +41296,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2317481695018764969, guid: aca01bfb84b710f4db036aef8bcfc187, type: 3}
   m_PrefabInstance: {fileID: 899976039}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &924068391 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7983191166992769414, guid: d68f73128e9d88e4397ba49241d216a0, type: 3}
-  m_PrefabInstance: {fileID: 4213932403361372328}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &936020238
 PrefabInstance:
   m_ObjectHideFlags: 0

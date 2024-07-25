@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 partial class PlayerController : GameEntity
 {
@@ -10,6 +11,9 @@ partial class PlayerController : GameEntity
     public WeaponController weapon;
     public GameObject capsuleMesh;
 
+    [Header("UI")]
+    public GameObject hungerBarPrefab;
+
     [Space]
     public Transform movementTransform;
     public float smoothTime = 0.05f;
@@ -17,7 +21,8 @@ partial class PlayerController : GameEntity
     private Rigidbody _rigidbody;
     private Vector3 _currentVelocity;
 
-    private float currentHunger;
+    private float currentHunger = 0.0f;
+    private Image hungerBarImage;
     
     static public int count = 0;
 
@@ -37,16 +42,20 @@ partial class PlayerController : GameEntity
 
         if (movementTransform == null)
             movementTransform = transform;
-
         _rigidbody = GetComponent<Rigidbody>();
+        
         maxHealth = health = profile.health;
 
         currentHunger = profile.hunger * characterProfile.hunger;
+        if(hungerBarPrefab)
+            hungerBarImage = Instantiate(hungerBarPrefab, GameManager.Instance.canvas.transform).GetComponent<Image>();
     }
 
     private void ProcessHunger()
     {
         currentHunger -= GameManager.Instance.gameplay.hungerDepletionRate * Time.deltaTime;
+        if(hungerBarImage)
+            hungerBarImage.fillAmount = currentHunger / (profile.hunger * characterProfile.hunger);
     }
 
     override protected void Update()
@@ -57,6 +66,8 @@ partial class PlayerController : GameEntity
 
         displayTransform.LookAt(transform.position + _look);
         displayTransform.rotation = Quaternion.Euler(0.0f, displayTransform.rotation.eulerAngles.y, 0.0f);
+
+        ProcessHunger();
     }
 
     void FixedUpdate()
