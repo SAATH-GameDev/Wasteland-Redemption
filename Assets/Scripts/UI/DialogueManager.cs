@@ -12,7 +12,6 @@ public class DialogueManager : MonoBehaviour
     public TextMeshProUGUI dialogueText;
 
     static public DialogueManager Instance;
-    public bool isDialogEnd;
     public void Play(int index)
     {
         currentDialogues.AddRange(group.Get(index));
@@ -20,7 +19,6 @@ public class DialogueManager : MonoBehaviour
         dialogueText.text = currentDialogues[0];
         currentDialogues.RemoveAt(0);
     }
-
     public void Play(string tag)
     {
         currentDialogues.AddRange(group.Get(tag));
@@ -47,7 +45,7 @@ public class DialogueManager : MonoBehaviour
             Time.timeScale = 0.0f;
         }
     }
-
+    
     public bool IsActive()
     {
         return dialogueBox.activeSelf;
@@ -61,7 +59,7 @@ public class DialogueManager : MonoBehaviour
             currentDialogues.RemoveAt(0);
             return true;
         }
-        isDialogEnd = true;
+
         dialogueBox.SetActive(false);
         Time.timeScale = 1.0f;
         return false;

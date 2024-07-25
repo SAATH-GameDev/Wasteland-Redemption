@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public GameplayProfile gameplay;
     public Transform canvas;
     public int forceScreens = 0;
 

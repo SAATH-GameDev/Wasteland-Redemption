@@ -6,7 +6,7 @@ partial class PlayerController : GameEntity
     public PlayerProfile profile;
     public PlayerCharacterProfile characterProfile;
 
-    [Space]
+    [Header("Attachments")]
     public WeaponController weapon;
     public GameObject capsuleMesh;
 
@@ -16,10 +16,10 @@ partial class PlayerController : GameEntity
 
     private Rigidbody _rigidbody;
     private Vector3 _currentVelocity;
-    [Space]
-    public float hungerValue;
+
+    private float currentHunger;
+    
     static public int count = 0;
- 
 
     void OnEnable()
     {
@@ -40,6 +40,13 @@ partial class PlayerController : GameEntity
 
         _rigidbody = GetComponent<Rigidbody>();
         maxHealth = health = profile.health;
+
+        currentHunger = profile.hunger * characterProfile.hunger;
+    }
+
+    private void ProcessHunger()
+    {
+        currentHunger -= GameManager.Instance.gameplay.hungerDepletionRate * Time.deltaTime;
     }
 
     override protected void Update()

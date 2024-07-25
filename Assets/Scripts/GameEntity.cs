@@ -20,7 +20,7 @@ public class GameEntity : MonoBehaviour, IDamageable
     public GameObject healthBarPrefab;
     public Vector3 healthBarOffset;
     [Space]
-    public float hungerVal;
+    
     protected List<Renderer> renderers;
     protected Vector3 baseScale;
     

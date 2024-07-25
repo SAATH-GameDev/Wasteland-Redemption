@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerHunger : GameEntity
+public class PlayerHunger : MonoBehaviour
 {
 
     private float maxHunger;
@@ -12,14 +12,14 @@ public class PlayerHunger : GameEntity
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        maxHunger = base.hungerVal;
+        maxHunger = hungerVal;
         currentHunger = maxHunger;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (DialogueManager.Instance.isDialogEnd == true)
+        if (DialogueManager.Instance.IsActive())
         {
             currentHunger -= delayInHungerVal * Time.deltaTime;
             hungerBar.fillAmount = currentHunger;
