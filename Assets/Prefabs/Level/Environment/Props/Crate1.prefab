@@ -151,7 +151,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   displayTransform: {fileID: 6829628941827070431}
-  health: 25
+  health: 20
   OnDamage:
     m_PersistentCalls:
       m_Calls: []
