@@ -60,21 +60,55 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0.167
       objectReference: {fileID: 0}
+    - target: {fileID: -8178263753138398767, guid: d83c3f6c531f8024e965c0754af14fef, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: -7290541609401661252, guid: d83c3f6c531f8024e965c0754af14fef, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: -5409739321234784151, guid: d83c3f6c531f8024e965c0754af14fef, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: -243600658016555032, guid: d83c3f6c531f8024e965c0754af14fef, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: d83c3f6c531f8024e965c0754af14fef, type: 3}
       propertyPath: m_Name
       value: Crate Cracked
+      objectReference: {fileID: 0}
+    - target: {fileID: 1471652512826467385, guid: d83c3f6c531f8024e965c0754af14fef, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2312885210681293677, guid: d83c3f6c531f8024e965c0754af14fef, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4511018097229588779, guid: d83c3f6c531f8024e965c0754af14fef, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4755651909088014502, guid: d83c3f6c531f8024e965c0754af14fef, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5719471454144060053, guid: d83c3f6c531f8024e965c0754af14fef, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8820350813964237207, guid: d83c3f6c531f8024e965c0754af14fef, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: -7955790086967878477, guid: d83c3f6c531f8024e965c0754af14fef, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: d83c3f6c531f8024e965c0754af14fef, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 3407819153315747348}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: d83c3f6c531f8024e965c0754af14fef, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1333598180081986827}
     - targetCorrespondingSourceObject: {fileID: -5409739321234784151, guid: d83c3f6c531f8024e965c0754af14fef, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3468425268318225021}
@@ -332,60 +366,6 @@ Rigidbody:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4553672363273205272}
-  serializedVersion: 4
-  m_Mass: 0.5
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!1 &5303168228112921310 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: d83c3f6c531f8024e965c0754af14fef, type: 3}
-  m_PrefabInstance: {fileID: 4997248144858402703}
-  m_PrefabAsset: {fileID: 0}
---- !u!64 &3407819153315747348
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5303168228112921310}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 0}
---- !u!54 &1333598180081986827
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5303168228112921310}
   serializedVersion: 4
   m_Mass: 0.5
   m_Drag: 0

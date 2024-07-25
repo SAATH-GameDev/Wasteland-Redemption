@@ -9,18 +9,17 @@ using UnityEngine.Events;
 public class GameEntity : MonoBehaviour, IDamageable
 {
     public Transform displayTransform;
-    public GameObject destroyedVersion;
-    public bool toRemoveBreakables = false;
 
     [Space]
     public int health;
     public UnityEvent OnDamage;
+    public UnityEvent OnDeath;
 
     [Space]
     public GameObject healthBarPrefab;
     public Vector3 healthBarOffset;
     [Space]
-    
+
     protected List<Renderer> renderers;
     protected Vector3 baseScale;
     
@@ -60,14 +59,7 @@ public class GameEntity : MonoBehaviour, IDamageable
             health = 0;
             Destroy(healthBar);
             Destroy(gameObject);
-
-            if (destroyedVersion != null)
-            {
-                Instantiate(destroyedVersion, transform.position, transform.rotation);
-                Destroy(gameObject);
-
-    
-            }
+            OnDeath?.Invoke();
         }
         else
         {

@@ -48,9 +48,49 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -8070200205324214932, guid: 7d43a69209af52745bd58e4d7f414916, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: -7834347888407616310, guid: 7d43a69209af52745bd58e4d7f414916, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: -7160572910868373705, guid: 7d43a69209af52745bd58e4d7f414916, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: -3003491872076128501, guid: 7d43a69209af52745bd58e4d7f414916, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: -2772862975084477800, guid: 7d43a69209af52745bd58e4d7f414916, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: -2174260200344950590, guid: 7d43a69209af52745bd58e4d7f414916, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 12040670849687530, guid: 7d43a69209af52745bd58e4d7f414916, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 7d43a69209af52745bd58e4d7f414916, type: 3}
       propertyPath: m_Name
-      value: RockBrokenn
+      value: RockDestroyed
+      objectReference: {fileID: 0}
+    - target: {fileID: 1209848237135257588, guid: 7d43a69209af52745bd58e4d7f414916, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2579037147481331896, guid: 7d43a69209af52745bd58e4d7f414916, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2916390347625508669, guid: 7d43a69209af52745bd58e4d7f414916, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
