@@ -14,20 +14,35 @@ It can also be established that our main character is not really 'the main chara
 While our MC is just an average guy trying to survive, but barely able to fight off a single zombie.
 
 MC: Back from your supply run already?
+
 Badass 1: Didn't go, actually.
+
 Badass 2: Too much zombie activity tonight. Better to wait it out.
+
 MC: I wish I could help you guys out there. I barely do anything around here.
+
 Badass 1: Hey, it's okay, kid! You help plenty. You're the only one who can cook anything that doesn't taste like burnt rubber.
+
 Badass 2: Yeah, and you clean the place. We'd be living in piles of garbage if it weren't for you.
+
 Badass 2: Honestly, it's terrible out there. Too dangerous. I wish I could stay here too.
+
 MC: Yeah... I guess you're right.
+
 MC: I do tend to freeze when faced with one of those things.
+
 MC: I won't be much help...
+
 MC: I'd probably die just tripping on some rubble... haha.
+
 Badass 2: Ha! Kid, we won't make it much longer without you either.
+
 MC: Nah you guys...
+
 Badass 1: Shush...
+
 Badass 1: (whisper) I heard something...
+
 (cue windows shattering, and doors breaking down to let the zombie horde enter) 
 
 After the dialogues, there is a scripted event where a zombie horde will break into the shelter, most of the survivors will be killed off and rest will run.
