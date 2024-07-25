@@ -10,6 +10,7 @@ public class GameEntity : MonoBehaviour, IDamageable
 {
     public Transform displayTransform;
     public GameObject destroyedVersion;
+    public bool toRemoveBreakables = false;
 
     [Space]
     public int health;
@@ -64,6 +65,8 @@ public class GameEntity : MonoBehaviour, IDamageable
             {
                 Instantiate(destroyedVersion, transform.position, transform.rotation);
                 Destroy(gameObject);
+
+    
             }
         }
         else
