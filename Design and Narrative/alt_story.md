@@ -118,11 +118,20 @@ As a reward player gets to loot priest's supplies.
 ## Side quest 1
 If player wanders over to the bank, they'll find a bunch of bankers trapped their and a horde of zombies trying to get in. The banker are throwing money out of the window to tempt the player into helping them.
 The bankers are supposed to be unlikable but if the player does help them, they are rewarded with a cosmetically unique melee or ranges weapon (like pens and pencils tapped to an office chair leg as a parody of the nailed bat)
+Money is worthless in apocalypse but bankers are entertaining so it wasn't a total loss.
 
 ## Side quest 2
-Can't think of anything yet. Maybe need more interesting places in the first zone to explore.
-Will fill in the rest below slowly.
-
+MC sees something truly strange when approaching the far side of the town where the patrol station is.
+Large man sized metal cages have been suspended in the air along the electric and telephone poles near the station and some zombies are roaming around aimlessly.
+As you draw near, a disheveled head pokes out from the lip of the station roof. Hard eyes examine you for a good minute before the rest of the face appears.
+Its a woman who you recognise as the science teacher in the local school before the apocalypse.
+She has a peculiar quest for you: Help her capture zombies.
+Kite the zombies around until one of them is exactly below one of the cages. At that point she'll press a button on a remote and drop the heavy cage.
+Do this for 3 zombies. 
+There can be some dialogue between the teacher and the MC which explains why the teacher is capturing these zombies (for science of course).
+The teacher will also warn the player to not trust people so easily. She says she could have easily captured the player as well if she wanted to, because player was under a cage multiple times.
+She'll also show a lack of trust in the player and warn them to not get too close.
+This will establish what kind of world the game is set it. How most people act and how they expect to be treated. 
 
 ## Next Area
 ## Introduce unique and more powerful enemies
