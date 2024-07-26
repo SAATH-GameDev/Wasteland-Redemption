@@ -15,8 +15,6 @@ public class EnemyAttackState : State<AIController>
         
         if (owner.TargetInRange(owner.attackRange))
         {
-            owner.RotateTowards();
-            
             timer -= Time.deltaTime;
             
             if (timer <= 0.0f)
@@ -30,6 +28,14 @@ public class EnemyAttackState : State<AIController>
             owner.StateMachine.ChangeState(typeof(EnemyChaseState));
         }
         
+        owner.HandleTargetTimer();
+    }
+    
+    public override void FixedUpdate(AIController owner)
+    {
+        base.FixedUpdate(owner);
+        
+        owner.RotateTowards();
     }
 
     public override void Exit(AIController owner)

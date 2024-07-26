@@ -482,7 +482,7 @@ MonoBehaviour:
   attackRange: 5
   idleTimer: 1
   chaseTimer: 5
-  attackTimer: 2
+  attackTimer: 1
   targetSearchInterval: 0.5
   chaseAfterDamage: 0
 --- !u!114 &3909228724409223860

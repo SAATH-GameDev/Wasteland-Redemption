@@ -19,7 +19,6 @@ public class EnemyChaseState : State<AIController>
             owner.StateMachine.ChangeState(typeof(EnemyIdleState));
             return;
         }
-        
 
         if (owner.TargetInRange(owner.attackRange))
         {
@@ -29,10 +28,15 @@ public class EnemyChaseState : State<AIController>
         {
             owner.StateMachine.ChangeState(typeof(EnemyIdleState));
         }
-        else
-        {
-          owner.MoveAndRotateTowardsTarget();
-        }
+        
+        owner.HandleTargetTimer();
+    }
+
+    public override void FixedUpdate(AIController owner)
+    {
+        base.FixedUpdate(owner);
+        
+        owner.MoveAndRotateTowardsTarget();
     }
 
     public override void Exit(AIController owner)

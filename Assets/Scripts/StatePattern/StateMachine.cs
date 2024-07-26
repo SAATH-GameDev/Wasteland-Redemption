@@ -54,4 +54,12 @@ public abstract class StateMachine<T>
             CurrentState.Update(owner);
         }
     }
+
+    public void FixedUpdate()
+    {
+        if (CurrentState != null)
+        {
+            CurrentState.FixedUpdate(owner);
+        }
+    }
 }

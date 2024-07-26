@@ -6,15 +6,11 @@ public abstract class State<T>
 
     public float timer;
 
-    public virtual void Enter(T owner)
-    {
-        Debug.Log("Entering state: " + GetType().Name);
-    }
+    public virtual void Enter(T owner) { }
 
     public virtual void Update(T owner) { }
     
-    public virtual void Exit(T owner)
-    {
-        Debug.Log("Exiting state: " + GetType().Name);
-    }
+    public virtual void FixedUpdate(T owner) { }
+    
+    public virtual void Exit(T owner) { }
 }

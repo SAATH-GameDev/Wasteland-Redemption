@@ -73,7 +73,9 @@ public class WeaponController : MonoBehaviour
         );
 
         GameObject newProjectile = Instantiate(profile.projectile.prefab, muzzle.position, projectileRotation);
-        newProjectile.GetComponent<Projectile>().Set(profile.projectile);
+        Projectile projectile = newProjectile.GetComponent<Projectile>();
+        projectile.Set(profile.projectile);
+        projectile.SetProjectileShotBy(transform.parent.parent);
     }
 
     void Burst()

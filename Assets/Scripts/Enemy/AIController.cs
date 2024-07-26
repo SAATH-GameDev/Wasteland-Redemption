@@ -27,11 +27,14 @@ public class AIController : GameEntity
     private Vector3 _directionToTarget;
 
     private EnemyWeaponController _weaponController;
+    private Rigidbody _rigidbody;
+    
     private float targetSearchTimer;
 
     
     private void Awake()
     {
+        _rigidbody = GetComponent<Rigidbody>();
         _weaponController = GetComponentInChildren<EnemyWeaponController>();
         
         StateMachine = new EnemyStateMachine(this);
@@ -48,31 +51,19 @@ public class AIController : GameEntity
         maxHealth = health = enemyProfile.health;
         targetSearchTimer = targetSearchInterval;
     }
-
-    private void OnEnable()
-    {
-        OnDamage.AddListener(OnContact);
-    }
-
-    private void OnDisable()
-    {
-        OnDamage.RemoveListener(OnContact);
-    }
-
     override protected void Update()
     {
         base.Update();
         StateMachine?.Update();
         
-        targetSearchTimer -= Time.deltaTime;
-        
-        if(targetSearchTimer <= 0)
-        {
-            GetNearestTarget();
-            targetSearchTimer = targetSearchInterval;
-        }
-        
+       
         _directionToTarget = (currentTarget.position - transform.position).normalized;
+    }
+
+
+    private void FixedUpdate()
+    {
+        StateMachine?.FixedUpdate();
     }
     
     public void MoveAndRotateTowardsTarget()
@@ -106,9 +97,7 @@ public class AIController : GameEntity
     public void RotateTowards()
     {
         if(Time.timeScale <= 0.0f) return;
-        
-        displayTransform.LookAt(transform.position + _directionToTarget);
-        displayTransform.rotation = Quaternion.Euler(0.0f, displayTransform.rotation.eulerAngles.y, 0.0f);
+        _rigidbody.MoveRotation( Quaternion.LookRotation(_directionToTarget, Vector3.up));
     }
 
     private void MoveTowardsTarget()
@@ -116,20 +105,32 @@ public class AIController : GameEntity
         if(Time.timeScale <= 0.0f) return;
         
         Vector3 targetVelocity = _directionToTarget * (enemyProfile.speed);
-        transform.position += targetVelocity * Time.deltaTime;
+        _rigidbody.MovePosition(_rigidbody.position + targetVelocity * Time.deltaTime);
     }
     
-    
-    private void OnContact()
+    public void ChaseTargetAfterShot(Transform target)
     {
         if(chaseAfterDamage) return;
         
         chaseAfterDamage = true;
-        Debug.Log("OnContact");
+        currentTarget = target;
         StateMachine.ChangeState(typeof(EnemyChaseState));
     }
     
-    public void GetNearestTarget()
+    public void HandleTargetTimer()
+    {
+        if(chaseAfterDamage) return;
+        
+        targetSearchTimer -= Time.deltaTime;
+
+        if(targetSearchTimer <= 0)
+        {
+            FindNearestTarget();
+            targetSearchTimer = targetSearchInterval;
+        }
+    }
+    
+    private void FindNearestTarget()
     {
         var players = PlayerController.activePlayers;
         if(players.Count == 0) return;
