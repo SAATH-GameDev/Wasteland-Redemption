@@ -9,7 +9,7 @@ Treachery and Trust, Self reliance, Courage, Personal Growth, Disillusionment or
 ## Character Descriptions
 
 ### Main Character 
-Naive. Starts out feeling inadequate and insecure. Relies heavily on others to protect them. Too trusting. Will grow to be a capable and jaded.
+Naive. Starts out feeling inadequate and insecure. Relies heavily on others to protect them. Too trusting. Will grow to be capable and jaded.
 
 "I'd probably die just tripping on some rubble... haha."
 
@@ -77,6 +77,7 @@ Badass 1: (whisper) I heard something...
 After the dialogues, there is a scripted event where a zombie horde will break into the shelter, most of the survivors will be killed off and rest will run.
 MC runs and hides. We can give a gun to the player at this point but maybe have some kind of post-processing effect that handicaps the player and indicates that MC is panicking.
 We make it very obvious that at this point its better for player to run.
+
 Once the player is away from the building, with only the gun and the clothes on their back, the prologue ends and actual game begins.
 
 ## I need supplies
@@ -92,18 +93,19 @@ Player is given a checklist of places to hit for supplies before they can go on 
 - Church
 - Police station (could be added on the other side of the river)
 
-To reach the pharmacy and the police station, the player need to repair the bridge. So the obvious place for them to go first is the church.
+To reach the pharmacy and the police station, the player needs to repair the bridge. So the obvious place for them to go first, is the church.
 
 ## Unexpected trouble then unexpected help
-When player reaches the church, a scripted even will spawn a zombie horde and put the player in some danger.
+When player reaches the church, a scripted event will spawn a zombie horde and put the player in some danger.
 However suddenly shots are fired from the above and zombies are quickly dealt with.
 Apparently the priest was hiding in the church all this time and he have a stockpile of supplies. There can be some dialogue here.
+
 Priest is hesitant to offer his supplies but he gives the player some ammo. And he suggests that the bridge can be repaired by using materials from the church furniture.
 He would have already done it but he is an old man and won't leave the church for fear of zombies.
 He offers to cover you from the church tower while you repair the bridge.
 
 ## Bridge repair
-I don't know if we want to have extra mechanics coded. But this can be a small mission where player picks planks of wood one by one, from the church and deposit them on the bridge to repair.
+I don't know if we want to have extra mechanics coded. But this can be a small mission where player picks planks of wood one by one from the church and deposits them on the bridge to repair.
 Player has to avoid zombies while doing this and they can't fight zombies while carrying the planks.
 The priest will take out the occasional zombie by firing from the church tower but we don't want him to be too helpful and keep this somewhat challenging for the player.
 
