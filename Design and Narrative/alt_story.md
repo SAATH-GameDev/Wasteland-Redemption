@@ -5,6 +5,30 @@ I'm adding this so I don't ruin the original file. Also I don't have word.
 ## Themes
 Treachery and Trust, Self reliance, Courage, Personal Growth, Disillusionment or Loss of innocence, Perseverance
 
+
+## Character Descriptions
+
+###Main Character 
+Naive. Starts out feeling inadequate and insecure. Relies heavily on others to protect them. Too trusting. Will grow to be a capable and jaded.
+"I'd probably die just tripping on some rubble... haha."
+
+### Badass 1
+Capable and experienced survivor. Physically strong. Protective and supportive of MC. Serious personality but not strict.
+"Shush... (whisper) I heard something..."
+
+### Badass 2
+Same as Badass 2. However, has a humorous side to them. Laughs with MC.
+"Too dangerous out there. I wish I could stay here too."
+
+### Priest
+Clever. Intelligent. Cunning. Self serving. Only offers help as a means to an end. Won't shy away from murder if it serves his purpose.
+"I'm an old man. But you can repair the bridge. I'll help you of course."
+
+### Science Teacher
+Resourceful. Battle hardened. Smart. Experienced. Doesn't trust easily or at all. Honest.
+"I don't trust you. And you shouldn't trust me either."
+
+
 ## Prologue
 
 Game opens with the main character living with other survivors in a boarded up building.This could be inside or near the hotel on the map.
