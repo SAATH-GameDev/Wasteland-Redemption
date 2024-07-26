@@ -72265,6 +72265,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 700905493}
     m_Modifications:
+    - target: {fileID: 2805655328806137551, guid: 8b1a46788f5fafa40afda1ec9bca3830, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3224336917574089625, guid: 8b1a46788f5fafa40afda1ec9bca3830, type: 3}
+      propertyPath: m_Shadows.m_NearPlane
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 8303774808715053876, guid: 8b1a46788f5fafa40afda1ec9bca3830, type: 3}
       propertyPath: m_Name
       value: RoadLight (10)
