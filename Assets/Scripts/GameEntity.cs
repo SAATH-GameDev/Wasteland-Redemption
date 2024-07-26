@@ -35,7 +35,7 @@ public class GameEntity : MonoBehaviour, IDamageable
         if(healthBarPrefab != null)
         {
             healthBar = Instantiate(healthBarPrefab, transform.position, Quaternion.identity);
-            healthBar.transform.parent = GameManager.Instance.canvas;
+            healthBar.transform.parent = GameManager.Instance.canvas.GetChild(0);
         }
     }
 
