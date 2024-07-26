@@ -27,3 +27,7 @@ MonoBehaviour:
     - 'I do have a pistol though
 
       (Left click/west button to shoot)'
+  - name: Road1
+    dialogues:
+    - Oh no, zombies are approaching real fast!
+    - Gotta shoot them all. Ahahaha!!!

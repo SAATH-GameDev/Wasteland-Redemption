@@ -5,11 +5,10 @@ using UnityEngine;
 public class DialogueManager : MonoBehaviour
 {
     public DialogueGroup group;
-
-    public List<string> currentDialogues = new List<string>();
-
     public GameObject dialogueBox;
     public TextMeshProUGUI dialogueText;
+
+    [HideInInspector] public List<string> currentDialogues = new List<string>();
 
     static public DialogueManager Instance;
     public void Play(int index)
@@ -30,8 +29,6 @@ public class DialogueManager : MonoBehaviour
     void Awake()
     {
         Instance = this;
-
-        //TEMPORARY; for testing
         Play(0);
     }
 
