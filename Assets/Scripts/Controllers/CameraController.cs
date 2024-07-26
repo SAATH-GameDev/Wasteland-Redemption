@@ -11,13 +11,11 @@ public class CameraController : MonoBehaviour
     public void SetTarget(Transform newTarget)
     {
         target = newTarget;
-    }
 
-    public void ResetTarget()
-    {
-        target = defaultTarget;
+        if(target == null)
+            target = defaultTarget;
     }
-
+    
     void Start()
     {
         focus = transform.parent;
@@ -30,6 +28,6 @@ public class CameraController : MonoBehaviour
         if(!target)
             return;
 
-        focus.transform.position = Vector3.Lerp(focus.transform.position, target.transform.position, Time.deltaTime * lerpFactor);
+        focus.transform.position = Vector3.Lerp(focus.transform.position, target.transform.position, Time.unscaledDeltaTime * lerpFactor);
     }
 }

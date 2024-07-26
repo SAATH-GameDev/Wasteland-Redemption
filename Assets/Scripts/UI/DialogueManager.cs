@@ -1,6 +1,8 @@
+using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -13,6 +15,16 @@ public class DialogueManager : MonoBehaviour
     [Space]
     public TextMeshProUGUI dialogueText;
 
+    [Serializable]
+    public class CommandEventPair
+    {
+        public string name;
+        public UnityEvent eventsToInvoke;
+    }
+
+    [Space]
+    public List<CommandEventPair> commands = new List<CommandEventPair>();
+
     [HideInInspector] public List<string> currentDialogues = new List<string>();
 
     static public DialogueManager Instance;
@@ -22,20 +34,23 @@ public class DialogueManager : MonoBehaviour
     public void Play(int index)
     {
         currentDialogues.AddRange(group.Get(index));
-
-        dialogueText.text = currentDialogues[0];
-        currentDialogues.RemoveAt(0);
+        Proceed();
     }
+
     public void Play(string tag)
     {
         currentDialogues.AddRange(group.Get(tag));
-
-        dialogueText.text = currentDialogues[0];
-        currentDialogues.RemoveAt(0);
+        Proceed();
     }
+
     public void SetTarget(Transform newTarget)
     {
         target = newTarget;
+    }
+
+    public void ClearTarget()
+    {
+        target = null;
     }
 
     void Awake()
@@ -70,11 +85,38 @@ public class DialogueManager : MonoBehaviour
         return dialogueBox.activeSelf;
     }
 
+    private string ProcessCommands(string text)
+    {
+        int limit = 100;
+        while(limit > 0)
+        {
+            int commandStart = text.IndexOf("[");
+
+            if(commandStart <= -1)
+                return text;
+
+            int commandEnd = text.IndexOf("]");
+
+            if(commandEnd <= -1)
+                return text;
+
+            string commandString = text.Substring(commandStart, commandEnd - commandStart + 1);
+            foreach(var command in commands)
+                if(("[" + command.name + "]").Equals(commandString))
+                    command.eventsToInvoke.Invoke();
+
+            text = text.Remove(commandStart, commandEnd - commandStart + 1);
+
+            limit--;
+        }
+        return text;
+    }
+
     public bool Proceed()
     {
         if(currentDialogues.Count > 0)
         {
-            dialogueText.text = currentDialogues[0];
+            dialogueText.text = ProcessCommands(currentDialogues[0]);
             currentDialogues.RemoveAt(0);
             return true;
         }

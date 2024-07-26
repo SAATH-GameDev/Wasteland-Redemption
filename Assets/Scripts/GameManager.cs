@@ -4,12 +4,29 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public GameplayProfile gameplay;
+
+    [Space]
     public Transform canvas;
     public int forceScreens = 0;
+
+    [Space]
+    public EventTrigger currentTrigger = null;
 
     public static GameManager Instance;
 
     private List<Camera> playerCameras = new List<Camera>();
+
+    public void SetAllCamsTarget(Transform target)
+    {
+        foreach(Camera cam in playerCameras)
+            cam.GetComponentInParent<CameraController>().SetTarget(target);
+    }
+
+    public void ClearCamsTarget()
+    {
+        foreach(Camera cam in playerCameras)
+            cam.GetComponentInParent<CameraController>().SetTarget(null);
+    }
 
     public Vector3 WorldToScreenPosition(Vector3 worldPosition, int playerIndex = 0)
     {
@@ -25,6 +42,18 @@ public class GameManager : MonoBehaviour
             return forceScreens;
 
         return Display.displays.Length;
+    }
+
+    public void StepEventTriggerSequence()
+    {
+        if(currentTrigger != null)
+            currentTrigger.StepSequence();
+    }
+
+    public void PlayEventTriggerSequence(int index)
+    {
+        if(currentTrigger != null)
+            currentTrigger.PlaySequence(index);
     }
 
     public void AddPlayerCamera(Camera camera)
