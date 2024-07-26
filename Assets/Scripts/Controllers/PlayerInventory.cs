@@ -12,7 +12,6 @@ public class PlayerInventory : MonoBehaviour
         {
             ItemProfile itemProfile = collectible.Collect();
             inventory.Add(itemProfile);
-            Debug.Log($"Collected: {itemProfile.name}");
         }
     }
 }

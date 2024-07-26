@@ -1,14 +1,19 @@
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-partial class PlayerController : GameEntity
+public partial class PlayerController : GameEntity
 {
     [Header("Player")]
     public PlayerProfile profile;
     public PlayerCharacterProfile characterProfile;
 
-    [Space]
+    [Header("Attachments")]
     public WeaponController weapon;
     public GameObject capsuleMesh;
+
+    [Header("UI")]
+    public GameObject hungerBarPrefab;
 
     [Space]
     public Transform movementTransform;
@@ -17,16 +22,23 @@ partial class PlayerController : GameEntity
     private Rigidbody _rigidbody;
     private Vector3 _currentVelocity;
 
+    private float currentHunger = 0.0f;
+    private Image hungerBarImage;
+    
     static public int count = 0;
+    
+    public static List<Transform> activePlayers = new List<Transform>();
 
     void OnEnable()
     {
         count++;
+        activePlayers.Add(transform);
     }
 
     void OnDisable()
     {
         count--;
+        activePlayers.Remove(transform);
     }
 
     override protected void Start()
@@ -35,17 +47,32 @@ partial class PlayerController : GameEntity
 
         if (movementTransform == null)
             movementTransform = transform;
-
         _rigidbody = GetComponent<Rigidbody>();
-        health = profile.health;
+        
+        maxHealth = health = profile.health;
+
+        currentHunger = profile.hunger * characterProfile.hunger;
+        if(hungerBarPrefab)
+            hungerBarImage = Instantiate(hungerBarPrefab, GameManager.Instance.canvas.transform).GetComponent<Image>();
     }
 
-    void Update()
+    private void ProcessHunger()
     {
+        currentHunger -= GameManager.Instance.gameplay.hungerDepletionRate * Time.deltaTime;
+        if(hungerBarImage)
+            hungerBarImage.fillAmount = currentHunger / (profile.hunger * characterProfile.hunger);
+    }
+
+    override protected void Update()
+    {
+        base.Update();
+
         if(Time.timeScale <= 0.0f) return;
 
         displayTransform.LookAt(transform.position + _look);
         displayTransform.rotation = Quaternion.Euler(0.0f, displayTransform.rotation.eulerAngles.y, 0.0f);
+
+        ProcessHunger();
     }
 
     void FixedUpdate()

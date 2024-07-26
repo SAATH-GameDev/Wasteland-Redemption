@@ -1,64 +1,123 @@
+using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class DialogueManager : MonoBehaviour
 {
-    public int index = -1;
-    public int targetIndex = -1;
-
-    public List<string> dialogues = new List<string>();
-
+    public DialogueGroup group;
+    
+    [Space]
     public GameObject dialogueBox;
+    public Vector3 dialogueBoxTargetOffset;
+
+    [Space]
     public TextMeshProUGUI dialogueText;
+
+    [Serializable]
+    public class CommandEventPair
+    {
+        public string name;
+        public UnityEvent eventsToInvoke;
+    }
+
+    [Space]
+    public List<CommandEventPair> commands = new List<CommandEventPair>();
+
+    [HideInInspector] public List<string> currentDialogues = new List<string>();
 
     static public DialogueManager Instance;
 
-    public void PlaySingleDialogue(int fromIndex = -1)
+    private Transform target;
+
+    public void Play(int index)
     {
-        if(fromIndex > -1) index = fromIndex;
-        targetIndex = fromIndex + 1;
+        currentDialogues.AddRange(group.Get(index));
+        Proceed();
     }
 
-    public void PlayDialogues(int fromIndex = -1, int toIndex = -1)
+    public void Play(string tag)
     {
-        if(fromIndex > -1) index = fromIndex;
-        if(toIndex > -1) targetIndex = toIndex;
+        currentDialogues.AddRange(group.Get(tag));
+        Proceed();
     }
 
-    public void PlayDialoguesForLength(int fromIndex = -1, int length = 0)
+    public void SetTarget(Transform newTarget)
     {
-        if(fromIndex > -1) index = fromIndex;
-        if(length > 0) targetIndex = index + length;
+        target = newTarget;
+    }
+
+    public void ClearTarget()
+    {
+        target = null;
     }
 
     void Awake()
     {
         Instance = this;
+        Play(0);
     }
 
     void Update()
     {
-        if(PlayerController.count <= 0) return;
+        if(PlayerController.count <= 0)
+            return;
+
+        if(target == null)
+        {
+            dialogueBox.transform.position = GameManager.Instance.WorldToScreenPosition(PlayerController.activePlayers[0].transform.position) + dialogueBoxTargetOffset;
+        }
+        else
+        {
+            dialogueBox.transform.position = GameManager.Instance.WorldToScreenPosition(target.position) + dialogueBoxTargetOffset;
+        }
         
-        if(index > -1 && index < dialogues.Count - 1 && index < targetIndex)
+        if(currentDialogues.Count > 0)
         {
             dialogueBox.SetActive(true);
             Time.timeScale = 0.0f;
         }
     }
-
+    
     public bool IsActive()
     {
         return dialogueBox.activeSelf;
     }
 
+    private string ProcessCommands(string text)
+    {
+        int limit = 100;
+        while(limit > 0)
+        {
+            int commandStart = text.IndexOf("[");
+
+            if(commandStart <= -1)
+                return text;
+
+            int commandEnd = text.IndexOf("]");
+
+            if(commandEnd <= -1)
+                return text;
+
+            string commandString = text.Substring(commandStart, commandEnd - commandStart + 1);
+            foreach(var command in commands)
+                if(("[" + command.name + "]").Equals(commandString))
+                    command.eventsToInvoke.Invoke();
+
+            text = text.Remove(commandStart, commandEnd - commandStart + 1);
+
+            limit--;
+        }
+        return text;
+    }
+
     public bool Proceed()
     {
-        if(index < dialogues.Count - 1 && index < targetIndex)
+        if(currentDialogues.Count > 0)
         {
-            index++;
-            dialogueText.text = dialogues[index];
+            dialogueText.text = ProcessCommands(currentDialogues[0]);
+            currentDialogues.RemoveAt(0);
             return true;
         }
 

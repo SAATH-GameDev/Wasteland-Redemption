@@ -6,17 +6,28 @@ public class CameraController : MonoBehaviour
     public float lerpFactor;
 
     private Transform focus;
+    private Transform defaultTarget;
 
+    public void SetTarget(Transform newTarget)
+    {
+        target = newTarget;
+
+        if(target == null)
+            target = defaultTarget;
+    }
+    
     void Start()
     {
         focus = transform.parent;
         GameManager.Instance.AddPlayerCamera(GetComponentInChildren<Camera>());
+        defaultTarget = target;
     }
 
     void LateUpdate()
     {
-        if(!target) return;
+        if(!target)
+            return;
 
-        focus.transform.position = Vector3.Lerp(focus.transform.position, target.transform.position, Time.deltaTime * lerpFactor);
+        focus.transform.position = Vector3.Lerp(focus.transform.position, target.transform.position, Time.unscaledDeltaTime * lerpFactor);
     }
 }

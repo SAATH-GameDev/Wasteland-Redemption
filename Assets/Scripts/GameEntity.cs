@@ -1,7 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine.UI;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class GameEntity : MonoBehaviour, IDamageable
 {
@@ -9,24 +12,54 @@ public class GameEntity : MonoBehaviour, IDamageable
 
     [Space]
     public int health;
+    public UnityEvent OnDamage;
+    public UnityEvent OnDeath;
+
+    [Space]
+    public GameObject healthBarPrefab;
+    public Vector3 healthBarOffset;
+    [Space]
 
     protected List<Renderer> renderers;
     protected Vector3 baseScale;
+    
+    protected int maxHealth;
+    protected GameObject healthBar;
+    
 
     virtual protected void Start()
     {
         renderers = displayTransform.GetComponentsInChildren<Renderer>().ToList();
         baseScale = displayTransform.transform.localScale;
+
+        if(healthBarPrefab != null)
+        {
+            healthBar = Instantiate(healthBarPrefab, transform.position, Quaternion.identity);
+            healthBar.transform.parent = GameManager.Instance.canvas;
+        }
+    }
+
+    virtual protected void Update()
+    {
+        if(healthBar)
+            healthBar.transform.position = GameManager.Instance.WorldToScreenPosition(transform.position) + healthBarOffset;
     }
 
     public void TakeDamage(int damage)
     {
         health -= damage;
+
+        if(healthBar != null)
+            healthBar.transform.GetChild(0).GetComponent<Image>().fillAmount = (float)health / maxHealth;
+
+        OnDamage?.Invoke();
         
         if (health <= 0)
         {
             health = 0;
+            Destroy(healthBar);
             Destroy(gameObject);
+            OnDeath?.Invoke();
         }
         else
         {
