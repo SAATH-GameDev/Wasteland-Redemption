@@ -30,4 +30,5 @@ MonoBehaviour:
   - name: Road1
     dialogues:
     - Oh no, zombies are approaching real fast!
+    - ...
     - Gotta shoot them all. Ahahaha!!!

@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-partial class PlayerController : GameEntity
+public partial class PlayerController : GameEntity
 {
     [Header("Player")]
     public PlayerProfile profile;

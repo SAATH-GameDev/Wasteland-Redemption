@@ -5,12 +5,20 @@ using UnityEngine;
 public class DialogueManager : MonoBehaviour
 {
     public DialogueGroup group;
+    
+    [Space]
     public GameObject dialogueBox;
+    public Vector3 dialogueBoxTargetOffset;
+
+    [Space]
     public TextMeshProUGUI dialogueText;
 
     [HideInInspector] public List<string> currentDialogues = new List<string>();
 
     static public DialogueManager Instance;
+
+    private Transform target;
+
     public void Play(int index)
     {
         currentDialogues.AddRange(group.Get(index));
@@ -25,6 +33,10 @@ public class DialogueManager : MonoBehaviour
         dialogueText.text = currentDialogues[0];
         currentDialogues.RemoveAt(0);
     }
+    public void SetTarget(Transform newTarget)
+    {
+        target = newTarget;
+    }
 
     void Awake()
     {
@@ -34,7 +46,17 @@ public class DialogueManager : MonoBehaviour
 
     void Update()
     {
-        if(PlayerController.count <= 0) return;
+        if(PlayerController.count <= 0)
+            return;
+
+        if(target == null)
+        {
+            dialogueBox.transform.position = GameManager.Instance.WorldToScreenPosition(PlayerController.activePlayers[0].transform.position) + dialogueBoxTargetOffset;
+        }
+        else
+        {
+            dialogueBox.transform.position = GameManager.Instance.WorldToScreenPosition(target.position) + dialogueBoxTargetOffset;
+        }
         
         if(currentDialogues.Count > 0)
         {

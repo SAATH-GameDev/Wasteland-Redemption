@@ -98,7 +98,6 @@ public class WeaponController : MonoBehaviour
             {
                 currentMagazine = profile.magazine;
                 reloadTimer = 0.0f;
-                Debug.Log("Weapon reloaded: " + profile.magazine.ToString());
             }
         }
     }
@@ -108,12 +107,10 @@ public class WeaponController : MonoBehaviour
         if(profile.magazine > 0)
         {
             currentMagazine--;
-            Debug.Log("Bullets left in magazine: " + currentMagazine.ToString());
 
             if(currentMagazine <= 0)
             {
                 reloadTimer = profile.reloadDelay;
-                Debug.Log("Reloading...");
             }
         }
     }
