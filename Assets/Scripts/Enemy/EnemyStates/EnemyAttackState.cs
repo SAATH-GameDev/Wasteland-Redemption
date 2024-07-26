@@ -5,7 +5,7 @@ public class EnemyAttackState : State<AIController>
     public override void Enter(AIController owner)
     {
         base.Enter(owner);
-
+        owner.inAttackState = true;
         timer = owner.attackTimer;
     }
 
@@ -34,12 +34,13 @@ public class EnemyAttackState : State<AIController>
     public override void FixedUpdate(AIController owner)
     {
         base.FixedUpdate(owner);
-        
         owner.RotateTowards();
     }
 
     public override void Exit(AIController owner)
     {
         base.Exit(owner);
+        
+        owner.inAttackState = false;
     }
 }

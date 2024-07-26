@@ -18,9 +18,9 @@ public class AIController : GameEntity
 
     public float targetSearchInterval = 0.5f;
 
-    
     [Space]
     public bool chaseAfterDamage;
+    public bool inAttackState;
     
     public StateMachine<AIController> StateMachine { get; private set; }
     
@@ -110,7 +110,7 @@ public class AIController : GameEntity
     
     public void ChaseTargetAfterShot(Transform target)
     {
-        if(chaseAfterDamage) return;
+        if(chaseAfterDamage || inAttackState) return;
         
         chaseAfterDamage = true;
         currentTarget = target;
