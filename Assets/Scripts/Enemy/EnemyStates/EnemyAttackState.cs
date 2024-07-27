@@ -13,7 +13,7 @@ public class EnemyAttackState : State<AIController>
     {
         base.Update(owner);
         
-        if (owner.TargetInRange(owner.attackRange))
+        if (owner.TargetInRange(owner.attackRange + 1.5f))
         {
             timer -= Time.deltaTime;
             

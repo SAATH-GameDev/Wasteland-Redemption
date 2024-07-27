@@ -27,22 +27,23 @@ public class EnemySpawner : MonoBehaviour
         rate = profile.rate;
     }
 
-    private void Update()
-    {
-        if(PlayerController.count <= 0)
-            return;
-
-        // test spawn   
-        if (cooldown <= 0)
-        {
-            SpawnEnemy();
-            cooldown = profile.cooldown;
-        }
-        else
-        {
-            cooldown -= Time.deltaTime;
-        }
-    }
+    // todo: spawning enemies just for testing purpose
+    // private void Update()
+    // {
+    //     if(PlayerController.count <= 0)
+    //         return;
+    //
+    //     // test spawn   
+    //     if (cooldown <= 0)
+    //     {
+    //         SpawnEnemy();
+    //         cooldown = profile.cooldown;
+    //     }
+    //     else
+    //     {
+    //         cooldown -= Time.deltaTime;
+    //     }
+    // }
 
 
     public void SpawnEnemy()
