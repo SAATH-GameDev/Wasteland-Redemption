@@ -9,6 +9,7 @@ public partial class PlayerController : GameEntity
     public PlayerCharacterProfile characterProfile;
 
     [Header("Attachments")]
+    public Animator animator;
     public WeaponController weapon;
     public GameObject capsuleMesh;
 
@@ -24,10 +25,11 @@ public partial class PlayerController : GameEntity
 
     private float currentHunger = 0.0f;
     private Image hungerBarImage;
+
+    private int isWalkingAnimParam = Animator.StringToHash("isWalking");
     
     static public int count = 0;
-    
-    public static List<Transform> activePlayers = new List<Transform>();
+    static public List<Transform> activePlayers = new List<Transform>();
 
     void OnEnable()
     {
@@ -71,6 +73,8 @@ public partial class PlayerController : GameEntity
 
         displayTransform.LookAt(transform.position + _look);
         displayTransform.rotation = Quaternion.Euler(0.0f, displayTransform.rotation.eulerAngles.y, 0.0f);
+
+        animator.SetBool(isWalkingAnimParam, _movement.sqrMagnitude > 0.25f);
 
         ProcessHunger();
     }

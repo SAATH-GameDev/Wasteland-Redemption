@@ -28,6 +28,9 @@ public class AIController : GameEntity
 
     private EnemyWeaponController _weaponController;
     private Rigidbody _rigidbody;
+    private Animator _animator;
+
+    private int isWalkingAnimParam = Animator.StringToHash("isWalking");
     
     private float targetSearchTimer;
 
@@ -36,6 +39,7 @@ public class AIController : GameEntity
     {
         _rigidbody = GetComponent<Rigidbody>();
         _weaponController = GetComponentInChildren<EnemyWeaponController>();
+        _animator = GetComponentInChildren<Animator>();
         
         StateMachine = new EnemyStateMachine(this);
         
@@ -51,15 +55,16 @@ public class AIController : GameEntity
         maxHealth = health = enemyProfile.health;
         targetSearchTimer = targetSearchInterval;
     }
+    
     override protected void Update()
     {
         base.Update();
         StateMachine?.Update();
-        
+
+        _animator.SetBool(isWalkingAnimParam, _rigidbody.linearVelocity.sqrMagnitude > 0.25f);
        
         _directionToTarget = (currentTarget.position - transform.position).normalized;
     }
-
 
     private void FixedUpdate()
     {
