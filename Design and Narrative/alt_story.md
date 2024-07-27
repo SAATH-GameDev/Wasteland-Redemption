@@ -1,9 +1,75 @@
 # Alt Story
 
-I'm adding this so I don't ruin the original file. Also I don't have word.
 
 ## Themes
-Treachery and Trust, Self reliance, Courage, Personal Growth, Disillusionment or Loss of innocence, Perseverance
+Treachery and Trust, Self reliance, Courage, Personal Growth, Disillusionment or Loss of innocence, Perseverance, Hope in humanity
+
+## Function
+Game's story will facilitate the implementation of the core gameplay loop which is: 
+
+Quest > Fight Enemies > Collect Rewards > Next Quest
+
+Story will help provide context for each enemy encounter and gameplay sections and add emotional weight and meaning to the game. The overarching story will tie each quest together creating a cohesive plot and a compelling world with believable characters and relatable themes.
+
+
+## Gameplay Loops
+Primary loop of the game is fighting enemies. These can be zombies or human enemies.
+
+A secondary game loop involves managing the hunger meter. Player must explore and gather supplies to keep their hunger down or suffer debuffs.
+
+Another secondary game loop is upgrades. Player must explore the game areas to gather ammo and better weapons to improve their ability to fight enemies. Better weapons allow player to take on bigger and harder enemies. Which will unlock access to better weapons and so on. Also known as a positive feedback loop.
+
+A tertiary game loop is completing quests. Player will encounter events or NPCs which will give them a quest and player can complete this quest to get rewards and unlock more quests. These quests may involve, fighting enemies, gathering supplies or retrieving quest items.
+
+Its important to note that having a diverse set of mechanics will avoid the problem of repetitive gameplay and player getting bored. Each gameplay section should have something different to offer even if small. For example not all section needs to be centred around fighting enemies. But even if they are, here's a list of variations on this mechanics:
+
+- Evade and dodge zombies while solving a puzzle or playing some other mini game
+- Lure zombies into traps
+- Navigate through a large horde of zombies without fighting them. This could involve outrunning and dodging their attacks.
+- Escort NPCs from one point to another while fighting or avoiding zombies. Player can influence NPC movement because NPC will follow them.
+- Protect NPCs from an attack. Different from the escort as the NPC could be stationary or moving without player's control.
+- Kill off zombies from afar with a sniper
+- Introduce powerful or unique enemies with for example ranged attack, unique movement, extra health, extra damage or some other unique mechanic to them.
+- Boss fights and arenas
+- Add limitations. Let player only use a specific weapon. Or have the player solve a problem without killing any enemies.
+ 
+
+## Story Loops
+Story progresses in two ways:
+1. Character story is told via quests and mechanics. Player will start off underpowered, inexperienced and weak. They will gain experience and equipment by completing quests and getting weapons and ammo as rewards.
+2. Lore is revealed through collectibles in the form of notes or newspaper clippings. These can be collected via exploration or as rewards for quests and events.
+
+In short the main character starts their journey as weak and helpless survivor. They must gather supplies, ammo and weapons, first to survive and later to go and kill the big villain. Along the way they may find other good or bad people (NPCs).
+
+Emotionally main character starts off as feeling inadequate and naive. Through the story quests and introduction of other NPCs we reveal the reality of the world to both the player and the main character. Effectively granting a kind of maturity to the main character which will in turn reflect in their actions.
+
+Each quest will aim to teach and build some aspect of the world to the player. 
+
+For example, a quest will show how most people are not to be trusted lightly. NPCs will be shown to behave in selfish ways. 
+
+Another quest may explore how people don't trust other people. NPCs will show distrust of the player.
+
+Other examples may include:
+- People's actions due to a food shortage
+- People turning into bandits 
+- People living as loners
+- People forming communities
+- Distrust of strangers
+- The good in people despite the circumstances 
+- Integrity of one's own morals (main character's)   
+
+
+## Main Character's Emotional Arc
+Apparently this is called a Man in a Hole Arc. Main character will experience a loss or a great setback. And then they must climb/rise out of this hole.
+It won't be easy and it won't a short struggle but the only place to go is up. 
+
+![Alt text](https://cdn.shopify.com/s/files/1/0083/9899/5507/files/man-in-a-hole-chart.png?v=1637319950 "a title")
+
+- Comfort zone: MC is living in a protected place but they are missing something. They haven't unlocked their full potential.
+- Trigger: Bad luck strikes and their shelter and protectors are destroyed.
+- Crisis: MC has to fend for himself. No support and no supplies. They are in a hole. The real world is hell but the experience will be valuable.
+- Recovery: MC starts to understands the world and navigate it better. In RL, player is getting better at the game while MC is getting better weapons and equipment in game.
+- Better place: The climax is achieved when MC does a great deed. For example, getting the world rid of a villain. MC is experienced and he has made some new friends along the way.
 
 
 ## Character Descriptions
