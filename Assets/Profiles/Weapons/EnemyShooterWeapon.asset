@@ -12,6 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a157ee1f8b1a7d947967853e864a1fea, type: 3}
   m_Name: EnemyShooterWeapon
   m_EditorClassIdentifier: 
+  Type: 1
+  value: 0
+  buyPrice: 0
+  sellPrice: 0
   isContinous: 0
   damage: 0
   delay: 0.1

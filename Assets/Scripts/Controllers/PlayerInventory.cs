@@ -7,7 +7,7 @@ public class PlayerInventory : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        ICollectible collectible = other.GetComponent<ICollectible>();
+        ICollectible collectible = other.GetComponentInParent<ICollectible>();
         if (collectible != null)
         {
             ItemProfile itemProfile = collectible.Collect();

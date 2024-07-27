@@ -70,14 +70,15 @@ MonoBehaviour:
   - {fileID: 7833122117494664109}
   - {fileID: -1423973714830274853}
   - {fileID: 6848482417242368993}
-  m_RendererFeatureMap: ad6b866f10d7b46cdb4e0c6e73073dece16b3d4279b20a5f
+  - {fileID: 6713786110721355516}
+  m_RendererFeatureMap: ad6b866f10d7b46cdb4e0c6e73073dece16b3d4279b20a5ffc6e7f83e5282c5d
   m_UseNativeRenderPass: 1
   xrSystemData: {fileID: 0}
   postProcessData: {fileID: 11400000, guid: 41439944d30ece34e96484bdb6645b55, type: 2}
   m_AssetVersion: 2
   m_OpaqueLayerMask:
     serializedVersion: 2
-    m_Bits: 503
+    m_Bits: 4294967295
   m_TransparentLayerMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -96,6 +97,26 @@ MonoBehaviour:
   m_DepthTextureFormat: 0
   m_AccurateGbufferNormals: 0
   m_IntermediateTextureMode: 0
+--- !u!114 &6713786110721355516
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b00045f12942b46c698459096c89274e, type: 3}
+  m_Name: FullscreenOutlineRenderer
+  m_EditorClassIdentifier: 
+  m_Active: 1
+  injectionPoint: 450
+  fetchColorBuffer: 1
+  requirements: 5
+  passMaterial: {fileID: -876546973899608171, guid: a342c02570cbefb48a8bfe9a46f5ccff, type: 3}
+  passIndex: 0
+  bindDepthStencilAttachment: 0
+  m_Version: 1
 --- !u!114 &6848482417242368993
 MonoBehaviour:
   m_ObjectHideFlags: 0

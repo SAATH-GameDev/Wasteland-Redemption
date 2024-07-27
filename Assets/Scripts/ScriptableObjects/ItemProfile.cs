@@ -10,9 +10,7 @@ public class ItemProfile : Profile
         FOOD
     }
     public ItemType Type;
-    
     public float value;
-    public Profile profile;
 
     [Space]
     public int buyPrice;

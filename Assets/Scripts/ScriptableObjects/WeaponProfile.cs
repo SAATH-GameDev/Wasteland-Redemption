@@ -1,8 +1,9 @@
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "New Weapon Profile", menuName = "Profile/Weapon", order = 0)]
-public class WeaponProfile : Profile
+public class WeaponProfile : ItemProfile
 {
+    [Space]
     public bool isContinous;
     public float damage;
     public float delay;
