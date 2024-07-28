@@ -5941,6 +5941,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a67bc5441a7d689449b86746d572868f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  intensityMaxRatio: 0.4
+  intensityMinRatio: 1.2
   stableMinTime: 1.2
   stableMaxTime: 2
   unstableMinTime: 0.4
