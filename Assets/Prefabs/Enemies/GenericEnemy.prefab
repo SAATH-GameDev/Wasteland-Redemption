@@ -477,7 +477,7 @@ MonoBehaviour:
   healthBarPrefab: {fileID: 572851942239386238, guid: c08494691989e3a4595aad75a9d5662e, type: 3}
   healthBarOffset: {x: 0, y: 64, z: 0}
   currentTarget: {fileID: 0}
-  enemyProfile: {fileID: 11400000, guid: e522dfc5d0523ac49a58b159c7c212f9, type: 2}
+  enemyProfile: {fileID: 11400000, guid: 221b82f35bff7d64c810e50c32e00bb1, type: 2}
   chaseRange: 12
   attackRange: 5
   idleTimer: 1
@@ -485,6 +485,7 @@ MonoBehaviour:
   attackTimer: 1
   targetSearchInterval: 0.5
   chaseAfterDamage: 0
+  inAttackState: 0
 --- !u!114 &3909228724409223860
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -498,6 +499,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 500
+  tryTrigger: 0
   destroyOnContact: 0
 --- !u!1 &8779435320050570984
 GameObject:
@@ -731,6 +733,18 @@ PrefabInstance:
     m_TransformParent: {fileID: 6941874034062000371}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 668d15483c68add48af49c2416982dbd, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 668d15483c68add48af49c2416982dbd, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 668d15483c68add48af49c2416982dbd, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 668d15483c68add48af49c2416982dbd, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -785,6 +799,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 668d15483c68add48af49c2416982dbd, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4958381806512876929}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 668d15483c68add48af49c2416982dbd, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7112602186658429265}
   m_SourcePrefab: {fileID: 100100000, guid: 668d15483c68add48af49c2416982dbd, type: 3}
 --- !u!4 &8230236505912716660 stripped
 Transform:
@@ -818,3 +835,17 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &7112602186658429265
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8754009023576111054}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 272771d45ec385e4a84191cddd793e74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  min: 0.75
+  max: 1.5
