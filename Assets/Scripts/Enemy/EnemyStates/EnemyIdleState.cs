@@ -20,7 +20,17 @@ public class EnemyIdleState : State<AIController>
 
         if (owner.TargetInRange(owner.chaseRange))
         {
-            owner.StateMachine.ChangeState(typeof(EnemyChaseState));
+           int randomStateIndex = Random.Range(0, 3);
+
+           if (randomStateIndex == 0)
+           {
+               owner.StateMachine.ChangeState(typeof(EnemyChaseState));
+           }
+           else
+           {
+               Debug.Log("moving to chase attack combined state");
+               owner.StateMachine.ChangeState(typeof(EnemyChaseAttackCombinedState));
+           }
         }
     }
 

@@ -46,6 +46,7 @@ public class AIController : GameEntity
         StateMachine.AddState(new EnemyIdleState());
         StateMachine.AddState(new EnemyChaseState());    
         StateMachine.AddState(new EnemyAttackState());
+        StateMachine.AddState(new EnemyChaseAttackCombinedState());
         
         StateMachine.InitState(typeof(EnemyIdleState));
         
@@ -58,6 +59,8 @@ public class AIController : GameEntity
     
     override protected void Update()
     {
+        if(currentTarget == null) return;
+        
         base.Update();
         StateMachine?.Update();
 
