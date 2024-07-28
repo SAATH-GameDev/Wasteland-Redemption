@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,6 +16,7 @@ public partial class PlayerController : GameEntity
 
     [Header("UI")]
     public GameObject hungerBarPrefab;
+    public GameObject equipUIPrefab;
 
     [Space]
     public Transform movementTransform;
@@ -25,6 +27,8 @@ public partial class PlayerController : GameEntity
 
     private float currentHunger = 0.0f;
     private Image hungerBarImage;
+    private TextMeshProUGUI equipNameText;
+    private TextMeshProUGUI equipCountText;
 
     private int isWalkingAnimParam = Animator.StringToHash("isWalking");
     
@@ -54,8 +58,18 @@ public partial class PlayerController : GameEntity
         maxHealth = health = profile.health;
 
         currentHunger = profile.hunger * characterProfile.hunger;
+
         if(hungerBarPrefab)
+        {
             hungerBarImage = Instantiate(hungerBarPrefab, GameManager.Instance.canvas.transform).GetComponent<Image>();
+        }
+
+        if(equipUIPrefab)
+        {
+            GameObject equipUIObject = Instantiate(equipUIPrefab, GameManager.Instance.canvas.transform);
+            equipNameText = equipUIObject.transform.GetChild(1).GetComponent<TextMeshProUGUI>();
+            equipCountText = equipUIObject.transform.GetChild(2).GetComponent<TextMeshProUGUI>();
+        }
     }
 
     private void ProcessHunger()
@@ -85,5 +99,15 @@ public partial class PlayerController : GameEntity
         
         Vector3 targetVelocity = _movement.normalized * (profile.speed * characterProfile.speed);
         _rigidbody.linearVelocity = Vector3.SmoothDamp(_rigidbody.linearVelocity, targetVelocity, ref _currentVelocity, smoothTime);
+    }
+
+    public void UpdateEquipment(Profile profile, int count)
+    {
+        equipNameText.text = profile.name;
+
+        if(profile is WeaponProfile)
+            equipCountText.text = count <= 0 ? "<color=red>Reloading</color>" : count.ToString() + "/" + ((WeaponProfile)profile).magazine.ToString();
+        else
+            equipCountText.text = count.ToString();
     }
 }

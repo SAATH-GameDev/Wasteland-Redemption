@@ -314,6 +314,7 @@ MonoBehaviour:
   weapon: {fileID: 499525523550956944}
   capsuleMesh: {fileID: 1378361398276655553}
   hungerBarPrefab: {fileID: 3456330888353361515, guid: bc25dede7be58c74ba8bda715fa08ce9, type: 3}
+  equipUIPrefab: {fileID: 9120221739775772413, guid: 1c9193af1a5f3564fb7ea35cde2c0b3b, type: 3}
   movementTransform: {fileID: 0}
   smoothTime: 0.08
 --- !u!114 &2639575148183368002

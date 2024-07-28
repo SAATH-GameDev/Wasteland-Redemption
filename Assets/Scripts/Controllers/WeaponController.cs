@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class WeaponController : MonoBehaviour
 {
@@ -7,9 +8,10 @@ public class WeaponController : MonoBehaviour
     public Transform muzzle;
 
     protected bool isAttacking = false;
+    protected UnityEvent onMagazineChange = new UnityEvent();
 
-    private int currentMagazine = 0;
-    private float reloadTimer = 0.0f;
+    [HideInInspector] public int currentMagazine = 0;
+    [HideInInspector] public float reloadTimer = 0.0f;
 
     private int consecutiveCount = 0;
     private float consecutiveTimer = 0.0f;
@@ -27,7 +29,7 @@ public class WeaponController : MonoBehaviour
         currentMagazine = this.profile.magazine;
     }
 
-    void Start()
+    protected virtual void Start()
     {
         Set();
 
@@ -109,16 +111,19 @@ public class WeaponController : MonoBehaviour
             if(reloadTimer <= 0.0f)
             {
                 currentMagazine = profile.magazine;
+                onMagazineChange.Invoke();
+
                 reloadTimer = 0.0f;
             }
         }
     }
 
-    void DecrementMagazine()
+    protected void DecrementMagazine()
     {
         if(profile.magazine > 0)
         {
             currentMagazine--;
+            onMagazineChange.Invoke();
 
             if(currentMagazine <= 0)
             {
