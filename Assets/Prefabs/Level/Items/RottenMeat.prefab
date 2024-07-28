@@ -1,0 +1,149 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &4608356235538463512
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2424528063090982200, guid: 64fc773dfafc65947b9d6eb2c84102d4, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2424528063090982200, guid: 64fc773dfafc65947b9d6eb2c84102d4, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2424528063090982200, guid: 64fc773dfafc65947b9d6eb2c84102d4, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2424528063090982200, guid: 64fc773dfafc65947b9d6eb2c84102d4, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2424528063090982200, guid: 64fc773dfafc65947b9d6eb2c84102d4, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2424528063090982200, guid: 64fc773dfafc65947b9d6eb2c84102d4, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2424528063090982200, guid: 64fc773dfafc65947b9d6eb2c84102d4, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2424528063090982200, guid: 64fc773dfafc65947b9d6eb2c84102d4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2424528063090982200, guid: 64fc773dfafc65947b9d6eb2c84102d4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2424528063090982200, guid: 64fc773dfafc65947b9d6eb2c84102d4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6256537184452203727, guid: 64fc773dfafc65947b9d6eb2c84102d4, type: 3}
+      propertyPath: itemProfile
+      value: 
+      objectReference: {fileID: 11400000, guid: 044397cd042f2437994318e2246b15a5, type: 2}
+    - target: {fileID: 9086747167348657378, guid: 64fc773dfafc65947b9d6eb2c84102d4, type: 3}
+      propertyPath: m_Name
+      value: RottenMeat
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 1092290032756639609, guid: 64fc773dfafc65947b9d6eb2c84102d4, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7979588349877416169}
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 64fc773dfafc65947b9d6eb2c84102d4, type: 3}
+--- !u!4 &3520896180262354017 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1092290032756639609, guid: 64fc773dfafc65947b9d6eb2c84102d4, type: 3}
+  m_PrefabInstance: {fileID: 4608356235538463512}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &7581678232726181634
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 3520896180262354017}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 1c67187c779b448cf97ed471aa66d80e, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2.25
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 1c67187c779b448cf97ed471aa66d80e, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2.25
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 1c67187c779b448cf97ed471aa66d80e, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2.25
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 1c67187c779b448cf97ed471aa66d80e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 1c67187c779b448cf97ed471aa66d80e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.08
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 1c67187c779b448cf97ed471aa66d80e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 1c67187c779b448cf97ed471aa66d80e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9659258
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 1c67187c779b448cf97ed471aa66d80e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 1c67187c779b448cf97ed471aa66d80e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 1c67187c779b448cf97ed471aa66d80e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.2588191
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 1c67187c779b448cf97ed471aa66d80e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 1c67187c779b448cf97ed471aa66d80e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 1c67187c779b448cf97ed471aa66d80e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 1c67187c779b448cf97ed471aa66d80e, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 1c67187c779b448cf97ed471aa66d80e, type: 3}
+      propertyPath: m_Name
+      value: RottenMeat
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 1c67187c779b448cf97ed471aa66d80e, type: 3}
+--- !u!4 &7979588349877416169 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 1c67187c779b448cf97ed471aa66d80e, type: 3}
+  m_PrefabInstance: {fileID: 7581678232726181634}
+  m_PrefabAsset: {fileID: 0}
