@@ -272,7 +272,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 547eec723cd03664dad6d7e9210d9803, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemProfile: {fileID: 11400000, guid: 0ff6dbbe19913424e91574e3a54e06a7, type: 2}
+  itemProfile: {fileID: 0}
   floatHeight: 0.1
   floatRate: 0.5
   rotateRate: 20
