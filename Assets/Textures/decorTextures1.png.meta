@@ -707,6 +707,28 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: vitaeEternum
+      rect:
+        serializedVersion: 2
+        x: 555
+        y: 800
+        width: 1053
+        height: 177
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8e22b1b8867ecaa4a8f18b3a9243a68a
+      internalID: -1782646645
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
@@ -776,6 +798,7 @@ TextureImporter:
       spill1: -1418982345
       spill2: -271440944
       spill3: 1811996776
+      vitaeEternum: -1782646645
       waste: 1496995497
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0

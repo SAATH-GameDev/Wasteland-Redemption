@@ -30,6 +30,9 @@ public class WeaponController : MonoBehaviour
     void Start()
     {
         Set();
+
+        if(muzzle.childCount > 0)
+            muzzle.GetChild(0).GetComponent<ParticleSystem>().Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
     }
 
     public virtual void HandleShooting()
@@ -75,7 +78,14 @@ public class WeaponController : MonoBehaviour
         GameObject newProjectile = Instantiate(profile.projectile.prefab, muzzle.position, projectileRotation);
         Projectile projectile = newProjectile.GetComponent<Projectile>();
         projectile.Set(profile.projectile);
-        projectile.SetProjectileShotBy(transform.parent.parent);
+        projectile.SetShotBy(transform.parent.parent);
+
+        if(muzzle.childCount > 0)
+        {
+            ParticleSystem muzzleVFX = muzzle.GetChild(0).GetComponent<ParticleSystem>();
+            muzzleVFX.Stop(true, ParticleSystemStopBehavior.StopEmitting);
+            muzzleVFX.Play();
+        }
     }
 
     void Burst()

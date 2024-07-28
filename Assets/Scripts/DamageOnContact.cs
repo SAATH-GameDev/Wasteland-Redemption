@@ -3,22 +3,24 @@ using UnityEngine;
 public class DamageOnContact : MonoBehaviour
 {
     public int damage = 0;
+    public bool tryTrigger = false;
     public bool destroyOnContact = true;
 
     public void OnTriggerEnter(Collider collider)
     {
+        if(!tryTrigger)
+            return;
+        
         IDamageable damageable = collider.GetComponent<IDamageable>();
 
         if(damageable == null)
             damageable = collider.GetComponentInParent<IDamageable>();
 
         if(damageable != null)
-        {
             damageable.TakeDamage(damage);
 
-            if(destroyOnContact)
-                Destroy(gameObject);
-        }
+        if(destroyOnContact)
+            Destroy(gameObject);
     }
 
     public void OnCollisionEnter(Collision collision)
@@ -29,11 +31,9 @@ public class DamageOnContact : MonoBehaviour
             damageable = collision.transform.GetComponentInParent<IDamageable>();
 
         if(damageable != null)
-        {
             damageable.TakeDamage(damage);
 
-            if(destroyOnContact)
-                Destroy(gameObject);
-        }
+        if(destroyOnContact)
+            Destroy(gameObject);
     }
 }

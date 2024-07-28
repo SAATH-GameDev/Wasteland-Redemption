@@ -19,7 +19,7 @@ MonoBehaviour:
   isContinous: 0
   damage: 0
   delay: 0.12
-  projectile: {fileID: 11400000, guid: 7a292d33b9f8a214bae3aec3a2757f25, type: 2}
+  projectile: {fileID: 11400000, guid: 5bfa6ca66a1040c4483e726c4b23fb46, type: 2}
   maxDispersionAngle: 0.5
   magazine: 24
   reloadDelay: 2

@@ -4,7 +4,7 @@ using UnityEngine;
 public class ProjectileProfile : Profile
 {
     public GameObject prefab;
-    public float damage;
+    public int damage;
     public float speed;
     public float destroyTime;
 }

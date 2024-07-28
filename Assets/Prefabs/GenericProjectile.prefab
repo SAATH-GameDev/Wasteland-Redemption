@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 401824678937069770}
   - component: {fileID: 5729697386516259539}
   - component: {fileID: 3888468222046379387}
-  m_Layer: 0
-  m_Name: EnemyProjectilePrerfab
+  m_Layer: 6
+  m_Name: GenericProjectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -47,7 +47,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb78828dbcf9305458447f8e0ea32ff1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  profile: {fileID: 11400000, guid: fc8b9e854f562bf4ab594af10da7c128, type: 2}
+  profile: {fileID: 11400000, guid: 7a292d33b9f8a214bae3aec3a2757f25, type: 2}
+  bulletShotBy: {fileID: 0}
 --- !u!114 &5729697386516259539
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -101,7 +102,7 @@ GameObject:
   - component: {fileID: 7391665869803744012}
   - component: {fileID: 1448549546143681942}
   - component: {fileID: 8386881880277969577}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
