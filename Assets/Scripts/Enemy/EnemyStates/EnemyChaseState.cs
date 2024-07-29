@@ -6,6 +6,8 @@ public class EnemyChaseState : State<AIController>
     {
         base.Enter(owner);
         timer = owner.chaseTimer;
+        
+        owner.StopAgent(false);
     }
 
     public override void Update(AIController owner)
@@ -30,13 +32,15 @@ public class EnemyChaseState : State<AIController>
         }
         
         owner.HandleTargetTimer();
+        
+        owner.MoveTowardsTarget();
     }
 
     public override void FixedUpdate(AIController owner)
     {
         base.FixedUpdate(owner);
         
-        owner.MoveAndRotateTowardsTarget();
+       
     }
 
     public override void Exit(AIController owner)

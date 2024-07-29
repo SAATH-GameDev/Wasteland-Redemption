@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.AI;
 
 public class AIController : GameEntity
 {
@@ -26,6 +27,7 @@ public class AIController : GameEntity
     
     private Vector3 _directionToTarget;
 
+    private NavMeshAgent _navMeshAgent;
     private EnemyWeaponController _weaponController;
     private Rigidbody _rigidbody;
     private Animator _animator;
@@ -37,6 +39,7 @@ public class AIController : GameEntity
     
     private void Awake()
     {
+        _navMeshAgent = GetComponent<NavMeshAgent>();
         _rigidbody = GetComponent<Rigidbody>();
         _weaponController = GetComponentInChildren<EnemyWeaponController>();
         _animator = GetComponentInChildren<Animator>();
@@ -49,12 +52,13 @@ public class AIController : GameEntity
         StateMachine.AddState(new EnemyChaseAttackCombinedState());
         
         StateMachine.InitState(typeof(EnemyIdleState));
-        
 
         currentTarget = FindFirstObjectByType<PlayerController>().transform;
         
         maxHealth = health = enemyProfile.health;
         targetSearchTimer = targetSearchInterval;
+
+        _navMeshAgent.speed = enemyProfile.speed;
     }
     
     override protected void Update()
@@ -73,13 +77,6 @@ public class AIController : GameEntity
     {
         StateMachine?.FixedUpdate();
     }
-    
-    public void MoveAndRotateTowardsTarget()
-    {
-        RotateTowards();
-        MoveTowardsTarget();
-    }
-
     
     public bool TargetInRange(float range)
     {
@@ -101,19 +98,21 @@ public class AIController : GameEntity
         _weaponController.HandleShooting();
     }
     
-    
-    public void RotateTowards()
-    {
-        if(Time.timeScale <= 0.0f) return;
-        _rigidbody.MoveRotation( Quaternion.LookRotation(_directionToTarget, Vector3.up));
-    }
-
-    private void MoveTowardsTarget()
+    public void RotateTowardsTarget()
     {
         if(Time.timeScale <= 0.0f) return;
         
-        Vector3 targetVelocity = _directionToTarget * (enemyProfile.speed);
-        _rigidbody.MovePosition(_rigidbody.position + targetVelocity * Time.deltaTime);
+        transform.rotation = Quaternion.LookRotation( _directionToTarget );
+    }
+
+    public void MoveTowardsTarget()
+    {
+        if(Time.timeScale <= 0.0f) return;
+        
+        // Vector3 targetVelocity = _directionToTarget * (enemyProfile.speed);
+        // _rigidbody.MovePosition(_rigidbody.position + targetVelocity * Time.deltaTime);
+        
+        _navMeshAgent.SetDestination(currentTarget.position); 
     }
     
     public void ChaseTargetAfterShot(Transform target)
@@ -155,5 +154,10 @@ public class AIController : GameEntity
         }
     }
 
+    public void StopAgent(bool stop)
+    {
+        _navMeshAgent.isStopped = stop;
+        _navMeshAgent.velocity = Vector3.zero;
+    }
 }
 
