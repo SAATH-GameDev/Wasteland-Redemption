@@ -16,8 +16,8 @@ TagManager:
   - Minimap
   - BreakablePieces
   - 
-  - 
-  - 
+  - Enemy
+  - EnemyProjectile
   - 
   - 
   - 
