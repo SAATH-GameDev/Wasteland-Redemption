@@ -12,8 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b179471053a2e6a46bb843f18d9c76fb, type: 3}
   m_Name: Coin
   m_EditorClassIdentifier: 
+  icon: {fileID: -2413806693520163455, guid: 997a28e63d708884682d62efed2708e5, type: 3}
   Type: 0
   value: 10
-  profile: {fileID: 0}
-  buyPrice: 0
-  sellPrice: 0
+  price: 0

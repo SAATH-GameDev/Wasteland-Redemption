@@ -12,8 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b179471053a2e6a46bb843f18d9c76fb, type: 3}
   m_Name: Pizza
   m_EditorClassIdentifier: 
+  icon: {fileID: 21300000, guid: 40b083b1969d0ce4bb1a1ca429dec910, type: 3}
   Type: 2
   value: 1
-  profile: {fileID: 0}
-  buyPrice: 0
-  sellPrice: 0
+  price: 0
