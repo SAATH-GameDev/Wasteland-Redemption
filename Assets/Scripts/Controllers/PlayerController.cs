@@ -15,7 +15,8 @@ public partial class PlayerController : GameEntity
     public GameObject capsuleMesh;
 
     [Header("UI")]
-    public GameObject statsUIPrefab;
+    public GameObject statsPrefab;
+    public GameObject inventoryPrefab;
 
     [Space]
     public Transform movementTransform;
@@ -28,6 +29,7 @@ public partial class PlayerController : GameEntity
     private Image hungerBarImage;
     private TextMeshProUGUI equipNameText;
     private TextMeshProUGUI equipCountText;
+    private PlayerInventory inventory;
 
     private int isWalkingAnimParam = Animator.StringToHash("isWalking");
     
@@ -53,18 +55,25 @@ public partial class PlayerController : GameEntity
         if (movementTransform == null)
             movementTransform = transform;
         _rigidbody = GetComponent<Rigidbody>();
+        inventory = GetComponent<PlayerInventory>();
         
         maxHealth = health = profile.health;
 
         currentHunger = profile.hunger * characterProfile.hunger;
 
-        if(statsUIPrefab)
+        if(statsPrefab)
         {
-            GameObject statsUI = Instantiate(statsUIPrefab, GameManager.Instance.canvas.transform);
+            GameObject statsUI = Instantiate(statsPrefab, GameManager.Instance.canvas.transform);
             equipNameText = statsUI.transform.Find("EquipName").GetComponent<TextMeshProUGUI>();
             equipCountText = statsUI.transform.Find("EquipCount").GetComponent<TextMeshProUGUI>();
             healthBar = statsUI.transform.Find("HealthFill");
             hungerBarImage = statsUI.transform.Find("HungerFill").GetComponent<Image>();
+        }
+
+        if(inventoryPrefab)
+        {
+            inventory.UI = Instantiate(inventoryPrefab, GameManager.Instance.canvas.transform);
+            inventory.UI.SetActive(false);
         }
     }
 
