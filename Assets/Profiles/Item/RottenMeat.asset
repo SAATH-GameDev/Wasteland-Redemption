@@ -12,8 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b179471053a2e6a46bb843f18d9c76fb, type: 3}
   m_Name: RottenMeat
   m_EditorClassIdentifier: 
+  icon: {fileID: 21300000, guid: 9a99fa123c2bb9c4182fb6bd2adabcf7, type: 3}
   Type: 2
   value: 1
-  profile: {fileID: 0}
-  buyPrice: 0
-  sellPrice: 0
+  price: 0

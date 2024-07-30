@@ -306,15 +306,15 @@ MonoBehaviour:
   OnDeath:
     m_PersistentCalls:
       m_Calls: []
-  healthBarPrefab: {fileID: 572851942239386238, guid: c08494691989e3a4595aad75a9d5662e, type: 3}
+  healthBarPrefab: {fileID: 0}
   healthBarOffset: {x: 0, y: 64, z: 0}
   profile: {fileID: 11400000, guid: 82ef7bccb603a724faa38a39e8781421, type: 2}
   characterProfile: {fileID: 11400000, guid: fb59b8ae9295cef458c1bf053d7b1435, type: 2}
   animator: {fileID: 1825743926498844969}
   weapon: {fileID: 499525523550956944}
   capsuleMesh: {fileID: 1378361398276655553}
-  hungerBarPrefab: {fileID: 3456330888353361515, guid: bc25dede7be58c74ba8bda715fa08ce9, type: 3}
-  equipUIPrefab: {fileID: 9120221739775772413, guid: 1c9193af1a5f3564fb7ea35cde2c0b3b, type: 3}
+  statsPrefab: {fileID: 9120221739775772413, guid: 1c9193af1a5f3564fb7ea35cde2c0b3b, type: 3}
+  inventoryPrefab: {fileID: 5378798035968849541, guid: 81a04b4a92f37d7408822f3d12d201da, type: 3}
   movementTransform: {fileID: 0}
   smoothTime: 0.08
 --- !u!114 &2639575148183368002
@@ -420,7 +420,19 @@ MonoBehaviour:
     m_ActionId: 852140f2-7766-474d-8707-702459ba45f3
     m_ActionName: 'Player/Interact[/Keyboard/e,/XInputControllerWindows/buttonNorth,/XInputControllerWindows1/buttonNorth]'
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3024652447763854936}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: Reload
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 27c5f898-bc57-4ee1-8800-db469aca5fe3
     m_ActionName: 'Player/Crouch[/XInputControllerWindows/buttonEast,/XInputControllerWindows1/buttonEast,/Keyboard/c]'
   - m_PersistentCalls:
@@ -627,7 +639,7 @@ Camera:
   far clip plane: 1000
   field of view: 14.4
   orthographic: 1
-  orthographic size: 10
+  orthographic size: 15
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -803,10 +815,10 @@ Light:
   serializedVersion: 11
   m_Type: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 120
+  m_Intensity: 60
   m_Range: 20
   m_SpotAngle: 45
-  m_InnerSpotAngle: 40
+  m_InnerSpotAngle: 35
   m_CookieSize: 10
   m_Shadows:
     m_Type: 2
@@ -897,7 +909,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4677083380535329068
 Transform:
   m_ObjectHideFlags: 0
@@ -924,7 +936,7 @@ Light:
   serializedVersion: 11
   m_Type: 2
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 45
+  m_Intensity: 20
   m_Range: 200
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208

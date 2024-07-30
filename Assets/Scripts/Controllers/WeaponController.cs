@@ -46,6 +46,16 @@ public class WeaponController : MonoBehaviour
         timer -= Time.deltaTime;
     }
 
+    public void Reload()
+    {
+        if(currentMagazine < profile.magazine)
+        {
+            reloadTimer = profile.reloadDelay;
+            currentMagazine = 0;
+            onMagazineChange.Invoke();
+        }
+    }
+
     protected void AttackingConsecutive()
     {
         if(consecutiveCount > 0)
@@ -105,7 +115,7 @@ public class WeaponController : MonoBehaviour
 
     protected void ReloadingMagazine()
     {
-        if(profile.magazine > 0 && currentMagazine <= 0)
+        if(profile.magazine > 0 && reloadTimer > 0)
         {
             reloadTimer -= Time.deltaTime;
             if(reloadTimer <= 0.0f)
@@ -126,9 +136,7 @@ public class WeaponController : MonoBehaviour
             onMagazineChange.Invoke();
 
             if(currentMagazine <= 0)
-            {
                 reloadTimer = profile.reloadDelay;
-            }
         }
     }
 

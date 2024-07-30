@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eeafb63ad742f8145b06971ad44f22d7, type: 3}
   m_Name: Data
   m_EditorClassIdentifier: 
-  health: 10000
+  health: 100
   attack: 50
   stamina: 50
-  speed: 15
+  speed: 10
   hunger: 100

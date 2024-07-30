@@ -5,6 +5,8 @@ public class EnemyIdleState : State<AIController>
     public override void Enter(AIController owner)
     {
         base.Enter(owner);
+
+        owner.StopAgent(true);
     }
 
     public override void Update(AIController owner)

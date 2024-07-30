@@ -39,6 +39,12 @@ public partial class PlayerController : GameEntity
             weapon.Attack(false);
     }
 
+    public void Reload(InputAction.CallbackContext context)
+    {
+        if(context.started)
+            weapon.Reload();
+    }
+
     public void Interact(InputAction.CallbackContext context)
     {
         if(!context.started) return;

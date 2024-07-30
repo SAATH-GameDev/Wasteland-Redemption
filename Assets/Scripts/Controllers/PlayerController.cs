@@ -15,8 +15,8 @@ public partial class PlayerController : GameEntity
     public GameObject capsuleMesh;
 
     [Header("UI")]
-    public GameObject hungerBarPrefab;
-    public GameObject equipUIPrefab;
+    public GameObject statsPrefab;
+    public GameObject inventoryPrefab;
 
     [Space]
     public Transform movementTransform;
@@ -29,6 +29,7 @@ public partial class PlayerController : GameEntity
     private Image hungerBarImage;
     private TextMeshProUGUI equipNameText;
     private TextMeshProUGUI equipCountText;
+    private PlayerInventory inventory;
 
     private int isWalkingAnimParam = Animator.StringToHash("isWalking");
     
@@ -54,21 +55,25 @@ public partial class PlayerController : GameEntity
         if (movementTransform == null)
             movementTransform = transform;
         _rigidbody = GetComponent<Rigidbody>();
+        inventory = GetComponent<PlayerInventory>();
         
         maxHealth = health = profile.health;
 
         currentHunger = profile.hunger * characterProfile.hunger;
 
-        if(hungerBarPrefab)
+        if(statsPrefab)
         {
-            hungerBarImage = Instantiate(hungerBarPrefab, GameManager.Instance.canvas.transform).GetComponent<Image>();
+            GameObject statsUI = Instantiate(statsPrefab, GameManager.Instance.canvas.transform);
+            equipNameText = statsUI.transform.Find("EquipName").GetComponent<TextMeshProUGUI>();
+            equipCountText = statsUI.transform.Find("EquipCount").GetComponent<TextMeshProUGUI>();
+            healthBar = statsUI.transform.Find("HealthFill");
+            hungerBarImage = statsUI.transform.Find("HungerFill").GetComponent<Image>();
         }
 
-        if(equipUIPrefab)
+        if(inventoryPrefab)
         {
-            GameObject equipUIObject = Instantiate(equipUIPrefab, GameManager.Instance.canvas.transform);
-            equipNameText = equipUIObject.transform.GetChild(1).GetComponent<TextMeshProUGUI>();
-            equipCountText = equipUIObject.transform.GetChild(2).GetComponent<TextMeshProUGUI>();
+            inventory.UI = Instantiate(inventoryPrefab, GameManager.Instance.canvas.transform);
+            inventory.UI.SetActive(false);
         }
     }
 
@@ -81,7 +86,7 @@ public partial class PlayerController : GameEntity
 
     override protected void Update()
     {
-        base.Update();
+        //base.Update();
 
         if(Time.timeScale <= 0.0f) return;
 

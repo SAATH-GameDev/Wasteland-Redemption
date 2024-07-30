@@ -3,7 +3,8 @@ using UnityEngine;
 
 public class PlayerInventory : MonoBehaviour
 {
-    public List<ItemProfile> inventory = new List<ItemProfile>();
+    public GameObject UI;
+    public List<ItemProfile> itemList = new List<ItemProfile>();
 
     private void OnTriggerEnter(Collider other)
     {
@@ -11,7 +12,7 @@ public class PlayerInventory : MonoBehaviour
         if (collectible != null)
         {
             ItemProfile itemProfile = collectible.Collect();
-            inventory.Add(itemProfile);
+            itemList.Add(itemProfile);
         }
     }
 }

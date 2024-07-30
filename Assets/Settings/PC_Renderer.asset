@@ -23,7 +23,7 @@ MonoBehaviour:
         m_Bits: 8
       PassNames: []
     overrideMaterial: {fileID: 2100000, guid: 21bef12ac97cfb248b0fa90e069e43c5, type: 2}
-    overrideMaterialPassIndex: 0
+    overrideMaterialPassIndex: 1
     overrideShader: {fileID: 0}
     overrideShaderPassIndex: 0
     overrideMode: 1
@@ -33,15 +33,15 @@ MonoBehaviour:
     stencilSettings:
       overrideStencilState: 0
       stencilReference: 0
-      stencilCompareFunction: 8
-      passOperation: 0
+      stencilCompareFunction: 3
+      passOperation: 3
       failOperation: 0
       zFailOperation: 0
     cameraSettings:
       overrideCamera: 0
       restoreCamera: 1
       offset: {x: 0, y: 0, z: 0, w: 0}
-      cameraFieldOfView: 60
+      cameraFieldOfView: 4
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -84,9 +84,9 @@ MonoBehaviour:
     m_Bits: 4294967295
   m_DefaultStencilState:
     overrideStencilState: 0
-    stencilReference: 1
-    stencilCompareFunction: 3
-    passOperation: 2
+    stencilReference: 0
+    stencilCompareFunction: 0
+    passOperation: 0
     failOperation: 0
     zFailOperation: 0
   m_ShadowTransparentReceive: 1

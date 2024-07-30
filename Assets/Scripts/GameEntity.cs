@@ -24,7 +24,7 @@ public class GameEntity : MonoBehaviour, IDamageable
     protected Vector3 baseScale;
     
     protected int maxHealth;
-    protected GameObject healthBar;
+    protected Transform healthBar;
     
 
     virtual protected void Start()
@@ -34,7 +34,7 @@ public class GameEntity : MonoBehaviour, IDamageable
 
         if(healthBarPrefab != null)
         {
-            healthBar = Instantiate(healthBarPrefab, transform.position, Quaternion.identity);
+            healthBar = Instantiate(healthBarPrefab, transform.position, Quaternion.identity).transform;
             healthBar.transform.parent = GameManager.Instance.canvas.GetChild(0);
         }
     }
@@ -42,23 +42,32 @@ public class GameEntity : MonoBehaviour, IDamageable
     virtual protected void Update()
     {
         if(healthBar)
-            healthBar.transform.position = GameManager.Instance.WorldToScreenPosition(transform.position) + healthBarOffset;
+            healthBar.position = GameManager.Instance.WorldToScreenPosition(transform.position) + healthBarOffset;
     }
 
     public void TakeDamage(int damage)
     {
         health -= damage;
 
-        if(healthBar != null)
-            healthBar.transform.GetChild(0).GetComponent<Image>().fillAmount = (float)health / maxHealth;
+        if(healthBar)
+        {
+            if(healthBar.childCount > 0)
+                healthBar.GetChild(0).GetComponent<Image>().fillAmount = (float)health / maxHealth;
+            else
+                healthBar.GetComponent<Image>().fillAmount = (float)health / maxHealth;
+        }
 
         OnDamage?.Invoke();
         
         if (health <= 0)
         {
             health = 0;
-            Destroy(healthBar);
+
+            if(healthBar)
+                Destroy(healthBar.gameObject);
+
             Destroy(gameObject);
+            
             OnDeath?.Invoke();
         }
         else

@@ -12,8 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b179471053a2e6a46bb843f18d9c76fb, type: 3}
   m_Name: Banana
   m_EditorClassIdentifier: 
+  icon: {fileID: 21300000, guid: 531ab73c258bec04b9b54e11f9d4de37, type: 3}
   Type: 2
   value: 0.5
-  profile: {fileID: 0}
-  buyPrice: 0
-  sellPrice: 0
+  price: 0

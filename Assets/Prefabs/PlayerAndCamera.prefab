@@ -256,6 +256,10 @@ PrefabInstance:
       propertyPath: movementTransform
       value: 
       objectReference: {fileID: 7752523407873356156}
+    - target: {fileID: 3137096329963584232, guid: 9add1148e3e0308448338a3aecb4a5c7, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7019435604170696868, guid: 9add1148e3e0308448338a3aecb4a5c7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
