@@ -156,6 +156,7 @@ public class AIController : GameEntity
 
     public void StopAgent(bool stop)
     {
+        if (!_navMeshAgent.isOnNavMesh) return;
         _navMeshAgent.isStopped = stop;
         _navMeshAgent.velocity = Vector3.zero;
     }
