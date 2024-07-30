@@ -627,7 +627,7 @@ Camera:
   far clip plane: 1000
   field of view: 14.4
   orthographic: 1
-  orthographic size: 10
+  orthographic size: 15
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -803,10 +803,10 @@ Light:
   serializedVersion: 11
   m_Type: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 120
+  m_Intensity: 60
   m_Range: 20
   m_SpotAngle: 45
-  m_InnerSpotAngle: 40
+  m_InnerSpotAngle: 35
   m_CookieSize: 10
   m_Shadows:
     m_Type: 2
@@ -924,7 +924,7 @@ Light:
   serializedVersion: 11
   m_Type: 2
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 45
+  m_Intensity: 20
   m_Range: 200
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
