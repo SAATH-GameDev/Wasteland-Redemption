@@ -49,7 +49,7 @@ public class GameEntity : MonoBehaviour, IDamageable
     {
         health -= damage;
 
-        if(healthBar != null)
+        if(healthBar)
         {
             if(healthBar.childCount > 0)
                 healthBar.GetChild(0).GetComponent<Image>().fillAmount = (float)health / maxHealth;
@@ -62,8 +62,12 @@ public class GameEntity : MonoBehaviour, IDamageable
         if (health <= 0)
         {
             health = 0;
-            Destroy(healthBar.gameObject);
+
+            if(healthBar)
+                Destroy(healthBar.gameObject);
+
             Destroy(gameObject);
+            
             OnDeath?.Invoke();
         }
         else
