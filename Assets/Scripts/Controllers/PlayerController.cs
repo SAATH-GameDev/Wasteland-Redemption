@@ -73,6 +73,7 @@ public partial class PlayerController : GameEntity
         if(inventoryPrefab)
         {
             inventory.UI = Instantiate(inventoryPrefab, GameManager.Instance.canvas.transform);
+            inventory.SetupSlots();
             inventory.UI.SetActive(false);
         }
     }
