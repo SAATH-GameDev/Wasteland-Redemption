@@ -13,6 +13,8 @@ public class EnemyStrafeAroundState : State<AIController>
         attackTimer = owner.attackTimer;
         
         strafeDirection = Random.Range(0, 2) == 0 ? -1 : 1;
+        
+        owner.StopAgent(false);
     }
 
     public override void Update(AIController owner)
@@ -40,13 +42,10 @@ public class EnemyStrafeAroundState : State<AIController>
                 owner.Attack();
                 attackTimer = owner.attackTimer;
             }  
-            
-            owner.StopAgent(true);
-            return;
         } 
-        else if (owner.TargetOutOfRange(owner.strafeAttackRange))
+        else if (owner.TargetOutOfRange(owner.chaseRange))
         {
-            owner.StateMachine.ChangeState(typeof(IdleState));
+            owner.StateMachine.ChangeState(typeof(EnemyIdleState));
         }
         
         owner.StrafeAroundTarget(strafeDirection);

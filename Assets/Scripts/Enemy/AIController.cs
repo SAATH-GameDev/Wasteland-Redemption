@@ -171,7 +171,5 @@ public class AIController : GameEntity
        
        _navMeshAgent.Move(rotation - targetDir);
        transform.rotation = Quaternion.LookRotation(rotation);
-       
-       MoveTowardsTarget();
     }
 }
