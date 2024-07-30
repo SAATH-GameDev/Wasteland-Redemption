@@ -80,17 +80,17 @@ Naive. Starts out feeling inadequate and insecure. Relies heavily on others to p
 "I'd probably die just tripping on some rubble... haha."
 
 ### Badass 1
-Capable and experienced survivor. Physically strong. Protective and supportive of MC. Serious personality but not strict.
+More a plot device than a character. Capable and experienced survivor. Physically strong. Protective and supportive of MC.
 
 "Shush... (whisper) I heard something..."
 
 ### Badass 2
-Same as Badass 2. However, has a humorous side to them. Laughs with MC.
+Same as Badass 2.
 
 "Too dangerous out there. I wish I could stay here too."
 
 ### Priest
-Clever. Intelligent. Cunning. Self serving. Only offers help as a means to an end. Won't shy away from murder if it serves his purpose.
+Clever. Intelligent. Wise. A bit selfish but understandably so, given the circumstances.
 
 "I'm an old man. But you can repair the bridge. I'll help you of course."
 
@@ -98,6 +98,48 @@ Clever. Intelligent. Cunning. Self serving. Only offers help as a means to an en
 Resourceful. Battle hardened. Smart. Experienced. Doesn't trust easily or at all. Honest.
 
 "I don't trust you. And you shouldn't trust me either."
+
+### Urchin
+A small figure. Not clear if its a girl or a boy. Appears out of nowhere to steal things. Quick but not very strong.
+
+
+## Story Summary (So far)
+
+MC loses their shelter and is alone in the zombie infested town without supplies. 
+
+The MC heads to the town's only store for food and clears it of the zombies first.
+
+The meagre supplies in the store are snatched instead by a small figure. MC is forced to give chase. 
+
+Rounding the corner, the figure crouches on top of a broken-down car, surrounded by zombies. 
+
+The MC rescues them, but they manage to start the car and drive off. A crash is heard off screen.
+
+MC discover the car crashed into a fence and abandoned. A trail of blood leads to the church.
+
+MC reaches the church but is ambushed by zombies instead.
+
+MC is rescued by the priest from the tower using a sniper rifle.
+
+The child MC was chasing is injured and needs medical supplies. The only pharmacy is across the broken bridge.
+
+MC must repair the bridge. Priest offers the church pews as material for a plank bridge. An axe and rope is needed however.
+
+MC searches the town for an axe and finds a fire axe in the bank, where some funny bankers are still trapped.
+
+MC repairs the bridge, unlocks the rest of the town and heads for the pharmacy.
+
+MC faces bandits while exiting pharmacy and barely survives.
+
+MC delivers the medical supplies, saves the child, and then heads back across the bridge out of town.
+
+MC encounters the Teacher and helps her capture some zombies.
+
+Teacher wants to buy priest's sniper and MC must deliver this offer.
+
+Back at the church, MC finds priest injured from a bandit attack and dying. The child runs off with the sniper.
+
+WIP...
 
 
 ## Prologue
