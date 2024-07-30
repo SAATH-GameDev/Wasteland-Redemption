@@ -22,11 +22,16 @@ public class EnemyIdleState : State<AIController>
 
         if (owner.TargetInRange(owner.chaseRange))
         {
-           int randomStateIndex = Random.Range(0, 3);
+           int randomStateIndex = Random.Range(0, 4);
 
+           //todo testing strafe state
            if (randomStateIndex == 0)
            {
                owner.StateMachine.ChangeState(typeof(EnemyChaseState));
+           }
+           else if (randomStateIndex == 1)
+           {
+               owner.StateMachine.ChangeState(typeof(EnemyStrafeAroundState));
            }
            else
            {

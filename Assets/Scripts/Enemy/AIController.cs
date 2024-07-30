@@ -11,11 +11,13 @@ public class AIController : GameEntity
     [Space]
     public float chaseRange = 5f;
     public float attackRange = 3f;
+    public float strafeAttackRange = 5f;
 
     [Space]
     public float idleTimer = 1f;
     public float chaseTimer = 5f;
     public float attackTimer = 2f;
+    public float strafeTimer = 7f;
 
     public float targetSearchInterval = 0.5f;
 
@@ -50,6 +52,7 @@ public class AIController : GameEntity
         StateMachine.AddState(new EnemyChaseState());    
         StateMachine.AddState(new EnemyAttackState());
         StateMachine.AddState(new EnemyChaseAttackCombinedState());
+        StateMachine.AddState(new EnemyStrafeAroundState());
         
         StateMachine.InitState(typeof(EnemyIdleState));
 
@@ -160,5 +163,15 @@ public class AIController : GameEntity
         _navMeshAgent.isStopped = stop;
         _navMeshAgent.velocity = Vector3.zero;
     }
-}
 
+    public void StrafeAroundTarget(int strafeDir)
+    {
+       Vector3 targetDir = currentTarget.position - transform.position;
+       var rotation = Quaternion.Euler(0f, enemyProfile.speed * 4f * strafeDir * Time.deltaTime, 0f) * targetDir;
+       
+       _navMeshAgent.Move(rotation - targetDir);
+       transform.rotation = Quaternion.LookRotation(rotation);
+       
+       MoveTowardsTarget();
+    }
+}
