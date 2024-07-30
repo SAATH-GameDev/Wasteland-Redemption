@@ -10,7 +10,7 @@ public class DialogueManager : MonoBehaviour
     
     [Space]
     public GameObject dialogueBox;
-    public Vector3 dialogueBoxTargetOffset;
+    public Vector2 dialogueBoxTargetOffset;
 
     [Space]
     public TextMeshProUGUI dialogueText;
@@ -66,11 +66,11 @@ public class DialogueManager : MonoBehaviour
 
         if(target == null)
         {
-            dialogueBox.transform.position = GameManager.Instance.WorldToScreenPosition(PlayerController.activePlayers[0].transform.position) + dialogueBoxTargetOffset;
+            dialogueBox.transform.position = GameManager.Instance.WorldToScreenPosition(PlayerController.activePlayers[0].transform.position) + new Vector3(dialogueBoxTargetOffset.x * Screen.width, dialogueBoxTargetOffset.y * Screen.height, 0.0f);
         }
         else
         {
-            dialogueBox.transform.position = GameManager.Instance.WorldToScreenPosition(target.position) + dialogueBoxTargetOffset;
+            dialogueBox.transform.position = GameManager.Instance.WorldToScreenPosition(target.position) + new Vector3(dialogueBoxTargetOffset.x * Screen.width, dialogueBoxTargetOffset.y * Screen.height, 0.0f);
         }
         
         if(currentDialogues.Count > 0)

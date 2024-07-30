@@ -44880,7 +44880,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   group: {fileID: 11400000, guid: a388ad840746f9d45a59c323f5a42e7d, type: 2}
   dialogueBox: {fileID: 1982132778}
-  dialogueBoxTargetOffset: {x: 75, y: 150, z: 0}
+  dialogueBoxTargetOffset: {x: 0.06, y: 0.22}
   dialogueText: {fileID: 1982132777}
   commands:
   - name: SEQ
