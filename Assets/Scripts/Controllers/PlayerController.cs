@@ -15,8 +15,7 @@ public partial class PlayerController : GameEntity
     public GameObject capsuleMesh;
 
     [Header("UI")]
-    public GameObject hungerBarPrefab;
-    public GameObject equipUIPrefab;
+    public GameObject statsUIPrefab;
 
     [Space]
     public Transform movementTransform;
@@ -59,16 +58,13 @@ public partial class PlayerController : GameEntity
 
         currentHunger = profile.hunger * characterProfile.hunger;
 
-        if(hungerBarPrefab)
+        if(statsUIPrefab)
         {
-            hungerBarImage = Instantiate(hungerBarPrefab, GameManager.Instance.canvas.transform).GetComponent<Image>();
-        }
-
-        if(equipUIPrefab)
-        {
-            GameObject equipUIObject = Instantiate(equipUIPrefab, GameManager.Instance.canvas.transform);
-            equipNameText = equipUIObject.transform.GetChild(1).GetComponent<TextMeshProUGUI>();
-            equipCountText = equipUIObject.transform.GetChild(2).GetComponent<TextMeshProUGUI>();
+            GameObject statsUI = Instantiate(statsUIPrefab, GameManager.Instance.canvas.transform);
+            equipNameText = statsUI.transform.Find("EquipName").GetComponent<TextMeshProUGUI>();
+            equipCountText = statsUI.transform.Find("EquipCount").GetComponent<TextMeshProUGUI>();
+            healthBar = statsUI.transform.Find("HealthFill");
+            hungerBarImage = statsUI.transform.Find("HungerFill").GetComponent<Image>();
         }
     }
 
@@ -81,7 +77,7 @@ public partial class PlayerController : GameEntity
 
     override protected void Update()
     {
-        base.Update();
+        //base.Update();
 
         if(Time.timeScale <= 0.0f) return;
 
