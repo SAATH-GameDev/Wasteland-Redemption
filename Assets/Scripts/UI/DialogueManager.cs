@@ -65,13 +65,9 @@ public class DialogueManager : MonoBehaviour
             return;
 
         if(target == null)
-        {
             dialogueBox.transform.position = GameManager.Instance.WorldToScreenPosition(PlayerController.activePlayers[0].transform.position) + new Vector3(dialogueBoxTargetOffset.x * Screen.width, dialogueBoxTargetOffset.y * Screen.height, 0.0f);
-        }
         else
-        {
             dialogueBox.transform.position = GameManager.Instance.WorldToScreenPosition(target.position) + new Vector3(dialogueBoxTargetOffset.x * Screen.width, dialogueBoxTargetOffset.y * Screen.height, 0.0f);
-        }
         
         if(currentDialogues.Count > 0)
         {
