@@ -52,4 +52,13 @@ public partial class PlayerController : GameEntity
         if(DialogueManager.Instance.IsActive())
             DialogueManager.Instance.Proceed();
     }
+
+    public void ToggleInventory(InputAction.CallbackContext context)
+    {
+        if(context.performed)
+        {
+            inventory.UI.SetActive(!inventory.UI.activeSelf);
+            inventory.UI.transform.position = GameManager.Instance.WorldToScreenPosition(transform.position, index) + new Vector3(inventory.offset.x * Screen.width, inventory.offset.y * Screen.height, 0.0f);
+        }
+    }
 }

@@ -22,6 +22,7 @@ public partial class PlayerController : GameEntity
     public Transform movementTransform;
     public float smoothTime = 0.05f;
 
+    private int index = -1;
     private Rigidbody _rigidbody;
     private Vector3 _currentVelocity;
 
@@ -38,6 +39,7 @@ public partial class PlayerController : GameEntity
 
     void OnEnable()
     {
+        index = count;
         count++;
         activePlayers.Add(transform);
     }
@@ -93,6 +95,9 @@ public partial class PlayerController : GameEntity
 
         displayTransform.LookAt(transform.position + _look);
         displayTransform.rotation = Quaternion.Euler(0.0f, displayTransform.rotation.eulerAngles.y, 0.0f);
+
+        if(inventory.UI.activeSelf)
+            inventory.UI.transform.position = GameManager.Instance.WorldToScreenPosition(transform.position, index) + new Vector3(inventory.offset.x * Screen.width, inventory.offset.y * Screen.height, 0.0f);
 
         animator.SetBool(isWalkingAnimParam, _movement.sqrMagnitude > 0.25f);
 
