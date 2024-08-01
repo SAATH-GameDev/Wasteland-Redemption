@@ -78,8 +78,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdb9d8ddb47a4af5bd2b7b48f10a0629, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  profile: {fileID: 11400000, guid: be8f049125a3cb64a908f953a2f98cf6, type: 2}
+  profile: {fileID: 11400000, guid: 78f485d46e11ade49952bf15070dc395, type: 2}
   muzzle: {fileID: 2182960569051306807}
+  currentMagazine: 0
+  reloadTimer: 0
+  armRightRig: {fileID: 0}
+  armLeftRig: {fileID: 0}
 --- !u!1 &6813818704082973406
 GameObject:
   m_ObjectHideFlags: 0

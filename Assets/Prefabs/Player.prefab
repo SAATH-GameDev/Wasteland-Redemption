@@ -45,6 +45,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3902998814792455752}
+  - component: {fileID: 7835503171790828506}
   m_Layer: 3
   m_Name: Mesh
   m_TagString: Untagged
@@ -68,6 +69,28 @@ Transform:
   - {fileID: 6203884801259314011}
   m_Father: {fileID: 6264840364923780171}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &7835503171790828506
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1378361398276655553}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1824430286024055662
 GameObject:
   m_ObjectHideFlags: 0
@@ -315,7 +338,6 @@ MonoBehaviour:
   capsuleMesh: {fileID: 1378361398276655553}
   statsPrefab: {fileID: 9120221739775772413, guid: 1c9193af1a5f3564fb7ea35cde2c0b3b, type: 3}
   inventoryPrefab: {fileID: 5378798035968849541, guid: 81a04b4a92f37d7408822f3d12d201da, type: 3}
-  statusEffectsHolder: {fileID: 0}
   statusEffectPrefab: {fileID: 1310150870734706064, guid: 0dd7820f6883b944e81544fd0e6e9e20, type: 3}
   movementTransform: {fileID: 0}
   smoothTime: 0.08
@@ -333,6 +355,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UI: {fileID: 0}
   offset: {x: 0.08, y: 0.13}
+  selectionIndex: 0
 --- !u!114 &899070081788865946
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1186,7 +1209,7 @@ GameObject:
   - component: {fileID: 2401256145230401159}
   - component: {fileID: 7619583459743150835}
   m_Layer: 0
-  m_Name: ArmRig
+  m_Name: ArmRightRig
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1220,7 +1243,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70b342d8ce5c2fd48b8fa3147d48d1d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Weight: 1
+  m_Weight: 0
   m_Effectors:
   - m_Transform: {fileID: 3286317720525382205}
     m_Style:
@@ -1254,6 +1277,52 @@ MonoBehaviour:
       position: {x: 0, y: 0, z: 0}
       rotation: {x: 0, y: 0, z: 90}
     m_Visible: 1
+--- !u!1 &5380945587655690334
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4005120322440748651}
+  - component: {fileID: 4101294535328774237}
+  m_Layer: 0
+  m_Name: ArmLeftRig
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4005120322440748651
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5380945587655690334}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6203884801259314011}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4101294535328774237
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5380945587655690334}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70b342d8ce5c2fd48b8fa3147d48d1d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Weight: 0
+  m_Effectors: []
 --- !u!1001 &2322597586888086624
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1263,9 +1332,13 @@ PrefabInstance:
     m_TransformParent: {fileID: 6264840364923780171}
     m_Modifications:
     - target: {fileID: 2798193193002875376, guid: eb8a84d7db454754bafb68f79ff264c8, type: 3}
-      propertyPath: profile
+      propertyPath: armLeftRig
       value: 
-      objectReference: {fileID: 11400000, guid: 78f485d46e11ade49952bf15070dc395, type: 2}
+      objectReference: {fileID: 4101294535328774237}
+    - target: {fileID: 2798193193002875376, guid: eb8a84d7db454754bafb68f79ff264c8, type: 3}
+      propertyPath: armRightRig
+      value: 
+      objectReference: {fileID: 7619583459743150835}
     - target: {fileID: 3001033382465221919, guid: eb8a84d7db454754bafb68f79ff264c8, type: 3}
       propertyPath: m_BoundingSphereOverride.w
       value: 0
@@ -1561,6 +1634,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 668d15483c68add48af49c2416982dbd, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2401256145230401159}
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 668d15483c68add48af49c2416982dbd, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4005120322440748651}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 668d15483c68add48af49c2416982dbd, type: 3}
       insertIndex: -1
@@ -1843,6 +1919,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_RigLayers:
   - m_Rig: {fileID: 7619583459743150835}
+    m_Active: 1
+  - m_Rig: {fileID: 4101294535328774237}
     m_Active: 1
   m_Effectors: []
 --- !u!4 &7017155894920486058 stripped

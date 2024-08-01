@@ -62,7 +62,7 @@ public partial class PlayerController : GameEntity
         _rigidbody = GetComponent<Rigidbody>();
         inventory = GetComponent<PlayerInventory>();
         
-        maxHealth = health = profile.health;
+        maxHealth = health = (int)(profile.health * characterProfile.health);
 
         currentHunger = profile.hunger * characterProfile.hunger;
 
@@ -86,11 +86,16 @@ public partial class PlayerController : GameEntity
         statusEffectController.Setup();
     }
 
+    public void IncrementHunger(float value)
+    {
+        currentHunger = Mathf.Max(value, profile.hunger * characterProfile.hunger);
+        hungerBarImage.fillAmount = currentHunger / (profile.hunger * characterProfile.hunger);
+    }
+
     private void ProcessHunger()
     {
         currentHunger -= GameManager.Instance.gameplay.hungerDepletionRate * Time.deltaTime;
-        if(hungerBarImage)
-            hungerBarImage.fillAmount = currentHunger / (profile.hunger * characterProfile.hunger);
+        hungerBarImage.fillAmount = currentHunger / (profile.hunger * characterProfile.hunger);
     }
 
     private void ProcessStatusEffects()

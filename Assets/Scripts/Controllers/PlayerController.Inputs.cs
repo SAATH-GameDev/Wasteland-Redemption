@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 public partial class PlayerController : GameEntity
@@ -9,9 +10,17 @@ public partial class PlayerController : GameEntity
     public void Move(InputAction.CallbackContext context)
     {
         if(!movementTransform) return;
-
         Vector2 movementInput = context.ReadValue<Vector2>();
-        _movement = (movementTransform.right * movementInput.x) + (movementTransform.forward * movementInput.y);
+
+        if(inventory && inventory.UI && inventory.UI.gameObject.activeSelf)
+        {
+            if(context.performed)
+                inventory.UpdateSelection(movementInput);
+        }
+        else
+        {
+            _movement = (movementTransform.right * movementInput.x) + (movementTransform.forward * movementInput.y);
+        }
     }
 
     public void Look(InputAction.CallbackContext context)
@@ -41,13 +50,20 @@ public partial class PlayerController : GameEntity
 
     public void Reload(InputAction.CallbackContext context)
     {
+        if(inventory && inventory.UI && inventory.UI.gameObject.activeSelf)
+            inventory.DiscardSelected();
+
         if(context.started)
             weapon.Reload();
     }
 
     public void Interact(InputAction.CallbackContext context)
     {
-        if(!context.started) return;
+        if(!context.started)
+            return;
+
+        if(inventory && inventory.UI && inventory.UI.gameObject.activeSelf)
+            inventory.UseSelected();
 
         if(DialogueManager.Instance.IsActive())
             DialogueManager.Instance.Proceed();
