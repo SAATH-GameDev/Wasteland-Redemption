@@ -42299,6 +42299,9 @@ GameObject:
   m_Component:
   - component: {fileID: 755564025}
   - component: {fileID: 755564024}
+  - component: {fileID: 755564028}
+  - component: {fileID: 755564027}
+  - component: {fileID: 755564026}
   m_Layer: 0
   m_Name: DecorSprite (6)
   m_TagString: Untagged
@@ -42376,6 +42379,71 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1999164760}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 146.421}
+--- !u!114 &755564026
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 755564023}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43ccb76de26d61e458756d65d40de3a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  effects:
+  - effect: {fileID: 11400000, guid: f756273736a0a9f4ebe4dfe16df2cd29, type: 2}
+    chance: 0.75
+  tryTrigger: 1
+  destroyOnContact: 0
+--- !u!54 &755564027
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 755564023}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
+--- !u!65 &755564028
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 755564023}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.3500013, y: 2.750001, z: 0.20000081}
+  m_Center: {x: -0.0000009536743, y: 0.0000014305115, z: 0}
 --- !u!1001 &766492849
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -57838,6 +57906,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2109894732}
   - component: {fileID: 2109894731}
+  - component: {fileID: 2109894735}
+  - component: {fileID: 2109894734}
+  - component: {fileID: 2109894733}
   m_Layer: 0
   m_Name: DecorSprite (4)
   m_TagString: Untagged
@@ -57915,6 +57986,71 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1999164760}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 146.421}
+--- !u!114 &2109894733
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2109894730}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43ccb76de26d61e458756d65d40de3a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  effects:
+  - effect: {fileID: 11400000, guid: f756273736a0a9f4ebe4dfe16df2cd29, type: 2}
+    chance: 0.75
+  tryTrigger: 1
+  destroyOnContact: 0
+--- !u!54 &2109894734
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2109894730}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
+--- !u!65 &2109894735
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2109894730}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 3.720002, y: 3.9100013, z: 0.20000115}
+  m_Center: {x: 0.00000023841858, y: 0.0000009536743, z: 0.000000014901161}
 --- !u!1001 &2112241815
 PrefabInstance:
   m_ObjectHideFlags: 0

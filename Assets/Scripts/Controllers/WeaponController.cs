@@ -39,6 +39,8 @@ public class WeaponController : MonoBehaviour
 
     public virtual void HandleShooting()
     {
+        if(!profile)
+            return;
         if(profile.isContinous && isAttacking)
             Attack();
         ReloadingMagazine();

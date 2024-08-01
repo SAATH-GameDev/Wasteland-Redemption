@@ -9,7 +9,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 924947e019f07014e821ce749dc95711, type: 3}
-  m_Name: Standard
+  m_Script: {fileID: 11500000, guid: 9c4fd7bc39954cf7b3d115895806071b, type: 3}
+  m_Name: Haste
   m_EditorClassIdentifier: 
-  hungerDepletionRate: 5
+  description: 
+  icon: {fileID: 0}
+  duration: 15
+  tick: 0
+  attributeEffects:
+  - attribute: 3
+    op: 2
+    value: 1.5
+    opFrequency: 2
