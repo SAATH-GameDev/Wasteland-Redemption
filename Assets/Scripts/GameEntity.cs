@@ -25,7 +25,6 @@ public class GameEntity : MonoBehaviour, IDamageable
     
     protected int maxHealth;
     protected Transform healthBar;
-    
 
     virtual protected void Start()
     {
@@ -45,10 +44,8 @@ public class GameEntity : MonoBehaviour, IDamageable
             healthBar.position = GameManager.Instance.WorldToScreenPosition(transform.position) + healthBarOffset;
     }
 
-    public void TakeDamage(int damage)
+    public void UpdateHealthBar()
     {
-        health -= damage;
-
         if(healthBar)
         {
             if(healthBar.childCount > 0)
@@ -56,24 +53,30 @@ public class GameEntity : MonoBehaviour, IDamageable
             else
                 healthBar.GetComponent<Image>().fillAmount = (float)health / maxHealth;
         }
+    }
 
+    public void OnHealthDecrement(bool effect = true)
+    {
         OnDamage?.Invoke();
-        
         if (health <= 0)
         {
             health = 0;
-
             if(healthBar)
                 Destroy(healthBar.gameObject);
-
             Destroy(gameObject);
-            
             OnDeath?.Invoke();
         }
-        else
+        else if(effect)
         {
             StartCoroutine(EnablingDamageEffect());
         }
+    }
+
+    public void TakeDamage(int damage)
+    {
+        health -= damage;
+        UpdateHealthBar();
+        OnHealthDecrement();
     }
 
     private IEnumerator EnablingDamageEffect()

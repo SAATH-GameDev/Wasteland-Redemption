@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 924947e019f07014e821ce749dc95711, type: 3}
   m_Name: Standard
   m_EditorClassIdentifier: 
-  hungerDepletionRate: 1
+  hungerDepletionRate: 2
