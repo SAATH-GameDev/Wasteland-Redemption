@@ -274,5 +274,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemProfile: {fileID: 0}
   floatHeight: 0.1
-  floatRate: 0.5
-  rotateRate: 20
+  floatRate: 1
+  rotateRate: 45

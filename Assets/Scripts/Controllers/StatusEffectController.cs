@@ -97,7 +97,6 @@ public class StatusEffectController
         else
         {
             e.timer += statusEffect.duration;
-            e.applied = false;
         }
     }
 }
