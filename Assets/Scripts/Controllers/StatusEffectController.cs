@@ -1,46 +1,103 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class StatusEffectController : MonoBehaviour
+public class StatusEffectController
 {
-    private Dictionary<BaseStatusEffectProfile, GameObject> activeStatusEffects = new Dictionary<BaseStatusEffectProfile, GameObject>();
-    
-    public List<float> statusEffectTimers = new List<float>();
-
-    private void Update()
+    public class ActiveStatusEffect
     {
-        int index = 0;
-        foreach (var activeStatusEffect in activeStatusEffects)
+        public StatusEffectProfile profile;
+        public float timer = 0.0f;
+        public Image fill = null;
+        public bool applied = false;
+        public float tickTimer = 0.0f;
+    }
+    private List<ActiveStatusEffect> effects = new List<ActiveStatusEffect>();
+
+    public List<float> attributeValues = new List<float>();
+    public List<float> modValues = new List<float>();
+
+    public ActiveStatusEffect GetEffectOfProfile(StatusEffectProfile profile)
+    {
+        foreach(ActiveStatusEffect e in effects)
+            if(profile == e.profile)
+                return e;
+        return null;
+    }
+
+    public void Setup()
+    {
+        for(int i = 0; i < (int)StatusEffectProfile.Attribute.TOTAL; i++)
         {
-            if (statusEffectTimers[index] > 0)
+            attributeValues.Add(0.0f);
+            modValues.Add(0.0f);
+        }
+    }
+
+    public void Update()
+    {
+        foreach (var e in effects)
+        {
+            if(!e.applied)
             {
-                activeStatusEffect.Key.UpdateEffect(activeStatusEffect.Value);
-                statusEffectTimers[index] -= Time.deltaTime;
+                e.profile.Apply(ref attributeValues, ref modValues);
+                e.applied = true;
+            }
+
+            if (e.timer > 0)
+            {
+                if(e.tickTimer <= 0.0f)
+                {
+                    e.profile.Process(ref attributeValues);
+                    e.tickTimer = e.profile.tick;
+                }
+                else
+                {
+                    e.tickTimer -= Time.deltaTime;
+                }
+
+                e.fill.fillAmount = e.timer / e.profile.duration;
+                e.timer -= Time.deltaTime;
             }
             else
             {
-                RemoveStatusEffect(activeStatusEffect.Key, activeStatusEffect.Value);
+                e.profile.Remove(ref attributeValues, ref modValues);
+                if(e.fill)
+                    GameObject.Destroy(e.fill.transform.parent.gameObject);
+                effects.Remove(e);
+                break;
             }
-            index++;
         }
     }
     
-    public void AddStatusEffect(BaseStatusEffectProfile statusEffect, GameObject target)
+    public void Add(StatusEffectProfile statusEffect, GameObject uiPrefab = null, Transform holder = null)
     {
-        if (activeStatusEffects.TryAdd(statusEffect, target))
+        ActiveStatusEffect e = GetEffectOfProfile(statusEffect);
+        if (e == null)
         {
-            statusEffect.ApplyEffect(target);
-            statusEffectTimers.Add(statusEffect.duration);
-        }
-    }
-    
-    public void RemoveStatusEffect(BaseStatusEffectProfile statusEffect, GameObject target)
-    {
-        if (activeStatusEffects.ContainsKey(statusEffect))
-        {
-            activeStatusEffects.Remove(statusEffect);
-            statusEffect.RemoveEffect(target);
-        }
-    }
+            ActiveStatusEffect newActiveEffect = new ActiveStatusEffect
+            {
+                profile = statusEffect,
+                timer = statusEffect.duration
+            };
 
+            if(uiPrefab)
+            {
+                GameObject activeEffectUI = GameObject.Instantiate(uiPrefab, holder);
+                activeEffectUI.GetComponentInChildren<TextMeshProUGUI>().text = statusEffect.name;
+                newActiveEffect.fill = activeEffectUI.transform.Find("Fill").GetComponent<Image>();
+
+                if(statusEffect.icon)
+                    newActiveEffect.fill.sprite = activeEffectUI.transform.Find("BG").GetComponent<Image>().sprite = statusEffect.icon;
+            }
+
+            effects.Add(newActiveEffect);
+        }
+        else
+        {
+            e.timer += statusEffect.duration;
+            e.applied = false;
+        }
+    }
 }

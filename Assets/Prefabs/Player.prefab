@@ -315,6 +315,8 @@ MonoBehaviour:
   capsuleMesh: {fileID: 1378361398276655553}
   statsPrefab: {fileID: 9120221739775772413, guid: 1c9193af1a5f3564fb7ea35cde2c0b3b, type: 3}
   inventoryPrefab: {fileID: 5378798035968849541, guid: 81a04b4a92f37d7408822f3d12d201da, type: 3}
+  statusEffectsHolder: {fileID: 0}
+  statusEffectPrefab: {fileID: 1310150870734706064, guid: 0dd7820f6883b944e81544fd0e6e9e20, type: 3}
   movementTransform: {fileID: 0}
   smoothTime: 0.08
 --- !u!114 &2639575148183368002

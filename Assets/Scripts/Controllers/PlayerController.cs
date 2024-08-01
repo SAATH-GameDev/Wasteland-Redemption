@@ -17,6 +17,7 @@ public partial class PlayerController : GameEntity
     [Header("UI")]
     public GameObject statsPrefab;
     public GameObject inventoryPrefab;
+    public GameObject statusEffectPrefab;
 
     [Space]
     public Transform movementTransform;
@@ -31,6 +32,8 @@ public partial class PlayerController : GameEntity
     private TextMeshProUGUI equipNameText;
     private TextMeshProUGUI equipCountText;
     private PlayerInventory inventory;
+    private StatusEffectController statusEffectController = new StatusEffectController();
+    private Transform statusEffectsHolder;
 
     private int isWalkingAnimParam = Animator.StringToHash("isWalking");
     
@@ -70,6 +73,7 @@ public partial class PlayerController : GameEntity
             equipCountText = statsUI.transform.Find("EquipCount").GetComponent<TextMeshProUGUI>();
             healthBar = statsUI.transform.Find("HealthFill");
             hungerBarImage = statsUI.transform.Find("HungerFill").GetComponent<Image>();
+            statusEffectsHolder = statsUI.transform.Find("StatusEffectsHolder");
         }
 
         if(inventoryPrefab)
@@ -78,6 +82,8 @@ public partial class PlayerController : GameEntity
             inventory.SetupSlots();
             inventory.UI.SetActive(false);
         }
+
+        statusEffectController.Setup();
     }
 
     private void ProcessHunger()
@@ -85,6 +91,31 @@ public partial class PlayerController : GameEntity
         currentHunger -= GameManager.Instance.gameplay.hungerDepletionRate * Time.deltaTime;
         if(hungerBarImage)
             hungerBarImage.fillAmount = currentHunger / (profile.hunger * characterProfile.hunger);
+    }
+
+    private void ProcessStatusEffects()
+    {
+        //>>> Values to change
+        statusEffectController.attributeValues[(int)StatusEffectProfile.Attribute.HEALTH] = health;
+        statusEffectController.attributeValues[(int)StatusEffectProfile.Attribute.HUNGER] = currentHunger;
+
+        //>>> Values to mod
+        statusEffectController.attributeValues[(int)StatusEffectProfile.Attribute.ATTACK] = profile.attack;
+        statusEffectController.attributeValues[(int)StatusEffectProfile.Attribute.STAMINA] = profile.stamina;
+        statusEffectController.attributeValues[(int)StatusEffectProfile.Attribute.SPEED] = profile.speed;
+
+        statusEffectController.Update();
+
+        //>>> Update the changed values
+        //HEALTH
+        int prevHealth = health;
+        health = (int)statusEffectController.attributeValues[(int)StatusEffectProfile.Attribute.HEALTH];
+        UpdateHealthBar();
+        if(prevHealth > health)
+            OnHealthDecrement();
+        //HUNGER
+        currentHunger = statusEffectController.attributeValues[(int)StatusEffectProfile.Attribute.HUNGER];
+        //Note: Hunger is processed after this function so, no need to update anything
     }
 
     override protected void Update()
@@ -101,6 +132,7 @@ public partial class PlayerController : GameEntity
 
         animator.SetBool(isWalkingAnimParam, _movement.sqrMagnitude > 0.25f);
 
+        ProcessStatusEffects();
         ProcessHunger();
     }
 
@@ -108,7 +140,7 @@ public partial class PlayerController : GameEntity
     {
         if(Time.timeScale <= 0.0f) return;
         
-        Vector3 targetVelocity = _movement.normalized * (profile.speed * characterProfile.speed);
+        Vector3 targetVelocity = _movement.normalized * ((profile.speed + statusEffectController.modValues[(int)StatusEffectProfile.Attribute.SPEED]) * characterProfile.speed);
         _rigidbody.linearVelocity = Vector3.SmoothDamp(_rigidbody.linearVelocity, targetVelocity, ref _currentVelocity, smoothTime);
     }
 
@@ -120,5 +152,10 @@ public partial class PlayerController : GameEntity
             equipCountText.text = count <= 0 ? "<color=red>Reloading</color>" : count.ToString() + "/" + ((WeaponProfile)profile).magazine.ToString();
         else
             equipCountText.text = count.ToString();
+    }
+
+    public void AddStatusEffect(StatusEffectProfile effect)
+    {
+        statusEffectController.Add(effect, statusEffectPrefab, statusEffectsHolder);
     }
 }
