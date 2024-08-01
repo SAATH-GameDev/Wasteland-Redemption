@@ -88,7 +88,7 @@ public partial class PlayerController : GameEntity
 
     public void IncrementHunger(float value)
     {
-        currentHunger = Mathf.Max(value, profile.hunger * characterProfile.hunger);
+        currentHunger = Mathf.Min(currentHunger + value, profile.hunger * characterProfile.hunger);
         hungerBarImage.fillAmount = currentHunger / (profile.hunger * characterProfile.hunger);
     }
 

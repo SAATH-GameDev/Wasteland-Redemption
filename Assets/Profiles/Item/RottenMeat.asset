@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   icon: {fileID: 21300000, guid: 9a99fa123c2bb9c4182fb6bd2adabcf7, type: 3}
   Type: 2
-  value: 1
+  value: 15
   price: 0
