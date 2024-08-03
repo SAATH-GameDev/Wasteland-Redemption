@@ -1,9 +1,13 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class GameManager : MonoBehaviour
 {
     public GameplayProfile gameplay;
+    [Space]
+    public Transform pointer;
+    public LayerMask pointerLayers;
 
     [Space]
     public Transform canvas;
@@ -26,6 +30,14 @@ public class GameManager : MonoBehaviour
     {
         foreach(Camera cam in playerCameras)
             cam.GetComponentInParent<CameraController>().SetTarget(null);
+    }
+
+    public Ray GetMouseRay(int playerIndex = 0)
+    {
+        if(playerCameras.Count <= 0)
+            return new Ray();
+
+        return playerCameras[playerIndex].ScreenPointToRay(Mouse.current.position.ReadValue(), Camera.MonoOrStereoscopicEye.Mono);
     }
 
     public Vector3 WorldToScreenPosition(Vector3 worldPosition, int playerIndex = 0)
@@ -198,9 +210,28 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        if(!pointer)
+            return;
+        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = false;
     }
 
     void Update()
     {
+        if(!pointer || playerCameras.Count <= 0)
+            return;
+
+        RaycastHit hitInfo;
+        Physics.Raycast(GetMouseRay(), out hitInfo, 10000.0f, pointerLayers, QueryTriggerInteraction.Collide);
+        if(hitInfo.collider.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+        {
+            pointer.localScale = Vector3.one * 2.5f;
+            pointer.position = hitInfo.collider.transform.position;
+        }
+        else
+        {
+            pointer.localScale = Vector3.one;
+            pointer.position = hitInfo.point;
+        }
     }
 }

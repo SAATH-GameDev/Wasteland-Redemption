@@ -62,6 +62,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3218132880274070925}
+  - {fileID: 4410739383963370604}
   m_Father: {fileID: 2617842036117093087}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3437480758739749793
@@ -73,7 +74,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3063727698968176939}
-  - component: {fileID: 1172190526373101946}
   m_Layer: 10
   m_Name: idle
   m_TagString: Untagged
@@ -96,20 +96,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 94525664496782540}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1172190526373101946
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3437480758739749793}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 38336346ba8356b4e8f783470ca9cb9e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  canSee: 0
-  chase: {fileID: 1628130483427716725}
 --- !u!1 &3591918163367898902
 GameObject:
   m_ObjectHideFlags: 0
@@ -119,7 +105,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1742978887188965990}
-  - component: {fileID: 1628130483427716725}
   m_Layer: 10
   m_Name: chase
   m_TagString: Untagged
@@ -142,20 +127,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 94525664496782540}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1628130483427716725
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3591918163367898902}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e640831bbcba81439ba95bf823b094b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isAttack: 0
-  attackState: {fileID: 2477368247205071594}
 --- !u!1 &3601017137842843831
 GameObject:
   m_ObjectHideFlags: 0
@@ -165,7 +136,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6955258025312347148}
-  - component: {fileID: 2477368247205071594}
   m_Layer: 10
   m_Name: attack
   m_TagString: Untagged
@@ -188,18 +158,59 @@ Transform:
   m_Children: []
   m_Father: {fileID: 94525664496782540}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2477368247205071594
-MonoBehaviour:
+--- !u!1 &7185105272727131844
+GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3601017137842843831}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4410739383963370604}
+  - component: {fileID: 2999740829611032726}
+  m_Layer: 10
+  m_Name: AimAssist
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4410739383963370604
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7185105272727131844}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalScale: {x: 3, y: 3, z: 3}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 9116917023321629327}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &2999740829611032726
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7185105272727131844}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b57585a352bce3d46afcdec1d8daf280, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  serializedVersion: 3
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7197884567874422145
 GameObject:
   m_ObjectHideFlags: 0
@@ -503,9 +514,11 @@ MonoBehaviour:
   enemyProfile: {fileID: 11400000, guid: 221b82f35bff7d64c810e50c32e00bb1, type: 2}
   chaseRange: 12
   attackRange: 5
+  strafeAttackRange: 5
   idleTimer: 1
   chaseTimer: 5
   attackTimer: 0.6
+  strafeTimer: 7
   targetSearchInterval: 0.5
   chaseAfterDamage: 0
   inAttackState: 0

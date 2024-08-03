@@ -129,7 +129,7 @@ public partial class PlayerController : GameEntity
 
         if(Time.timeScale <= 0.0f) return;
 
-        displayTransform.LookAt(transform.position + _look);
+        displayTransform.LookAt(GameManager.Instance.pointer);
         displayTransform.rotation = Quaternion.Euler(0.0f, displayTransform.rotation.eulerAngles.y, 0.0f);
 
         if(inventory.UI.activeSelf)

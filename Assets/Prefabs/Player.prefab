@@ -169,8 +169,8 @@ LineRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Positions:
-  - {x: 0.13, y: 1.59, z: 1.1}
-  - {x: 0.13, y: 1.59, z: 6.1}
+  - {x: 0, y: 1.5, z: 1}
+  - {x: 0, y: 1.5, z: 6}
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 0.02
@@ -773,13 +773,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2787391590562859502}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.0008487477, y: -0.73515046, z: -0.67509615, w: -0.06163095}
-  m_LocalPosition: {x: 0.134, y: 1.462, z: 0.463}
+  m_LocalRotation: {x: 0.06576331, y: -0.7258172, z: -0.6718857, w: -0.13203877}
+  m_LocalPosition: {x: 0.0211, y: 1.4, z: 0.4521}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7558524588508946268}
-  m_LocalEulerAnglesHint: {x: -83.072, y: 132.118, z: -317.19202}
+  m_LocalEulerAnglesHint: {x: -83.072, y: 121.082, z: -317.19202}
 --- !u!1 &3008632858941134538
 GameObject:
   m_ObjectHideFlags: 0
@@ -827,10 +827,10 @@ GameObject:
   m_Layer: 3
   m_Name: ViewLight
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &8325827376632802281
 Transform:
   m_ObjectHideFlags: 0
@@ -840,7 +840,7 @@ Transform:
   m_GameObject: {fileID: 3137096329963584232}
   serializedVersion: 2
   m_LocalRotation: {x: 0.0000015199182, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.2500001, z: 0.21999991}
+  m_LocalPosition: {x: 0, y: 1.55, z: 1.05}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1331,6 +1331,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6264840364923780171}
     m_Modifications:
+    - target: {fileID: 2182960569051306807, guid: eb8a84d7db454754bafb68f79ff264c8, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2182960569051306807, guid: eb8a84d7db454754bafb68f79ff264c8, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2182960569051306807, guid: eb8a84d7db454754bafb68f79ff264c8, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2798193193002875376, guid: eb8a84d7db454754bafb68f79ff264c8, type: 3}
       propertyPath: armLeftRig
       value: 

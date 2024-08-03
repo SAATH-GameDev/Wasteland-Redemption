@@ -5,6 +5,7 @@ using Random = UnityEngine.Random;
 public class EnemySpawner : MonoBehaviour
 {
     public SpawnerProfile profile;
+    public bool isIndependent = true;
     
     //Child Transforms will act as Spawn Points
     private List<Transform> transforms = new List<Transform>();
@@ -31,33 +32,42 @@ public class EnemySpawner : MonoBehaviour
         timer = profile.cooldown;
     }
 
-    public void Update()
+    private void Update()
     {
-        if(PlayerController.count <= 0)
-            return;
+        if(isIndependent && PlayerController.count > 0)
+            Spawning();
+    }
 
-        //TODO: Don't spawn here when attached with Wave System/Mechanic
+    public int Spawning()
+    {
+        int killCount = 0;
+
         if (timer <= 0)
         {
             SpawnEnemy();
             timer = profile.cooldown;
-
-            //Removing Dead Enemies
-            for(int i = enemies.Count - 1; i >= 0; i--)
-                if(enemies[i] == null)
-                    enemies.RemoveAt(i);
         }
         else
             timer -= Time.deltaTime;
+
+        //Removing Dead Enemies
+        for(int i = enemies.Count - 1; i >= 0; i--)
+        {
+            if(enemies[i] == null)
+            {
+                enemies.RemoveAt(i);
+                killCount++;
+            }
+        }
+
+        return killCount;
     }
 
-    public List<AIController> SpawnEnemy()
+    public void SpawnEnemy()
     {
         //-1 or less count means infinite
         if (count == 0 || enemies.Count >= profile.limit)
-            return null;
-
-        List<AIController> spawnedEnemies = new List<AIController>();
+            return;
         
         Vector3 position = Vector3.zero;
         
@@ -231,14 +241,10 @@ public class EnemySpawner : MonoBehaviour
             Vector3 offset = new Vector3(Random.Range(-profile.radius, profile.radius), 0.0f, Random.Range(-profile.radius, profile.radius));
             AIController newAIController = Instantiate(profile.prefab[Random.Range(0, profile.prefab.Length)], position + offset, Quaternion.identity).GetComponent<AIController>();
             
-            spawnedEnemies.Add(newAIController);
             enemies.Add(newAIController);
-
             if(count > 0)
                 count--;
         }
-
-        return spawnedEnemies;
     }
     
     public void KillAllEnemies()

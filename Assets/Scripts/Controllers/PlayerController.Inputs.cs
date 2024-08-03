@@ -13,6 +13,8 @@ public partial class PlayerController : GameEntity
 
         if(inventory && inventory.UI && inventory.UI.gameObject.activeSelf)
         {
+            _movement = Vector2.zero;
+            
             if(context.performed)
                 inventory.UpdateSelection(movementInput);
         }
