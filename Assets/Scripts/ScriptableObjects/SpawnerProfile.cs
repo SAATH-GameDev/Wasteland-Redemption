@@ -11,8 +11,8 @@ public class SpawnerProfile : Profile
         LINES_INDIVIDUAL,
         LINES_JOINED,
         LINES_LOOPED,
-        RECTANGLE_OUTLINE,
-        RECTANGLE_FILLED,
+        RECTANGLES_OUTLINE,
+        RECTANGLES_FILLED,
         AROUND_TARGET
     }
    [Space]
