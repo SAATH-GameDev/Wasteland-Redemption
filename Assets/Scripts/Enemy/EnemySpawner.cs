@@ -1,111 +1,172 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
 public class EnemySpawner : MonoBehaviour
 {
-    public EnemySpawnerProfile profile;
-   
-    // todo: can be a list of transforms for multiple spawn points to be chosen randomly from.
-    // public Transform spawnTransform = null;
+    public SpawnerProfile profile;
     
+    //Child Transforms will act as Spawn Points
+    private List<Transform> transforms = new List<Transform>();
+
     private List<AIController> enemies = new List<AIController>();
-    
-    private float cooldown;
-    
-    private int limit;
-    private int rate;
-    private int currentRemainingEnemies;
-    
+
+    private int count;
+    private float timer;
+
+    private void SetupTransforms()
+    {
+        transforms.Clear();
+        if(transform.childCount <= 0)
+            transforms.Add(transform);
+        else
+            for(int i = 0; i < transform.childCount; i++)
+                transforms.Add(transform.GetChild(i));
+    }
    
     private void Start()
     {
-        cooldown = profile.cooldown;
-        limit = profile.limit;
-        currentRemainingEnemies = limit;
-        rate = profile.rate;
+        SetupTransforms();
+        count = profile.count;
+        timer = profile.cooldown;
     }
 
-    // todo: spawning enemies just for testing purpose
-    // private void Update()
-    // {
-    //     if(PlayerController.count <= 0)
-    //         return;
-    //
-    //     // test spawn   
-    //     if (cooldown <= 0)
-    //     {
-    //         SpawnEnemy();
-    //         cooldown = profile.cooldown;
-    //     }
-    //     else
-    //     {
-    //         cooldown -= Time.deltaTime;
-    //     }
-    // }
-
-
-    public void SpawnEnemy()
+    public void Update()
     {
-        if (limit <= 0)
-        {
+        if(PlayerController.count <= 0)
             return;
+
+        //TODO: Don't spawn here when attached with Wave System/Mechanic
+        if (timer <= 0)
+        {
+            SpawnEnemy();
+            timer = profile.cooldown;
+
+            //Removing Dead Enemies
+            for(int i = enemies.Count - 1; i >= 0; i--)
+                if(enemies[i] == null)
+                    enemies.RemoveAt(i);
         }
+        else
+            timer -= Time.deltaTime;
+    }
+
+    public List<AIController> SpawnEnemy()
+    {
+        //-1 or less count means infinite
+        if (count == 0 || enemies.Count >= profile.limit)
+            return null;
+
+        List<AIController> spawnedEnemies = new List<AIController>();
         
-        Vector3 spawnPosition = Vector3.zero;
+        Vector3 position = Vector3.zero;
         
         switch (profile.spawnLocation)
         {
-            case SpawnLocation.RandomPositionInRadius:
-                spawnPosition = new Vector3(Random.Range(-profile.spawnRadius, profile.spawnRadius), 0, Random.Range(-profile.spawnRadius, profile.spawnRadius));
+            case SpawnerProfile.LocationType.POINTS:
+                position = transforms[Random.Range(0, transforms.Count)].position;
                 break;
-            case SpawnLocation.MapBoundary:
-                spawnPosition = new Vector3(Random.Range(profile.minMapBoundaryX.x, profile.minMapBoundaryX.y), 0, Random.Range(profile.minMapBoundaryZ.x, profile.minMapBoundaryZ.y));
+            case SpawnerProfile.LocationType.LINES_INDIVIDUAL:
+                int lines = transforms.Count / 2;
+                int selectedIndex = Random.Range(0, lines);
+                int currentIndex = 0;
+                Transform a = null;
+                Transform b = null;
+                foreach(Transform t in transforms)
+                {
+                    if(!a)
+                        a = t;
+                    else
+                    {
+                        b = t;
+                        if(currentIndex != selectedIndex)
+                            currentIndex++;
+                        else
+                        {
+                            position = Vector3.Lerp(a.position, b.position, Random.value);
+                            break;
+                        }
+                        a = b = null;
+                    }                
+                }
                 break;
-            case SpawnLocation.CustomTransforms:
-               // spawnPosition = spawnTransform !? spawnTransform.position : transform.position;
+            case SpawnerProfile.LocationType.LINES_JOINED:
                 break;
-            case SpawnLocation.AroundTarget:
+            case SpawnerProfile.LocationType.LINES_LOOPED:
+                break;
+            case SpawnerProfile.LocationType.RECTANGLE_OUTLINE:
+                break;
+            case SpawnerProfile.LocationType.RECTANGLE_FILLED:
+                break;
+            case SpawnerProfile.LocationType.AROUND_TARGET:
                 float randomAngle = Random.Range(0, 360);
-                float randomRadius = Random.Range(-profile.spawnRadius, profile.spawnRadius);
+                float randomRadius = Random.Range(-profile.radius, profile.radius);
                 
                 // todo: consider adding target transform so that the position is around the target
-                spawnPosition = new Vector3(Mathf.Cos(randomAngle) * randomRadius, 0, Mathf.Sin(randomAngle) * randomRadius);
+                position = new Vector3(Mathf.Cos(randomAngle) * randomRadius, 0, Mathf.Sin(randomAngle) * randomRadius);
                 break;
         }
 
-        for (int i = 0; i < rate; i++)
+        for (int i = 0; i < profile.rate; i++)
         {
-            float randomOffsetX = Random.Range(-rate * 1f, rate);
-            float randomOffsetZ = Random.Range(-rate * 1f, rate);
+            Vector3 offset = new Vector3(Random.Range(-profile.radius, profile.radius), 0.0f, Random.Range(-profile.radius, profile.radius));
+            AIController newAIController = Instantiate(profile.prefab[Random.Range(0, profile.prefab.Length)], position + offset, Quaternion.identity).GetComponent<AIController>();
             
-            Vector3 offset = new Vector3(randomOffsetX, 0, randomOffsetZ);
-            
-            AIController newAIController = Instantiate(profile.prefab, spawnPosition + offset, Quaternion.identity);
+            spawnedEnemies.Add(newAIController);
             enemies.Add(newAIController);
-            limit--;
+
+            if(count > 0)
+                count--;
         }
-    }
-    
-    public void DespawnEnemy(AIController aiController)
-    {
-        currentRemainingEnemies--;
-        enemies.Remove(aiController);
-        Destroy(aiController.gameObject);
+
+        return spawnedEnemies;
     }
     
     public void KillAllEnemies()
     {
         foreach (AIController enemy in enemies)
-        {
             Destroy(enemy.gameObject);
-        }
         enemies.Clear();
     }
     
-    public int GetActiveEnemiesCount()
+    public int GetCount()
     {
         return enemies.Count;
+    }
+
+    void OnDrawGizmosSelected()
+    {
+        SetupTransforms();
+        Gizmos.color = Color.red;
+        switch(profile.spawnLocation)
+        {
+            case SpawnerProfile.LocationType.POINTS:
+                foreach(Transform t in transforms)
+                    Gizmos.DrawWireSphere(t.position, 0.1f);
+                break;
+            case SpawnerProfile.LocationType.LINES_INDIVIDUAL:
+                Transform a = null;
+                Transform b = null;
+                foreach(Transform t in transforms)
+                {
+                    if(!a)
+                        a = t;
+                    else
+                    {
+                        b = t;
+                        Gizmos.DrawLine(a.position, b.position);
+                        a = b = null;
+                    }
+                }
+                break;
+            case SpawnerProfile.LocationType.LINES_JOINED:
+                break;
+            case SpawnerProfile.LocationType.LINES_LOOPED:
+                break;
+            case SpawnerProfile.LocationType.RECTANGLE_OUTLINE:
+                break;
+            case SpawnerProfile.LocationType.RECTANGLE_FILLED:
+                break;
+        }
     }
 }
