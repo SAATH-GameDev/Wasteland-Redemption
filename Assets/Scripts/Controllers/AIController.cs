@@ -33,6 +33,8 @@ public class AIController : GameEntity
     private EnemyWeaponController _weaponController;
     private Rigidbody _rigidbody;
     private Animator _animator;
+    
+    private StatusEffectController statusEffectController = new StatusEffectController();
 
     private int isWalkingAnimParam = Animator.StringToHash("isWalking");
     
@@ -62,6 +64,8 @@ public class AIController : GameEntity
         targetSearchTimer = targetSearchInterval;
 
         _navMeshAgent.speed = enemyProfile.speed;
+        
+        statusEffectController.Setup();
     }
     
     override protected void Update()
@@ -74,6 +78,8 @@ public class AIController : GameEntity
         _animator.SetBool(isWalkingAnimParam, _rigidbody.linearVelocity.sqrMagnitude > 0.25f);
        
         _directionToTarget = (currentTarget.position - transform.position).normalized;
+        
+        ProcessStatusEffects();
     }
 
     private void FixedUpdate()
@@ -172,4 +178,27 @@ public class AIController : GameEntity
        _navMeshAgent.Move(rotation - targetDir);
        transform.rotation = Quaternion.LookRotation(rotation);
     }
-}
+    
+    public void AddStatusEffect(StatusEffectProfile effect)
+    {
+        Debug.Log("Adding status effect: " + effect.name);
+        statusEffectController.Add(effect);
+    }
+    
+    private void ProcessStatusEffects()
+    {
+        //>>> Values to change
+        statusEffectController.attributeValues[(int)StatusEffectProfile.Attribute.HEALTH] = health;
+        
+        statusEffectController.Update();
+
+        //>>> Update the changed values
+        //HEALTH
+        int prevHealth = health;
+        health = (int)statusEffectController.attributeValues[(int)StatusEffectProfile.Attribute.HEALTH];
+        enemyProfile.speed = statusEffectController.attributeValues[(int)StatusEffectProfile.Attribute.SPEED];
+        UpdateHealthBar();
+        if(prevHealth > health)
+            OnHealthDecrement();
+    }
+} 

@@ -8,12 +8,12 @@ public class Projectile : MonoBehaviour
     public GameObject preserveObject;
     public float preserveTimer = 1.0f;
 
-    private Rigidbody rb;
+    protected Rigidbody rb;
 
     private Transform bulletShotBy;
     private Vector3 preserveObjectOffset;
 
-    public void Set(ProjectileProfile profile)
+    public virtual void Set(ProjectileProfile profile)
     {
         rb = GetComponent<Rigidbody>();
 
@@ -48,7 +48,7 @@ public class Projectile : MonoBehaviour
         preserveObject.transform.position = transform.position + preserveObjectOffset;
     }
 
-    private void OnCollisionEnter(Collision other)
+    protected virtual void OnCollisionEnter(Collision other)
     {
         if (other.gameObject.TryGetComponent(out AIController aiController))
         {

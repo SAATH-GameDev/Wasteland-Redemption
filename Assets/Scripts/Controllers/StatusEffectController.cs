@@ -99,4 +99,23 @@ public class StatusEffectController
             e.timer += statusEffect.duration;
         }
     }
+    
+    public void Add(StatusEffectProfile statusEffect)
+    {
+        ActiveStatusEffect e = GetEffectOfProfile(statusEffect);
+        if (e == null)
+        {
+            ActiveStatusEffect newActiveEffect = new ActiveStatusEffect
+            {
+                profile = statusEffect,
+                timer = statusEffect.duration
+            };
+
+            effects.Add(newActiveEffect);
+        }
+        else
+        {
+            e.timer += statusEffect.duration;
+        }
+    }
 }
