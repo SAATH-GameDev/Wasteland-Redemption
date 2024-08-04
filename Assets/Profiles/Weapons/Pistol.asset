@@ -18,7 +18,7 @@ MonoBehaviour:
   price: 0
   prefab: {fileID: 8299863756737351790, guid: 205aa7017933a74428c4d230195025d4, type: 3}
   bothArms: 0
-  recoilOffset: 0.5
+  recoilOffset: 0.25
   isContinous: 0
   damage: 0
   delay: 0.06
