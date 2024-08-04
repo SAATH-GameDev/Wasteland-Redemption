@@ -15,7 +15,7 @@ MonoBehaviour:
   description: 
   icon: {fileID: 0}
   duration: 10
-  tick: 0
+  tick: 1
   attributeEffects:
   - attribute: 3
     op: 2
