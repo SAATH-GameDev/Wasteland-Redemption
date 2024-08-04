@@ -5,10 +5,12 @@ public class WeaponController : MonoBehaviour
 {
     public WeaponProfile profile;
 
-    public Transform muzzle;
-
+    protected Transform displayTransform;
+    protected Transform muzzle;
     protected bool isAttacking = false;
+
     protected UnityEvent onMagazineChange = new UnityEvent();
+    protected UnityEvent onWeaponChange = new UnityEvent();
 
     [HideInInspector] public int currentMagazine = 0;
     [HideInInspector] public float reloadTimer = 0.0f;
@@ -20,21 +22,30 @@ public class WeaponController : MonoBehaviour
 
     public void Set(WeaponProfile profile = null)
     {
-        if(profile)
-            this.profile = profile;
+        this.profile = profile;
+        
+        //Destroy previous weapon prefab if any
+        if(displayTransform.childCount > 0)
+            Destroy(displayTransform.GetChild(0).gameObject);
 
         if(!this.profile)
             return;
+        
+        //Create new weapon prefab and set its muzzle
+        muzzle = Instantiate(profile.prefab, transform.GetChild(0)).transform.GetChild(0);
+
+        if(muzzle.childCount > 0)
+            muzzle.GetChild(0).GetComponent<ParticleSystem>().Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
 
         currentMagazine = this.profile.magazine;
+
+        onWeaponChange.Invoke();
     }
 
     protected virtual void Start()
     {
+        displayTransform = transform.GetChild(0);
         Set();
-
-        if(muzzle.childCount > 0)
-            muzzle.GetChild(0).GetComponent<ParticleSystem>().Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
     }
 
     public virtual void HandleShooting()

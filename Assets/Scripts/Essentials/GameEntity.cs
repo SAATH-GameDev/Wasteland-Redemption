@@ -122,6 +122,8 @@ public class GameEntity : MonoBehaviour, IDamageable
 
         foreach(var renderer in renderers)
         {
+            if(!renderer)
+                continue;
             var material = renderer.material;
             material.DisableKeyword("_EMISSION");
         }

@@ -13,6 +13,7 @@ public partial class PlayerController : GameEntity
     public Animator animator;
     public WeaponController weapon;
     public GameObject capsuleMesh;
+    public Transform headRotatorTarget;
 
     [Header("UI")]
     public GameObject statsPrefab;
@@ -129,8 +130,12 @@ public partial class PlayerController : GameEntity
 
         if(Time.timeScale <= 0.0f) return;
 
+        Quaternion prevYRot = displayTransform.rotation;
         displayTransform.LookAt(GameManager.Instance.pointer);
         displayTransform.rotation = Quaternion.Euler(0.0f, displayTransform.rotation.eulerAngles.y, 0.0f);
+        displayTransform.rotation = Quaternion.Slerp(prevYRot, displayTransform.rotation, 7.0f * Time.deltaTime);
+
+        headRotatorTarget.position = GameManager.Instance.pointer.position;
 
         if(inventory.UI.activeSelf)
             inventory.UI.transform.position = GameManager.Instance.WorldToScreenPosition(transform.position, index) + new Vector3(inventory.offset.x * Screen.width, inventory.offset.y * Screen.height, 0.0f);
@@ -151,6 +156,12 @@ public partial class PlayerController : GameEntity
 
     public void UpdateEquipment(Profile profile, int count)
     {
+        if(!profile)
+        {
+            equipNameText.text = equipCountText.text = "";
+            return;
+        }
+
         equipNameText.text = profile.name;
 
         if(profile is WeaponProfile)

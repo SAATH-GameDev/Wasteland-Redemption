@@ -69,11 +69,13 @@ public class PlayerInventory : MonoBehaviour
                         weapon.profile = null;
                         weapon.Set();
                         weapon.SetRightArm(0.0f);
+                        weapon.SetLeftArm(0.0f);
                     }
                     else
                     {
                         weapon.Set((WeaponProfile)selectedItem.profile);
                         weapon.SetRightArm(1.0f);
+                        weapon.SetLeftArm(weapon.profile.bothArms ? 1.0f : 0.0f);
                     }
                     break;
 

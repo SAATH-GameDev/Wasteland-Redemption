@@ -4,6 +4,11 @@ using UnityEngine;
 public class WeaponProfile : ItemProfile
 {
     [Space]
+    public GameObject prefab;
+    public bool bothArms;
+    public float recoilOffset;
+
+    [Space]
     public bool isContinous;
     public float damage;
     public float delay;
