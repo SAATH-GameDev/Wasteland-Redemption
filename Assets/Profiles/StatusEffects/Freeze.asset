@@ -14,6 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   description: 
   icon: {fileID: 0}
-  duration: 0
+  duration: 10
   tick: 0
-  attributeEffects: []
+  attributeEffects:
+  - attribute: 3
+    op: 2
+    value: 0
+    opFrequency: 2
