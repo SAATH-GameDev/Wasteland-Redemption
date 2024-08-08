@@ -34,6 +34,7 @@ public class GameEntity : MonoBehaviour, IDamageable
         if(healthBarPrefab != null)
         {
             healthBar = Instantiate(healthBarPrefab, transform.position, Quaternion.identity).transform;
+            healthBar.gameObject.SetActive(false);
             healthBar.transform.parent = GameManager.Instance.canvas.GetChild(0);
         }
     }
@@ -48,10 +49,19 @@ public class GameEntity : MonoBehaviour, IDamageable
     {
         if(healthBar)
         {
-            if(healthBar.childCount > 0)
-                healthBar.GetChild(0).GetComponent<Image>().fillAmount = (float)health / maxHealth;
-            else
-                healthBar.GetComponent<Image>().fillAmount = (float)health / maxHealth;
+            float healthRatio = (float)health / maxHealth;
+            if(healthRatio < 1.0f)
+            {
+                if(!healthBar.gameObject.activeSelf)
+                    healthBar.gameObject.SetActive(true);
+                else
+                {
+                    if(healthBar.childCount > 0)
+                        healthBar.GetChild(0).GetComponent<Image>().fillAmount = healthRatio;
+                    else
+                        healthBar.GetComponent<Image>().fillAmount = healthRatio;
+                }
+            }
         }
     }
 

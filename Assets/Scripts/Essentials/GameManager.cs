@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
 
     private List<Camera> playerCameras = new List<Camera>();
+    private SpriteRenderer pointerArrow;
 
     public void SetAllCamsTarget(Transform target)
     {
@@ -206,6 +207,8 @@ public class GameManager : MonoBehaviour
         for(int i = 0; i < screenCount; i++)
             Display.displays[i].Activate();
         #endif
+
+        pointerArrow = pointer.GetComponentInChildren<SpriteRenderer>();
     }
 
     void Start()
@@ -225,13 +228,19 @@ public class GameManager : MonoBehaviour
         Physics.Raycast(GetMouseRay(), out hitInfo, 10000.0f, pointerLayers, QueryTriggerInteraction.Collide);
         if(hitInfo.collider.gameObject.layer == LayerMask.NameToLayer("Enemy"))
         {
-            pointer.localScale = Vector3.one * 2.5f;
             pointer.position = hitInfo.collider.transform.position;
+            pointerArrow.transform.localScale = Vector3.one * 0.4f;
+            pointerArrow.color = Color.red;
         }
         else
         {
-            pointer.localScale = Vector3.one;
             pointer.position = hitInfo.point;
+
+            if(pointerArrow.transform.localScale.x > 0.25f)
+            {
+                pointerArrow.transform.localScale = Vector3.one * 0.25f;
+                pointerArrow.color = Color.cyan;
+            }
         }
     }
 }
