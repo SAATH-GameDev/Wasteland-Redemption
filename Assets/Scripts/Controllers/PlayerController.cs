@@ -38,6 +38,8 @@ public partial class PlayerController : GameEntity
 
     private int walkX = Animator.StringToHash("walkX");
     private int walkY = Animator.StringToHash("walkY");
+    private float _walkX = 0.0f;
+    private float _walkY = 0.0f;
     
     static public int count = 0;
     static public List<Transform> activePlayers = new List<Transform>();
@@ -141,8 +143,11 @@ public partial class PlayerController : GameEntity
         if(inventory.UI.activeSelf)
             inventory.UI.transform.position = GameManager.Instance.WorldToScreenPosition(transform.position, index) + new Vector3(inventory.offset.x * Screen.width, inventory.offset.y * Screen.height, 0.0f);
         
-        animator.SetFloat(walkX, Vector3.Dot(displayTransform.right, _movement));
-        animator.SetFloat(walkY, Vector3.Dot(displayTransform.forward, _movement));
+        _walkX = Mathf.Lerp(_walkX, Vector3.Dot(displayTransform.right, _movement), 16.0f * Time.deltaTime);
+        animator.SetFloat(walkX, _walkX);
+
+        _walkY = Mathf.Lerp(_walkY, Vector3.Dot(displayTransform.forward, _movement), 16.0f * Time.deltaTime);
+        animator.SetFloat(walkY, _walkY);
 
         ProcessStatusEffects();
         ProcessHunger();
