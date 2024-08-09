@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2483526211511216656}
   - component: {fileID: 5589061315688876962}
   - component: {fileID: 1541097271732262043}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Light
   m_TagString: Untagged
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
@@ -78,7 +78,7 @@ Light:
   m_Cookie: {fileID: 0}
   m_DrawHalo: 0
   m_Flare: {fileID: 0}
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -164,7 +164,7 @@ GameObject:
   - component: {fileID: 8675299232255068884}
   - component: {fileID: 5749690609384768881}
   - component: {fileID: 7507490049963307451}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Pistol
   m_TagString: Untagged
   m_Icon: {fileID: 0}

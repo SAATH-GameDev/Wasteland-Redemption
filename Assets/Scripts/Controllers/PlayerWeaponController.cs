@@ -43,6 +43,7 @@ public class PlayerWeaponController : WeaponController
         player.UpdateEquipment(profile, currentMagazine);
 
         onWeaponChange.AddListener( () => {
+            muzzle.parent.gameObject.layer = LayerMask.NameToLayer("Player");
             aimGuide.SetActive(profile);
         } );
 
