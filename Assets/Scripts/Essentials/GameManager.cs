@@ -197,6 +197,42 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void DisableRender(Transform group)
+    {
+        for(int i = 0; i < group.childCount; i++)
+            group.GetChild(i).GetComponent<MeshRenderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.ShadowsOnly;
+    }
+
+    public void EnableRender(Transform group)
+    {
+        for(int i = 0; i < group.childCount; i++)
+            group.GetChild(i).GetComponent<MeshRenderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.On;
+    }
+
+    private void UpdatePointer()
+    {
+        RaycastHit hitInfo;
+        Physics.Raycast(GetMouseRay(), out hitInfo, 10000.0f, pointerLayers, QueryTriggerInteraction.Collide);
+        if(!hitInfo.collider)
+            return;
+        if(hitInfo.collider.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+        {
+            pointer.position = hitInfo.collider.transform.position;
+            pointerArrow.transform.localScale = Vector3.one * 0.4f;
+            pointerArrow.color = Color.red;
+        }
+        else
+        {
+            pointer.position = hitInfo.point;
+
+            if(pointerArrow.transform.localScale.x > 0.25f)
+            {
+                pointerArrow.transform.localScale = Vector3.one * 0.25f;
+                pointerArrow.color = Color.cyan;
+            }
+        }
+    }
+
     void Awake()
     {
         Instance = this;
@@ -224,25 +260,6 @@ public class GameManager : MonoBehaviour
         if(!pointer || playerCameras.Count <= 0)
             return;
 
-        RaycastHit hitInfo;
-        Physics.Raycast(GetMouseRay(), out hitInfo, 10000.0f, pointerLayers, QueryTriggerInteraction.Collide);
-        if(!hitInfo.collider)
-            return;
-        if(hitInfo.collider.gameObject.layer == LayerMask.NameToLayer("Enemy"))
-        {
-            pointer.position = hitInfo.collider.transform.position;
-            pointerArrow.transform.localScale = Vector3.one * 0.4f;
-            pointerArrow.color = Color.red;
-        }
-        else
-        {
-            pointer.position = hitInfo.point;
-
-            if(pointerArrow.transform.localScale.x > 0.25f)
-            {
-                pointerArrow.transform.localScale = Vector3.one * 0.25f;
-                pointerArrow.color = Color.cyan;
-            }
-        }
+        UpdatePointer();
     }
 }
