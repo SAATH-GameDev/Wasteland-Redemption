@@ -36,7 +36,8 @@ public partial class PlayerController : GameEntity
     private StatusEffectController statusEffectController = new StatusEffectController();
     private Transform statusEffectsHolder;
 
-    private int isWalkingAnimParam = Animator.StringToHash("isWalking");
+    private int walkX = Animator.StringToHash("walkX");
+    private int walkY = Animator.StringToHash("walkY");
     
     static public int count = 0;
     static public List<Transform> activePlayers = new List<Transform>();
@@ -139,8 +140,9 @@ public partial class PlayerController : GameEntity
 
         if(inventory.UI.activeSelf)
             inventory.UI.transform.position = GameManager.Instance.WorldToScreenPosition(transform.position, index) + new Vector3(inventory.offset.x * Screen.width, inventory.offset.y * Screen.height, 0.0f);
-
-        animator.SetBool(isWalkingAnimParam, _movement.sqrMagnitude > 0.25f);
+        
+        animator.SetFloat(walkX, Vector3.Dot(displayTransform.right, _movement));
+        animator.SetFloat(walkY, Vector3.Dot(displayTransform.forward, _movement));
 
         ProcessStatusEffects();
         ProcessHunger();

@@ -60,11 +60,11 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: metarig|idle.001
-      takeName: metarig|idle.001
+      name: metarig|walkSide
+      takeName: metarig|walkSide
       internalID: -6790388888330126015
       firstFrame: 0
-      lastFrame: 249
+      lastFrame: 29
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -93,7 +93,7 @@ ModelImporter:
       takeName: metarig|walkFront
       internalID: -2349041210263736010
       firstFrame: 0
-      lastFrame: 39
+      lastFrame: 29
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

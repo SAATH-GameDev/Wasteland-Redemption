@@ -226,6 +226,8 @@ public class GameManager : MonoBehaviour
 
         RaycastHit hitInfo;
         Physics.Raycast(GetMouseRay(), out hitInfo, 10000.0f, pointerLayers, QueryTriggerInteraction.Collide);
+        if(!hitInfo.collider)
+            return;
         if(hitInfo.collider.gameObject.layer == LayerMask.NameToLayer("Enemy"))
         {
             pointer.position = hitInfo.collider.transform.position;

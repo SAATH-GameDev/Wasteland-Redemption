@@ -15,5 +15,5 @@ MonoBehaviour:
   health: 100
   attack: 50
   stamina: 50
-  speed: 10
+  speed: 8
   hunger: 100
