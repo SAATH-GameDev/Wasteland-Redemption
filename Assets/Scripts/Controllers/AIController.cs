@@ -3,10 +3,9 @@ using UnityEngine.AI;
 
 public class AIController : GameEntity
 {
-    // todo: in coop multiple players target can be implemented here
     public Transform currentTarget;
 
-    public EnemyProfile enemyProfile;
+    public EnemyProfile profile;
     
     [Space]
     public float chaseRange = 5f;
@@ -23,12 +22,10 @@ public class AIController : GameEntity
 
     [Space]
     public bool chaseAfterDamage;
-    public bool inAttackState;
-    
-    public StateMachine<AIController> StateMachine { get; private set; }
     
     private Vector3 _directionToTarget;
 
+    private StateMachine _stateMachine;
     private NavMeshAgent _navMeshAgent;
     private EnemyWeaponController _weaponController;
     private Rigidbody _rigidbody;
@@ -36,57 +33,49 @@ public class AIController : GameEntity
     
     private StatusEffectController statusEffectController = new StatusEffectController();
 
-    private int isWalkingAnimParam = Animator.StringToHash("isWalking");
+    private int walkX = Animator.StringToHash("walkX");
+    private int walkY = Animator.StringToHash("walkY");
     
     private float targetSearchTimer;
 
+    private Transform GetTarget()
+    {
+        return _stateMachine.currentState.GetTarget();
+    }
     
     private void Awake()
     {
+        _stateMachine = GetComponentInChildren<StateMachine>();
         _navMeshAgent = GetComponent<NavMeshAgent>();
         _rigidbody = GetComponent<Rigidbody>();
         _weaponController = GetComponentInChildren<EnemyWeaponController>();
         _animator = GetComponentInChildren<Animator>();
         
-        StateMachine = new EnemyStateMachine(this);
-        
-        StateMachine.AddState(new EnemyIdleState());
-        StateMachine.AddState(new EnemyChaseState());    
-        StateMachine.AddState(new EnemyAttackState());
-        StateMachine.AddState(new EnemyChaseAttackCombinedState());
-        StateMachine.AddState(new EnemyStrafeAroundState());
-        
-        StateMachine.InitState(typeof(EnemyIdleState));
-
-        currentTarget = FindFirstObjectByType<PlayerController>().transform;
-        
-        maxHealth = health = enemyProfile.health;
+        maxHealth = health = profile.health;
         targetSearchTimer = targetSearchInterval;
 
-        _navMeshAgent.speed = enemyProfile.speed;
-        
         statusEffectController.Setup();
+
+        _navMeshAgent.speed = profile.speed + statusEffectController.modValues[(int)StatusEffectProfile.Attribute.SPEED];
     }
     
     override protected void Update()
     {
-        if(currentTarget == null) return;
+        currentTarget = GetTarget();
+
+        if(!currentTarget)
+            return;
         
         base.Update();
-        StateMachine?.Update();
 
-        _animator.SetBool(isWalkingAnimParam, _rigidbody.linearVelocity.sqrMagnitude > 0.25f);
-       
         _directionToTarget = (currentTarget.position - transform.position).normalized;
+
+        _animator.SetFloat(walkX, Vector3.Dot(displayTransform.right, _rigidbody.linearVelocity));
+        _animator.SetFloat(walkY, Vector3.Dot(displayTransform.forward, _rigidbody.linearVelocity));
         
         ProcessStatusEffects();
     }
 
-    private void FixedUpdate()
-    {
-        StateMachine?.FixedUpdate();
-    }
-    
     public bool TargetInRange(float range)
     {
         return DistanceToTarget() <= range;
@@ -105,32 +94,39 @@ public class AIController : GameEntity
     public void Attack()
     {
         _weaponController.HandleShooting();
+
+        Debug.Log("attacking target");
     }
     
     public void RotateTowardsTarget()
     {
-        if(Time.timeScale <= 0.0f) return;
+        if(!currentTarget)
+            return;
+            
+        if(Time.timeScale <= 0.0f)
+            return;
         
         transform.rotation = Quaternion.LookRotation( _directionToTarget );
     }
 
     public void MoveTowardsTarget()
     {
-        if(Time.timeScale <= 0.0f) return;
+        if(!currentTarget)
+            return;
+
+        if(Time.timeScale <= 0.0f)
+            return;
         
-        // Vector3 targetVelocity = _directionToTarget * (enemyProfile.speed);
-        // _rigidbody.MovePosition(_rigidbody.position + targetVelocity * Time.deltaTime);
-        
-        _navMeshAgent.SetDestination(currentTarget.position); 
+        _navMeshAgent.SetDestination(currentTarget.position);
     }
     
     public void ChaseTargetAfterShot(Transform target)
     {
-        if(chaseAfterDamage || inAttackState) return;
+        if(chaseAfterDamage) return;
         
         chaseAfterDamage = true;
         currentTarget = target;
-        StateMachine.ChangeState(typeof(EnemyChaseState));
+        //stateMachine.ChangeState(typeof(EnemyChaseState));
     }
     
     public void HandleTargetTimer()
@@ -173,7 +169,7 @@ public class AIController : GameEntity
     public void StrafeAroundTarget(int strafeDir)
     {
        Vector3 targetDir = currentTarget.position - transform.position;
-       var rotation = Quaternion.Euler(0f, enemyProfile.speed * 4f * strafeDir * Time.deltaTime, 0f) * targetDir;
+       var rotation = Quaternion.Euler(0f, (profile.speed + statusEffectController.modValues[(int)StatusEffectProfile.Attribute.SPEED]) * 4f * strafeDir * Time.deltaTime, 0f) * targetDir;
        
        _navMeshAgent.Move(rotation - targetDir);
        transform.rotation = Quaternion.LookRotation(rotation);
@@ -189,6 +185,9 @@ public class AIController : GameEntity
     {
         //>>> Values to change
         statusEffectController.attributeValues[(int)StatusEffectProfile.Attribute.HEALTH] = health;
+
+        //>>> Values to mod
+        statusEffectController.attributeValues[(int)StatusEffectProfile.Attribute.SPEED] = profile.speed;
         
         statusEffectController.Update();
 
@@ -196,9 +195,19 @@ public class AIController : GameEntity
         //HEALTH
         int prevHealth = health;
         health = (int)statusEffectController.attributeValues[(int)StatusEffectProfile.Attribute.HEALTH];
-        enemyProfile.speed = statusEffectController.attributeValues[(int)StatusEffectProfile.Attribute.SPEED];
         UpdateHealthBar();
         if(prevHealth > health)
             OnHealthDecrement();
+
+        //SPEED
+        _navMeshAgent.speed = profile.speed + statusEffectController.modValues[(int)StatusEffectProfile.Attribute.SPEED];
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        if(!_stateMachine || !_stateMachine.currentState)
+            return;
+        UnityEditor.Handles.color = Color.white;
+        UnityEditor.Handles.Label( transform.position, "State: " + _stateMachine.currentState.GetType().Name );
     }
 } 

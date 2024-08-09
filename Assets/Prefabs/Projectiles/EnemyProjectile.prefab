@@ -49,7 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   profile: {fileID: 11400000, guid: fc8b9e854f562bf4ab594af10da7c128, type: 2}
   preserveObject: {fileID: 0}
-  preserveTimer: 1
+  preserveTimer: 0
 --- !u!114 &5729697386516259539
 MonoBehaviour:
   m_ObjectHideFlags: 0

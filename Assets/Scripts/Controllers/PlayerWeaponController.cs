@@ -33,6 +33,8 @@ public class PlayerWeaponController : WeaponController
     {
         base.Start();
 
+        Set();
+
         armRightBasePosition = armRightTarget.transform.localPosition;
         armLeftBasePosition = armLeftTarget.transform.localPosition;
 
