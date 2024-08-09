@@ -45,11 +45,16 @@ public class GameEntity : MonoBehaviour, IDamageable
             healthBar.position = GameManager.Instance.WorldToScreenPosition(transform.position) + healthBarOffset;
     }
 
+    public float GetHealthRatio()
+    {
+        return (float)health / maxHealth;
+    }
+
     public void UpdateHealthBar()
     {
         if(healthBar)
         {
-            float healthRatio = (float)health / maxHealth;
+            float healthRatio = GetHealthRatio();
             if(healthRatio < 1.0f)
             {
                 if(!healthBar.gameObject.activeSelf)

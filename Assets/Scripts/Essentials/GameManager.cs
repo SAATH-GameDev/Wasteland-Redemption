@@ -1,6 +1,17 @@
 using System.Collections.Generic;
+using NUnit.Framework.Constraints;
 using UnityEngine;
 using UnityEngine.InputSystem;
+
+public enum Comparison
+{
+    GREATER,
+    GREATER_EQUAL,
+    LESSER,
+    LESSER_EQUAL,
+    EQUAL,
+    NOT_EQUAL
+}
 
 public class GameManager : MonoBehaviour
 {
@@ -20,6 +31,20 @@ public class GameManager : MonoBehaviour
 
     private List<Camera> playerCameras = new List<Camera>();
     private SpriteRenderer pointerArrow;
+
+    public static bool Compare(float value1, Comparison compare, float value2)
+    {
+        switch(compare)
+        {
+            case Comparison.GREATER: return value1 > value2;
+            case Comparison.GREATER_EQUAL: return value1 >= value2;
+            case Comparison.LESSER: return value1 < value2;
+            case Comparison.LESSER_EQUAL: return value1 <= value2;
+            case Comparison.EQUAL: return value1 == value2;
+            case Comparison.NOT_EQUAL: return value1 != value2;
+            default: return false;
+        }
+    }
 
     public void SetAllCamsTarget(Transform target)
     {

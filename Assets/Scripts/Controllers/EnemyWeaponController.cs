@@ -6,6 +6,8 @@ public class EnemyWeaponController : WeaponController
     {
         base.Start();
 
+        Set(profile);
+
         onWeaponChange.AddListener( () => {
             muzzle.parent.gameObject.layer = LayerMask.NameToLayer("Enemy");
         } );
@@ -17,6 +19,7 @@ public class EnemyWeaponController : WeaponController
             return;
         Attack();
         ReloadingMagazine();
-        timer = -0.1f;
+        AttackingConsecutive();
+        timer -= Time.deltaTime;
     }
 }

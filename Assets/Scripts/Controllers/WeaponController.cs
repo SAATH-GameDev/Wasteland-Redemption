@@ -32,10 +32,14 @@ public class WeaponController : MonoBehaviour
             return;
         
         //Create new weapon prefab and set its muzzle
-        muzzle = Instantiate(profile.prefab, transform.GetChild(0)).transform.GetChild(0);
+        muzzle = profile.prefab ? Instantiate(profile.prefab, transform.GetChild(0)).transform.GetChild(0) : transform;
 
         if(muzzle.childCount > 0)
-            muzzle.GetChild(0).GetComponent<ParticleSystem>().Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+        {
+            ParticleSystem muzzleFlash = muzzle.GetChild(0).GetComponent<ParticleSystem>();
+            if(muzzleFlash)
+                muzzleFlash.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+        }
 
         currentMagazine = this.profile.magazine;
 
@@ -45,7 +49,6 @@ public class WeaponController : MonoBehaviour
     protected virtual void Start()
     {
         displayTransform = transform.GetChild(0);
-        Set();
     }
 
     public virtual void HandleShooting()
@@ -107,9 +110,12 @@ public class WeaponController : MonoBehaviour
 
         if(muzzle.childCount > 0)
         {
-            ParticleSystem muzzleVFX = muzzle.GetChild(0).GetComponent<ParticleSystem>();
-            muzzleVFX.Stop(true, ParticleSystemStopBehavior.StopEmitting);
-            muzzleVFX.Play();
+            ParticleSystem muzzleFlash = muzzle.GetChild(0).GetComponent<ParticleSystem>();
+            if(muzzleFlash)
+            {
+                muzzleFlash.Stop(true, ParticleSystemStopBehavior.StopEmitting);
+                muzzleFlash.Play();
+            }
         }
     }
 
