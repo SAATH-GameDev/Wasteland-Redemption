@@ -90,16 +90,32 @@ public partial class PlayerController : GameEntity
         statusEffectController.Setup();
     }
 
+    public float GetHungerRatio()
+    {
+        return currentHunger / (profile.hunger * characterProfile.hunger);
+    }
+
     public void IncrementHunger(float value)
     {
         currentHunger = Mathf.Min(currentHunger + value, profile.hunger * characterProfile.hunger);
-        hungerBarImage.fillAmount = currentHunger / (profile.hunger * characterProfile.hunger);
+        hungerBarImage.fillAmount = GetHungerRatio();
     }
 
     private void ProcessHunger()
     {
         currentHunger -= GameManager.Instance.gameplay.hungerDepletionRate * Time.deltaTime;
-        hungerBarImage.fillAmount = currentHunger / (profile.hunger * characterProfile.hunger);
+        hungerBarImage.fillAmount = GetHungerRatio();
+
+        if(currentHunger <= 0.0f)
+        {
+            health -= GameManager.Instance.gameplay.hungerHealthDepletionRate * Time.deltaTime;
+            OnHealthDecrement();
+        }
+        else if(hungerBarImage.fillAmount >= GameManager.Instance.gameplay.hungerHealthReplenishMinRatio
+        && GetHealthRatio() < GameManager.Instance.gameplay.hungerHealthReplenishLimitRatio)
+        {
+            health += GameManager.Instance.gameplay.hungerHealthReplenishRate * Time.deltaTime;
+        }
     }
 
     private void ProcessStatusEffects()
@@ -117,8 +133,8 @@ public partial class PlayerController : GameEntity
 
         //>>> Update the changed values
         //HEALTH
-        int prevHealth = health;
-        health = (int)statusEffectController.attributeValues[(int)StatusEffectProfile.Attribute.HEALTH];
+        float prevHealth = health;
+        health = statusEffectController.attributeValues[(int)StatusEffectProfile.Attribute.HEALTH];
         UpdateHealthBar();
         if(prevHealth > health)
             OnHealthDecrement();

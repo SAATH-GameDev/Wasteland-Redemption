@@ -12,6 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1162cf4de05267640bf3d7396d1adbe8, type: 3}
   m_Name: Strong
   m_EditorClassIdentifier: 
-  health: 100
+  health: 120
   speed: 6
-  experience: 100
+  lootDrops:
+  - item: {fileID: 8672261266087773850, guid: b7034d72222af124093310dcb226d90f, type: 3}
+    chance: 0.25
+  - item: {fileID: 3029936801023590640, guid: 691afa1f2648a2041bb9b7dcf93dbd89, type: 3}
+    chance: 0.5

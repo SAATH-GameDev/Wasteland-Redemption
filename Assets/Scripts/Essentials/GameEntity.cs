@@ -11,7 +11,7 @@ public class GameEntity : MonoBehaviour, IDamageable
     public Transform displayTransform;
 
     [Space]
-    public int health;
+    public float health;
     public UnityEvent OnDamage;
     public UnityEvent OnDeath;
 
@@ -23,7 +23,7 @@ public class GameEntity : MonoBehaviour, IDamageable
     protected List<Renderer> renderers;
     protected Vector3 baseScale;
     
-    protected int maxHealth;
+    protected float maxHealth;
     protected Transform healthBar;
 
     virtual protected void Start()

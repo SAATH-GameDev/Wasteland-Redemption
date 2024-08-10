@@ -22,7 +22,6 @@ public class StateAttack : State
         controller.RotateTowardsTarget();
         controller.StopAgent(true);
         controller.Attack();
-        controller.HandleTargetTimer();
     }
     
     void FixedUpdate()
