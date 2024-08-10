@@ -57,7 +57,8 @@ public class StatusEffectController
                     e.tickTimer -= Time.deltaTime;
                 }
 
-                e.fill.fillAmount = e.timer / e.profile.duration;
+                if(e.fill)
+                    e.fill.fillAmount = e.timer / e.profile.duration;
                 e.timer -= Time.deltaTime;
             }
             else
@@ -91,25 +92,6 @@ public class StatusEffectController
                 if(statusEffect.icon)
                     newActiveEffect.fill.sprite = activeEffectUI.transform.Find("BG").GetComponent<Image>().sprite = statusEffect.icon;
             }
-
-            effects.Add(newActiveEffect);
-        }
-        else
-        {
-            e.timer += statusEffect.duration;
-        }
-    }
-    
-    public void Add(StatusEffectProfile statusEffect)
-    {
-        ActiveStatusEffect e = GetEffectOfProfile(statusEffect);
-        if (e == null)
-        {
-            ActiveStatusEffect newActiveEffect = new ActiveStatusEffect
-            {
-                profile = statusEffect,
-                timer = statusEffect.duration
-            };
 
             effects.Add(newActiveEffect);
         }
