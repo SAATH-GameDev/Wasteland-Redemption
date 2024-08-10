@@ -5,25 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="592ab83a-25bb-4e0d-831f-ce876aaf93dc" name="Changes" comment="Add Minimap">
-      <change afterPath="$PROJECT_DIR$/Assets/Item/RottenMeat.asset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Item/RottenMeat.asset.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Materials/Muzzle Flash VFX.mat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Materials/Muzzle Flash VFX.mat.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Models/RottenMeat.fbx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Models/RottenMeat.fbx.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Prefabs/Muzzle Flash VFX.prefab" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Prefabs/Muzzle Flash VFX.prefab.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Design and Narrative/alt_story.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Models/Borger.fbx" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Models/Borger.fbx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Models/Borger.fbx.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Models/Borger.fbx.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Models/LemonadeCan.fbx" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Models/LemonadeCan.fbx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Models/LemonadeCan.fbx.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Models/LemonadeCan.fbx.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Player.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Player.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Play.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Play.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Enemy/AIController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Enemy/AIController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Enemy/EnemySpawner.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Enemy/EnemySpawner.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Enemy/EnemyStates/EnemyChaseState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Enemy/EnemyStates/EnemyChaseState.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameEntity.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameEntity.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/Packages/com.unity.probuilder/Settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/Packages/com.unity.probuilder/Settings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/ShaderGraphSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ShaderGraphSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,6 +15,9 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/9003796c57374fd89cb8aecf8cdea52c1db600/bd/7b86cd7f/Object.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProjectColorInfo">{
@@ -47,7 +33,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "Merging main",
+    "git-widget-placeholder": "main",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
