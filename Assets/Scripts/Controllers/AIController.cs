@@ -4,9 +4,8 @@ using UnityEngine.AI;
 public class AIController : GameEntity
 {
     public Transform currentTarget;
-
     public EnemyProfile profile;
-    
+
     [Space]
     public float chaseRange = 5f;
     public float attackRange = 3f;
@@ -35,8 +34,8 @@ public class AIController : GameEntity
 
     private int walkX = Animator.StringToHash("walkX");
     private int walkY = Animator.StringToHash("walkY");
-    
-    private float targetSearchTimer;
+
+    private float rotationSpeed = 4.0f;
 
     private Transform GetTarget()
     {
@@ -46,17 +45,18 @@ public class AIController : GameEntity
     private void Awake()
     {
         _stateMachine = GetComponentInChildren<StateMachine>();
-        _navMeshAgent = GetComponent<NavMeshAgent>();
+        _navMeshAgent = GetComponentInChildren<NavMeshAgent>();
         _rigidbody = GetComponent<Rigidbody>();
         _weaponController = GetComponentInChildren<EnemyWeaponController>();
         _animator = GetComponentInChildren<Animator>();
-        
-        maxHealth = health = profile.health;
-        targetSearchTimer = targetSearchInterval;
 
         statusEffectController.Setup();
 
+        _navMeshAgent.transform.parent = null;
+
+        maxHealth = health = profile.health;
         _navMeshAgent.speed = profile.speed + statusEffectController.modValues[(int)StatusEffectProfile.Attribute.SPEED];
+        _animator.speed = _navMeshAgent.speed * 0.32f;
     }
     
     override protected void Update()
@@ -70,10 +70,32 @@ public class AIController : GameEntity
 
         _directionToTarget = (currentTarget.position - transform.position).normalized;
 
-        _animator.SetFloat(walkX, Vector3.Dot(displayTransform.right, _rigidbody.linearVelocity));
-        _animator.SetFloat(walkY, Vector3.Dot(displayTransform.forward, _rigidbody.linearVelocity));
+        Vector3 directionToNavAgent = (_navMeshAgent.transform.position - transform.position).normalized;
+        Quaternion targetRotation = Quaternion.Euler(0.0f, Quaternion.LookRotation(directionToNavAgent).eulerAngles.y, 0.0f);
+        _rigidbody.rotation = Quaternion.Slerp(_rigidbody.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+
+        Vector3 prevPosition = _rigidbody.position;
+        _rigidbody.MovePosition(new Vector3(_navMeshAgent.transform.position.x, _rigidbody.position.y, _navMeshAgent.transform.position.z));
+        Vector3 currentSpeed = (_rigidbody.position - prevPosition).normalized;
+
+        _animator.SetFloat(walkX, Vector3.Dot(displayTransform.right, currentSpeed));
+        _animator.SetFloat(walkY, Vector3.Dot(displayTransform.forward, currentSpeed));
         
         ProcessStatusEffects();
+    }
+
+    private void OnDestroy()
+    {
+        foreach(EnemyProfile.Loot loot in profile.lootDrops)
+            if(Random.value < loot.chance)
+                Instantiate(
+                    loot.item,
+                    transform.position
+                        + (Vector3.up * 0.5f)
+                        + (Vector3.forward * (Random.value - 0.5f))
+                        + (Vector3.right * (Random.value - 0.5f)),
+                    Quaternion.identity
+                );
     }
 
     public bool TargetInRange(float range)
@@ -94,8 +116,6 @@ public class AIController : GameEntity
     public void Attack()
     {
         _weaponController.HandleShooting();
-
-        Debug.Log("attacking target");
     }
     
     public void RotateTowardsTarget()
@@ -106,7 +126,7 @@ public class AIController : GameEntity
         if(Time.timeScale <= 0.0f)
             return;
         
-        transform.rotation = Quaternion.LookRotation( _directionToTarget );
+        transform.rotation = Quaternion.Euler(0.0f, Quaternion.LookRotation(_directionToTarget).eulerAngles.y, 0.0f);
     }
 
     public void MoveTowardsTarget()
@@ -120,45 +140,6 @@ public class AIController : GameEntity
         _navMeshAgent.SetDestination(currentTarget.position);
     }
     
-    public void ChaseTargetAfterShot(Transform target)
-    {
-        if(chaseAfterDamage) return;
-        
-        chaseAfterDamage = true;
-        currentTarget = target;
-        //stateMachine.ChangeState(typeof(EnemyChaseState));
-    }
-    
-    public void HandleTargetTimer()
-    {
-        if(chaseAfterDamage) return;
-        
-        targetSearchTimer -= Time.deltaTime;
-
-        if(targetSearchTimer <= 0)
-        {
-            FindNearestTarget();
-            targetSearchTimer = targetSearchInterval;
-        }
-    }
-    
-    private void FindNearestTarget()
-    {
-        var players = PlayerController.activePlayers;
-        if(players.Count == 0) return;
-        
-        float minDistance = float.MaxValue;
-        foreach (var player in players)
-        {
-            float distance = Vector3.Distance(transform.position, player.transform.position);
-            if(distance < minDistance)
-            {
-                minDistance = distance;
-                currentTarget = player.transform;
-            }
-        }
-    }
-
     public void StopAgent(bool stop)
     {
         if (!_navMeshAgent.isOnNavMesh) return;
@@ -193,7 +174,7 @@ public class AIController : GameEntity
 
         //>>> Update the changed values
         //HEALTH
-        int prevHealth = health;
+        float prevHealth = health;
         health = (int)statusEffectController.attributeValues[(int)StatusEffectProfile.Attribute.HEALTH];
         UpdateHealthBar();
         if(prevHealth > health)
@@ -210,4 +191,4 @@ public class AIController : GameEntity
         UnityEditor.Handles.color = Color.white;
         UnityEditor.Handles.Label( transform.position, "State: " + _stateMachine.currentState.GetType().Name );
     }
-} 
+}

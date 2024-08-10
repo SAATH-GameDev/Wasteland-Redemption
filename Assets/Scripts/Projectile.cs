@@ -50,9 +50,8 @@ public class Projectile : MonoBehaviour
 
     protected virtual void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.TryGetComponent(out AIController aiController))
-        {
-            aiController.ChaseTargetAfterShot(bulletShotBy);
-        }
+        DetectorDamage detector = other.gameObject.GetComponentInChildren<DetectorDamage>();
+        if(detector)
+            detector.SetDamagedBy(bulletShotBy);
     }
 }

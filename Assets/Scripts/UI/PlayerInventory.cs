@@ -81,6 +81,7 @@ public class PlayerInventory : MonoBehaviour
 
                 case ItemProfile.ItemType.FOOD:
                     GetComponent<PlayerController>().IncrementHunger(selectedItem.profile.value);
+                    
                     selectedItem.count--;
                     if(selectedItem.count <= 0)
                         itemList.Remove(selectedItem);

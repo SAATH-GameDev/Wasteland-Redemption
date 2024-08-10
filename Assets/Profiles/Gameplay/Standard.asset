@@ -12,4 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 924947e019f07014e821ce749dc95711, type: 3}
   m_Name: Standard
   m_EditorClassIdentifier: 
-  hungerDepletionRate: 0.334
+  hungerDepletionRate: 0.5
+  hungerHealthDepletionRate: 1
+  hungerHealthReplenishMinRatio: 0.8
+  hungerHealthReplenishRate: 0.5
+  hungerHealthReplenishLimitRatio: 0.25
