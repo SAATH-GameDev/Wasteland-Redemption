@@ -13,12 +13,12 @@ public class EnemyWeaponController : WeaponController
         } );
     }
 
-    public override void HandleShooting()
+    public override void HandleShooting(ref int ammo)
     {
         if(!profile)
             return;
         Attack();
-        ReloadingMagazine();
+        ReloadingMagazine(ref ammo);
         AttackingConsecutive();
         timer -= Time.deltaTime;
     }

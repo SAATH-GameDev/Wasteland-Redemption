@@ -2,13 +2,13 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.UIElements.Experimental;
 
 public class PlayerInventory : MonoBehaviour
 {
     public GameObject UI;
     public Vector2 offset;
     public int selectionIndex = 0;
+    public Item currentWeaponItem = null;
 
     public class Item
     {
@@ -56,32 +56,40 @@ public class PlayerInventory : MonoBehaviour
         selectionIndicator.transform.position = slotList[selectionIndex].position;
     }
 
+    public void EquipWeapon(Item selectedItem = null)
+    {
+        if(selectedItem != null)
+        {
+            currentWeaponItem = selectedItem;
+            weapon.Set((WeaponProfile)selectedItem.profile);
+            weapon.SetRightArm(1.0f);
+            weapon.SetLeftArm(weapon.profile.bothArms ? 1.0f : 0.0f);
+        }
+        else
+        {
+            currentWeaponItem.count += weapon.GetCurrentMagazine();
+            currentWeaponItem = null;
+            weapon.profile = null;
+            weapon.Set();
+            weapon.SetRightArm(0.0f);
+            weapon.SetLeftArm(0.0f);
+        }
+    }
+
     public void UseSelected()
     {
         Item selectedItem = GetItemOfIndex(selectionIndex);
         if(selectedItem != null)
         {
-            switch(selectedItem.profile.Type)
+            switch(selectedItem.profile.type)
             {
-                case ItemProfile.ItemType.WEAPON:
-                    if(weapon.profile == selectedItem.profile)
-                    {
-                        weapon.profile = null;
-                        weapon.Set();
-                        weapon.SetRightArm(0.0f);
-                        weapon.SetLeftArm(0.0f);
-                    }
-                    else
-                    {
-                        weapon.Set((WeaponProfile)selectedItem.profile);
-                        weapon.SetRightArm(1.0f);
-                        weapon.SetLeftArm(weapon.profile.bothArms ? 1.0f : 0.0f);
-                    }
+                case ItemProfile.Type.WEAPON:
+                    EquipWeapon(weapon.profile == selectedItem.profile ? null : selectedItem);
                     break;
 
-                case ItemProfile.ItemType.FOOD:
+                case ItemProfile.Type.FOOD:
                     GetComponent<PlayerController>().IncrementHunger(selectedItem.profile.value);
-                    
+
                     selectedItem.count--;
                     if(selectedItem.count <= 0)
                         itemList.Remove(selectedItem);
@@ -94,11 +102,22 @@ public class PlayerInventory : MonoBehaviour
     public void DiscardSelected()
     {
         Item selectedItem = GetItemOfIndex(selectionIndex);
-        if(selectedItem != null)
+        switch(selectedItem.profile.type)
         {
-            selectedItem.count--;
-            if(selectedItem.count <= 0)
+            case ItemProfile.Type.WEAPON:
+                if(weapon.profile == selectedItem.profile)
+                    EquipWeapon();
                 itemList.Remove(selectedItem);
+                break;
+
+            default:
+                if(selectedItem != null)
+                {
+                    selectedItem.count--;
+                    if(selectedItem.count <= 0)
+                        itemList.Remove(selectedItem);
+                }
+                break;
         }
         UpdateSlots();
     }
@@ -124,6 +143,8 @@ public class PlayerInventory : MonoBehaviour
             if(weapon.profile == item.profile)
                 slotList[item.index].GetChild(2).gameObject.SetActive(true);
         }
+        if(currentWeaponItem != null)
+            slotList[currentWeaponItem.index].GetChild(1).GetComponent<TextMeshProUGUI>().text = "";
     }
 
     public int GetEmptySlotIndex()
@@ -134,8 +155,19 @@ public class PlayerInventory : MonoBehaviour
         return 0;
     }
 
+    public Item GetItemOfName(string name)
+    {
+        foreach(Item item in itemList)
+            if(item.profile.name.Equals(name))
+                return item;
+        return null;
+    }
+
     public Item GetItemOfProfile(ItemProfile profile)
     {
+        if(profile.type == ItemProfile.Type.AMMO)
+            return GetItemOfName(profile.name.Replace("Ammo", ""));
+
         foreach(Item item in itemList)
             if(item.profile == profile)
                 return item;
@@ -149,24 +181,58 @@ public class PlayerInventory : MonoBehaviour
         {
             ItemProfile profile = collectible.Collect();
 
+            bool noItemOrFullSlot = false;
             Item item = GetItemOfProfile(profile);
             if(item != null)
             {
-                if(item.profile.Type != ItemProfile.ItemType.WEAPON)
+                switch(item.profile.type)
                 {
-                    item.count++;
-                    UpdateSlots();
+                    case ItemProfile.Type.WEAPON:
+                        item.count += (int)profile.value;
+                        if(item.count > GameManager.Instance.gameplay.maxAmmoCount)
+                            item.count = GameManager.Instance.gameplay.maxAmmoCount;
+                        if(currentWeaponItem == item)
+                            weapon.player.UpdateEquipment(item.profile, weapon.GetCurrentMagazine());
+                        break;
+
+                    default:
+                        if(item.count < GameManager.Instance.gameplay.maxPerItemCount)
+                            item.count++;
+                        else
+                            noItemOrFullSlot = true;
+                        break;
                 }
             }
             else
             {
+                noItemOrFullSlot = true;
+            }
+            
+            if(noItemOrFullSlot)
+            {
                 Item newItem = new Item();
                 newItem.profile = profile;
-                newItem.count = 1;
+
+                switch(newItem.profile.type)
+                {
+                    case ItemProfile.Type.WEAPON:
+                        //Weapon profile's value is the ammo amount which is being used as item count
+                        newItem.count = (int)profile.value;
+
+                        //Auto Equip Weapon on pickup when no weapon is equipped
+                        if(currentWeaponItem == null)
+                            EquipWeapon(newItem);
+                        break;
+                    default:
+                        newItem.count = 1;
+                        break;
+                }
+
                 newItem.index = GetEmptySlotIndex();
                 itemList.Add(newItem);
-                UpdateSlots();
             }
+
+            UpdateSlots();
         }
     }
 }

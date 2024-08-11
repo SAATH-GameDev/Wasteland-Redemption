@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Grenade
   m_EditorClassIdentifier: 
   icon: {fileID: -1379314716, guid: ab7b41344db287447a5073ed5280b6bc, type: 3}
-  Type: 1
+  type: 1
   value: 0
   price: 0
   prefab: {fileID: 8299863756737351790, guid: a4aa15c054addab40a47b1e6724031c9, type: 3}

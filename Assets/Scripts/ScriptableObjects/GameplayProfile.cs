@@ -14,4 +14,8 @@ public class GameplayProfile : Profile
     public float hungerHealthReplenishRate;
     [Range(0.0f, 1.0f)]
     public float hungerHealthReplenishLimitRatio;
+
+    [Header("Inventory")]
+    public int maxPerItemCount;
+    public int maxAmmoCount;
 }

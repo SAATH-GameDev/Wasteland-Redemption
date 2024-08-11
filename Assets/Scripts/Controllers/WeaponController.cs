@@ -12,13 +12,23 @@ public class WeaponController : MonoBehaviour
     protected UnityEvent onMagazineChange = new UnityEvent();
     protected UnityEvent onWeaponChange = new UnityEvent();
 
-    [HideInInspector] public int currentMagazine = 0;
-    [HideInInspector] public float reloadTimer = 0.0f;
+    protected int currentMagazine = 0;
+    protected float reloadTimer = 0.0f;
 
     private int consecutiveCount = 0;
     private float consecutiveTimer = 0.0f;
 
     protected float timer = 0.0f;
+
+    public int GetCurrentMagazine()
+    {
+        return currentMagazine;
+    }
+
+    public bool IsReloading()
+    {
+        return reloadTimer > 0.0f;
+    }
 
     public void Set(WeaponProfile profile = null)
     {
@@ -27,12 +37,9 @@ public class WeaponController : MonoBehaviour
         //Destroy previous weapon prefab if any
         if(displayTransform.childCount > 0)
             Destroy(displayTransform.GetChild(0).gameObject);
-
-        if(!this.profile)
-            return;
         
         //Create new weapon prefab and set its muzzle
-        muzzle = profile.prefab ? Instantiate(profile.prefab, transform.GetChild(0)).transform.GetChild(0) : transform;
+        muzzle = (profile && profile.prefab) ? Instantiate(profile.prefab, transform.GetChild(0)).transform.GetChild(0) : transform;
 
         if(muzzle.childCount > 0)
         {
@@ -41,7 +48,8 @@ public class WeaponController : MonoBehaviour
                 muzzleFlash.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
         }
 
-        currentMagazine = this.profile.magazine;
+        currentMagazine = 0;
+        reloadTimer = profile ? profile.reloadDelay : 0.0f;
 
         onWeaponChange.Invoke();
     }
@@ -51,13 +59,13 @@ public class WeaponController : MonoBehaviour
         displayTransform = transform.GetChild(0);
     }
 
-    public virtual void HandleShooting()
+    public virtual void HandleShooting(ref int ammo)
     {
         if(!profile)
             return;
         if(profile.isContinous && isAttacking)
             Attack();
-        ReloadingMagazine();
+        ReloadingMagazine(ref ammo);
         AttackingConsecutive();
         timer -= Time.deltaTime;
     }
@@ -67,7 +75,6 @@ public class WeaponController : MonoBehaviour
         if(currentMagazine < profile.magazine)
         {
             reloadTimer = profile.reloadDelay;
-            currentMagazine = 0;
             onMagazineChange.Invoke();
         }
     }
@@ -132,17 +139,32 @@ public class WeaponController : MonoBehaviour
         while(burstCount > 0);
     }
 
-    protected void ReloadingMagazine()
+    protected void ReloadingMagazine(ref int ammo)
     {
-        if(profile.magazine > 0 && reloadTimer > 0)
+        if(IsReloading())
         {
-            reloadTimer -= Time.deltaTime;
-            if(reloadTimer <= 0.0f)
+            if(ammo <= 0)
             {
-                currentMagazine = profile.magazine;
-                onMagazineChange.Invoke();
-
                 reloadTimer = 0.0f;
+                onMagazineChange.Invoke();
+                return;
+            }
+
+            if(profile.magazine > 0)
+            {
+                reloadTimer -= Time.deltaTime;
+                if(reloadTimer <= 0.0f)
+                {
+                    int requiredAmmoToAdd = profile.magazine - currentMagazine;
+                    int ammoToAdd = ammo >= requiredAmmoToAdd ? requiredAmmoToAdd : ammo;
+
+                    currentMagazine += ammoToAdd;
+                    ammo -= ammoToAdd;
+
+                    reloadTimer = 0.0f;
+
+                    onMagazineChange.Invoke();
+                }
             }
         }
     }
@@ -152,10 +174,10 @@ public class WeaponController : MonoBehaviour
         if(profile.magazine > 0)
         {
             currentMagazine--;
-            onMagazineChange.Invoke();
-
             if(currentMagazine <= 0)
                 reloadTimer = profile.reloadDelay;
+            
+            onMagazineChange.Invoke();
         }
     }
 

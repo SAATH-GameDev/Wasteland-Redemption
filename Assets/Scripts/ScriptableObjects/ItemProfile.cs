@@ -4,13 +4,14 @@ using UnityEngine;
 public class ItemProfile : Profile
 {
     public Sprite icon;
-    public enum ItemType
+    public enum Type
     {
         COLLECTIBLE,
         WEAPON,
+        AMMO,
         FOOD
     }
-    public ItemType Type;
+    public Type type;
     public float value;
     public int price;
 }

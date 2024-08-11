@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Pistol
   m_EditorClassIdentifier: 
   icon: {fileID: 21300000, guid: 6cb9e254ad279cd439fadb6e12bb4bd4, type: 3}
-  Type: 1
-  value: 0
+  type: 1
+  value: 24
   price: 0
   prefab: {fileID: 8299863756737351790, guid: 205aa7017933a74428c4d230195025d4, type: 3}
   bothArms: 0

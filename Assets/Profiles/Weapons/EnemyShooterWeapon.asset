@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: EnemyShooterWeapon
   m_EditorClassIdentifier: 
   icon: {fileID: 0}
-  Type: 1
+  type: 1
   value: 0
   price: 0
   prefab: {fileID: 0}

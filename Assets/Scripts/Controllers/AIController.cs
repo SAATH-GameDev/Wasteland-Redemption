@@ -37,6 +37,8 @@ public class AIController : GameEntity
 
     private float rotationSpeed = 4.0f;
 
+    private int ammo = 9999999; //infinite
+
     private Transform GetTarget()
     {
         return _stateMachine.currentState.GetTarget();
@@ -115,7 +117,7 @@ public class AIController : GameEntity
     
     public void Attack()
     {
-        _weaponController.HandleShooting();
+        _weaponController.HandleShooting(ref ammo);
     }
     
     public void RotateTowardsTarget()

@@ -14,10 +14,10 @@ public class PlayerWeaponController : WeaponController
     public Transform armRightTarget;
     public Transform armLeftTarget;
 
+    [HideInInspector] public PlayerController player;
+
     private Vector3 armRightBasePosition;
     private Vector3 armLeftBasePosition;
-
-    private PlayerController player;
 
     public void SetRightArm(float value)
     {
@@ -42,11 +42,11 @@ public class PlayerWeaponController : WeaponController
         if(!player)
             player = transform.parent.GetComponentInParent<PlayerController>();
 
-        player.UpdateEquipment(profile, currentMagazine);
-
         onWeaponChange.AddListener( () => {
-            muzzle.parent.gameObject.layer = LayerMask.NameToLayer("Player");
+            if(profile)
+                muzzle.parent.gameObject.layer = LayerMask.NameToLayer("Player");
             aimGuide.SetActive(profile);
+            player.UpdateEquipment(profile, currentMagazine);
         } );
 
         onMagazineChange.AddListener( () => {
@@ -76,7 +76,10 @@ public class PlayerWeaponController : WeaponController
 
     void Update()
     {
+        if(player.GetCurrentWeaponItem() == null)
+            return;
+
         RecoilRecovery();
-        HandleShooting();
+        HandleShooting(ref player.GetCurrentWeaponItem().count);
     }
 }

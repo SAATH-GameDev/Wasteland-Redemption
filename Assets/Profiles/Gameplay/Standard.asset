@@ -17,3 +17,5 @@ MonoBehaviour:
   hungerHealthReplenishMinRatio: 0.8
   hungerHealthReplenishRate: 0.5
   hungerHealthReplenishLimitRatio: 0.25
+  maxPerItemCount: 16
+  maxAmmoCount: 360

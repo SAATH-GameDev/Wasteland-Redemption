@@ -118,6 +118,11 @@ public partial class PlayerController : GameEntity
         }
     }
 
+    public PlayerInventory.Item GetCurrentWeaponItem()
+    {
+        return inventory.currentWeaponItem;
+    }
+
     private void ProcessStatusEffects()
     {
         //>>> Values to change
@@ -188,7 +193,7 @@ public partial class PlayerController : GameEntity
         equipNameText.text = profile.name;
 
         if(profile is WeaponProfile)
-            equipCountText.text = count <= 0 ? "<color=red>Reloading</color>" : count.ToString() + "/" + ((WeaponProfile)profile).magazine.ToString();
+            equipCountText.text = weapon.IsReloading() ? "<color=red>Reloading</color>" : count.ToString() + "/" + GetCurrentWeaponItem().count.ToString();
         else
             equipCountText.text = count.ToString();
     }
