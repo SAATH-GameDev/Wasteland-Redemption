@@ -16,10 +16,10 @@ public class CameraController : MonoBehaviour
             target = defaultTarget;
     }
     
-    void Start()
+    void Awake()
     {
         focus = transform.parent;
-        GameManager.Instance.AddPlayerCamera(GetComponentInChildren<Camera>());
+        GameManager.Instance.AddCamera(GetComponentInChildren<Camera>());
         defaultTarget = target;
     }
 

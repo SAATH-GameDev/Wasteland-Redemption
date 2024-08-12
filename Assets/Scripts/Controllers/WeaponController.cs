@@ -72,6 +72,8 @@ public class WeaponController : MonoBehaviour
 
     public void Reload()
     {
+        if(!profile)
+            return;
         if(currentMagazine < profile.magazine)
         {
             reloadTimer = profile.reloadDelay;

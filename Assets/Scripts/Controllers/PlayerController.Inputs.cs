@@ -8,17 +8,26 @@ public partial class PlayerController : GameEntity
 
     public void Move(InputAction.CallbackContext context)
     {
-        if(!movementTransform) return;
         Vector2 movementInput = context.ReadValue<Vector2>();
 
-        if(inventory && inventory.UI && inventory.UI.gameObject.activeSelf)
+        if(!GameManager.Instance.ready)
+        {
+            if(context.performed)
+            {
+                if(movementInput.x != 0.0f)
+                    GameManager.Instance.MoveSetupInX(GameManager.Instance.GetSetupOfIndex(index), movementInput.x < 0);
+                else if(movementInput.y != 0.0f)
+                    GameManager.Instance.MoveSetupInY(GameManager.Instance.GetSetupOfIndex(index), movementInput.y < 0);
+            }
+        }
+        else if(inventory && inventory.UI && inventory.UI.gameObject.activeSelf)
         {
             _movement = Vector2.zero;
             
             if(context.performed)
                 inventory.UpdateSelection(movementInput);
         }
-        else
+        else if(movementTransform)
         {
             _movement = (movementTransform.right * movementInput.x) + (movementTransform.forward * movementInput.y);
         }
@@ -26,17 +35,10 @@ public partial class PlayerController : GameEntity
 
     public void Look(InputAction.CallbackContext context)
     {
-        if(!movementTransform) return;
-        
-        Vector2 lookInput = context.ReadValue<Vector2>();
+        if(!movementTransform)
+            return;
 
-        //Dealing with mouse input (position)
-        if(lookInput.magnitude > 2.0f)
-        {
-            lookInput.x /= Screen.width;
-            lookInput.y /= Screen.height;
-            lookInput -= Vector2.one / 2.0f;
-        }
+        Vector2 lookInput = context.ReadValue<Vector2>();
 
         _look = (movementTransform.right * lookInput.x) + (movementTransform.forward * lookInput.y);
     }
@@ -74,8 +76,16 @@ public partial class PlayerController : GameEntity
     {
         if(context.performed)
         {
-            inventory.UI.SetActive(!inventory.UI.activeSelf);
-            inventory.UI.transform.position = GameManager.Instance.WorldToScreenPosition(transform.position, index) + new Vector3(inventory.offset.x * Screen.width, inventory.offset.y * Screen.height, 0.0f);
+            if(!GameManager.Instance.ready)
+            {
+                GameManager.Instance.ReadySetup(GameManager.Instance.GetSetupOfIndex(index));
+                
+            }
+            else
+            {
+                inventory.UI.SetActive(!inventory.UI.activeSelf);
+                inventory.UI.transform.position = GameManager.Instance.WorldToScreenPosition(transform.position, index) + new Vector3(inventory.offset.x * Screen.width, inventory.offset.y * Screen.height, 0.0f);
+            }
         }
     }
 }

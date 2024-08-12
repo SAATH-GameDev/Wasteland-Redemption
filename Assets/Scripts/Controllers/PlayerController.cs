@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public partial class PlayerController : GameEntity
@@ -27,6 +28,7 @@ public partial class PlayerController : GameEntity
     private int index = -1;
     private Rigidbody _rigidbody;
     private Vector3 _currentVelocity;
+    private bool usePointer = false;
 
     private float currentHunger = 0.0f;
     private Image hungerBarImage;
@@ -49,12 +51,18 @@ public partial class PlayerController : GameEntity
         index = count;
         count++;
         activePlayers.Add(transform);
+        GameManager.Instance.AddSetupUI(this);
     }
 
     void OnDisable()
     {
         count--;
         activePlayers.Remove(transform);
+    }
+
+    public int GetIndex()
+    {
+        return index;
     }
 
     override protected void Start()
@@ -64,6 +72,7 @@ public partial class PlayerController : GameEntity
         if (movementTransform == null)
             movementTransform = transform;
         _rigidbody = GetComponent<Rigidbody>();
+        usePointer = GetComponent<PlayerInput>().currentControlScheme == "Keyboard&Mouse";
         inventory = GetComponent<PlayerInventory>();
         
         maxHealth = health = (int)(profile.health * characterProfile.health);
@@ -72,7 +81,7 @@ public partial class PlayerController : GameEntity
 
         if(statsPrefab)
         {
-            GameObject statsUI = Instantiate(statsPrefab, GameManager.Instance.canvas.transform);
+            GameObject statsUI = Instantiate(statsPrefab, GameManager.Instance.GetPlayerUI(index));
             equipNameText = statsUI.transform.Find("EquipName").GetComponent<TextMeshProUGUI>();
             equipCountText = statsUI.transform.Find("EquipCount").GetComponent<TextMeshProUGUI>();
             healthBar = statsUI.transform.Find("HealthFill");
@@ -82,7 +91,7 @@ public partial class PlayerController : GameEntity
 
         if(inventoryPrefab)
         {
-            inventory.UI = Instantiate(inventoryPrefab, GameManager.Instance.canvas.transform);
+            inventory.UI = Instantiate(inventoryPrefab, GameManager.Instance.GetPlayerUI(index));
             inventory.SetupSlots();
             inventory.UI.SetActive(false);
         }
@@ -152,14 +161,24 @@ public partial class PlayerController : GameEntity
     {
         //base.Update();
 
-        if(Time.timeScale <= 0.0f) return;
-
+        if(Time.timeScale <= 0.0f)
+            return;
+        
         Quaternion prevYRot = displayTransform.rotation;
-        displayTransform.LookAt(GameManager.Instance.pointer);
+
+        if(usePointer)
+        {
+            displayTransform.LookAt(GameManager.Instance.pointer);
+            headRotatorTarget.position = GameManager.Instance.pointer.position;
+        }
+        else
+        {
+            displayTransform.rotation = Quaternion.LookRotation(_look);
+            headRotatorTarget.position = transform.position + (_look * 25.0f);
+        }
+
         displayTransform.rotation = Quaternion.Euler(0.0f, displayTransform.rotation.eulerAngles.y, 0.0f);
         displayTransform.rotation = Quaternion.Slerp(prevYRot, displayTransform.rotation, 7.0f * Time.deltaTime);
-
-        headRotatorTarget.position = GameManager.Instance.pointer.position;
 
         if(inventory.UI.activeSelf)
             inventory.UI.transform.position = GameManager.Instance.WorldToScreenPosition(transform.position, index) + new Vector3(inventory.offset.x * Screen.width, inventory.offset.y * Screen.height, 0.0f);

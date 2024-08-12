@@ -56,7 +56,6 @@ public class DialogueManager : MonoBehaviour
     void Awake()
     {
         Instance = this;
-        Play(0);
     }
 
     void Update()
