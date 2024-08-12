@@ -1,0 +1,14 @@
+<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/Scenes/UI/UI%20Toolkit/MenuStyle.uss?fileID=7433441132597879392&amp;guid=ac5a28c5a842a694dbe3bc8f6d56c2cf&amp;type=3#MenuStyle" />
+    <engine:VisualElement name="Canvas" style="flex-grow: 1; background-color: rgb(84, 84, 84);">
+        <engine:GroupBox name="Buttons" style="justify-content: space-around; align-items: stretch; align-self: flex-start; flex-direction: column; transform-origin: left; translate: 25px 500px;">
+            <engine:Button text="SINGLE PLAYER" enable-rich-text="true" language-direction="Inherit" name="SingleplayerBtn" class="unity-button menu-button" style="justify-content: center; align-self: flex-start; align-items: auto; align-content: flex-start; padding-top: 0; padding-bottom: 0;">
+                <engine:VisualElement style="flex-grow: 1; width: 70px; position: relative; top: 0; left: 0; bottom: 0; right: 0; flex-basis: 0; align-self: flex-end; align-items: flex-end; justify-content: center; align-content: center; height: auto; background-color: rgb(39, 136, 124); opacity: 1;" />
+            </engine:Button>
+            <engine:Button text="LOCAL CO-OP" name="MultiplayerBtn" class="menu-button" />
+            <engine:Button text="SETTINGS" name="SettingsBtn" class="menu-button" />
+            <engine:Button text="CREDITS" name="CreditsBtn" enable-rich-text="true" emoji-fallback-support="true" class="menu-button" />
+            <engine:Button text="QUIT" name="QuitBtn" enable-rich-text="true" emoji-fallback-support="true" class="menu-button" />
+        </engine:GroupBox>
+    </engine:VisualElement>
+</engine:UXML>
