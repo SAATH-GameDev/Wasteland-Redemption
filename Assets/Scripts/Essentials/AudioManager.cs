@@ -33,7 +33,7 @@ public class AudioManager : MonoBehaviour
 
             audioSource.clip = loop;
             audioSource.loop = true;
-            audioSource.PlayDelayed(start.length);
+            audioSource.PlayDelayed(start.length - 0.02f);
 
             played = true;
         }
