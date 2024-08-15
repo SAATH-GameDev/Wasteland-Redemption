@@ -9,16 +9,16 @@
     margin-top: 5px;
     margin-right: 15px;
     margin-bottom: 5px;
-    -unity-font-definition: url("project://database/Assets/Scenes/UI/Fonts/Inter-Black.ttf?fileID=12800000&guid=c69802a066d4fc44fae8a0d64394d898&type=3#Inter-Black");
+    -unity-font-definition: url("project://database/Assets/UI/Fonts/Inter-Black.ttf?fileID=12800000&guid=c69802a066d4fc44fae8a0d64394d898&type=3#Inter-Black");
     font-size: 40px;
     color: rgb(238, 252, 250);
     -unity-text-align: middle-left;
     -unity-text-outline-color: rgba(0, 0, 0, 0);
-    background-color: rgb(42, 157, 143);
-    border-bottom-color: rgb(39, 136, 124);
-    border-right-color: rgb(39, 136, 124);
-    border-left-color: rgb(39, 136, 124);
-    border-top-color: rgb(39, 136, 124);
+    background-color: rgb(186, 168, 139);
+    border-bottom-color: rgb(166, 145, 113);
+    border-right-color: rgb(166, 145, 113);
+    border-left-color: rgb(166, 145, 113);
+    border-top-color: rgb(166, 145, 113);
     border-top-width: 5px;
     border-left-width: 5px;
     border-bottom-width: 5px;
@@ -44,16 +44,16 @@
     margin-top: 5px;
     margin-right: 15px;
     margin-bottom: 5px;
-    -unity-font-definition: url("project://database/Assets/Scenes/UI/Fonts/Inter-Black.ttf?fileID=12800000&guid=c69802a066d4fc44fae8a0d64394d898&type=3#Inter-Black");
+    -unity-font-definition: url("project://database/Assets/UI/Fonts/Inter-Black.ttf?fileID=12800000&guid=c69802a066d4fc44fae8a0d64394d898&type=3#Inter-Black");
     font-size: 40px;
     color: rgb(238, 252, 250);
     -unity-text-align: middle-left;
     -unity-text-outline-color: rgba(0, 0, 0, 0);
-    background-color: rgb(42, 157, 143);
-    border-bottom-color: rgb(39, 136, 124);
-    border-right-color: rgb(39, 136, 124);
-    border-left-color: rgb(39, 136, 124);
-    border-top-color: rgb(39, 136, 124);
+    background-color: rgb(186, 168, 139);
+    border-bottom-color: rgb(166, 145, 113);
+    border-right-color: rgb(166, 145, 113);
+    border-left-color: rgb(166, 145, 113);
+    border-top-color: rgb(166, 145, 113);
     border-top-width: 5px;
     border-left-width: 5px;
     border-bottom-width: 5px;
@@ -81,16 +81,16 @@
     margin-top: 5px;
     margin-right: 15px;
     margin-bottom: 5px;
-    -unity-font-definition: url("project://database/Assets/Scenes/UI/Fonts/Inter-Black.ttf?fileID=12800000&guid=c69802a066d4fc44fae8a0d64394d898&type=3#Inter-Black");
+    -unity-font-definition: url("project://database/Assets/UI/Fonts/Inter-Black.ttf?fileID=12800000&guid=c69802a066d4fc44fae8a0d64394d898&type=3#Inter-Black");
     font-size: 40px;
     color: rgb(238, 252, 250);
     -unity-text-align: middle-left;
     -unity-text-outline-color: rgba(0, 0, 0, 0);
-    background-color: rgb(42, 157, 143);
-    border-bottom-color: rgb(39, 136, 124);
-    border-right-color: rgb(39, 136, 124);
-    border-left-color: rgb(39, 136, 124);
-    border-top-color: rgb(39, 136, 124);
+    background-color: rgb(186, 168, 139);
+    border-bottom-color: rgb(166, 145, 113);
+    border-right-color: rgb(166, 145, 113);
+    border-left-color: rgb(166, 145, 113);
+    border-top-color: rgb(166, 145, 113);
     border-top-width: 5px;
     border-left-width: 5px;
     border-bottom-width: 5px;
@@ -173,6 +173,7 @@
     transition-property: min-width;
     transition-duration: 0.1s;
     transition-timing-function: ease-out-sine;
+    background-color: rgb(166, 145, 113);
 }
 
 .menu-button:hover #ArrowBG {
@@ -196,7 +197,7 @@
 }
 
 .menu-button #Arrow {
-    background-image: url("project://database/Assets/Scenes/UI/Assets/Arrow.png?fileID=2800000&guid=0bdd1bba5de5ce74b981d86a86ac0dd5&type=3#Arrow");
+    background-image: url("project://database/Assets/UI/Assets/Arrow.png?fileID=2800000&guid=0bdd1bba5de5ce74b981d86a86ac0dd5&type=3#Arrow");
     position: absolute;
     left: 500px;
     top: 15px;
@@ -208,7 +209,7 @@
 }
 
 .menu-button:hover #Arrow {
-    background-image: url("project://database/Assets/Scenes/UI/Assets/Arrow.png?fileID=2800000&guid=0bdd1bba5de5ce74b981d86a86ac0dd5&type=3#Arrow");
+    background-image: url("project://database/Assets/UI/Assets/Arrow.png?fileID=2800000&guid=0bdd1bba5de5ce74b981d86a86ac0dd5&type=3#Arrow");
     position: absolute;
     left: 435px;
     top: 15px;
@@ -220,7 +221,7 @@
 }
 
 .menu-button:focus #Arrow {
-    background-image: url("project://database/Assets/Scenes/UI/Assets/Arrow.png?fileID=2800000&guid=0bdd1bba5de5ce74b981d86a86ac0dd5&type=3#Arrow");
+    background-image: url("project://database/Assets/UI/Assets/Arrow.png?fileID=2800000&guid=0bdd1bba5de5ce74b981d86a86ac0dd5&type=3#Arrow");
     position: absolute;
     left: 500px;
     top: 15px;
