@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 503ee9d896890c344b3563228dfce48b, type: 3}
+  m_Name: Outdoor1x
+  m_EditorClassIdentifier: 
+  objects:
+  - {fileID: 4747751047141953970, guid: 49c29b17a2ae62f44861547569a459ce, type: 3}
+  - {fileID: 1420485427572083310, guid: 97f2b481bac6f374c9ef9c7eeddb28c6, type: 3}
+  - {fileID: 4585836077222211218, guid: 2b300548f56134847a4cc34a98b68bb7, type: 3}
+  - {fileID: 6238357771131152966, guid: 61f58354c1666d84ea89c70ac79c2ef3, type: 3}
+  offset: {x: 1, y: 0, z: 1}
