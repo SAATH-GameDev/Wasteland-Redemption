@@ -15,6 +15,9 @@ MonoBehaviour:
   painters:
   - {fileID: 11400000, guid: c50ad4cf9d7086b4aaeb09330b2b724a, type: 2}
   - {fileID: 11400000, guid: b5c3dc4b39c6110478845ccfd79f04db, type: 2}
+  - {fileID: 11400000, guid: 75fc130f0d093774b82977cbe5871483, type: 2}
   - {fileID: 11400000, guid: 5fd4568c9adbdc74f8e250cb5c66d062, type: 2}
   - {fileID: 11400000, guid: 764fb10ff58b37345a01ebf236cb7f7a, type: 2}
   - {fileID: 11400000, guid: 23f9ab16cc8aa3044a5a3aa2ff07e36f, type: 2}
+  - {fileID: 11400000, guid: 5f50b2ea50aa4ae418738c1d9f9529a6, type: 2}
+  - {fileID: 11400000, guid: 4fac3468c87e80248a2f022e08dc8ef9, type: 2}

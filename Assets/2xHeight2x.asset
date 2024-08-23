@@ -10,13 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 503ee9d896890c344b3563228dfce48b, type: 3}
-  m_Name: Outdoor2x
+  m_Name: 2xHeight2x
   m_EditorClassIdentifier: 
   objects:
-  - {fileID: 6904775815941180585, guid: 6b5696cabbd9b7f499b38b442c16f848, type: 3}
-  - {fileID: 3000115257760796953, guid: 61aa1f5de93f9d94081562f1542613ca, type: 3}
-  - {fileID: 1759679879580949378, guid: d3ec9dce44f2e5d4fbf2f2781dbf2d8a, type: 3}
-  - {fileID: 1759679879580949378, guid: 760301e32251fa94b90aaee96d2e3f2f, type: 3}
   - {fileID: 6633401351545523910, guid: 89b6ee47d4a2dd0449a02427443d5190, type: 3}
   - {fileID: 6633401351545523910, guid: 7383207ded6cc934d84a814592aab168, type: 3}
   - {fileID: 6633401351545523910, guid: 4e00f9d06a91a1241b5e9644c164b117, type: 3}
@@ -26,4 +22,4 @@ MonoBehaviour:
   - {fileID: 6633401351545523910, guid: 1a5cdd066d0d06944ad8c9db678c5d4b, type: 3}
   - {fileID: 6633401351545523910, guid: d5507231d2d5bfb4f9acd6554e59affd, type: 3}
   - {fileID: 6633401351545523910, guid: dc2d749b72e58074aa9eca0e391e721e, type: 3}
-  offset: {x: 0, y: 0, z: 0}
+  offset: {x: 0, y: 8.3, z: 0}

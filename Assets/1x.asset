@@ -10,10 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 503ee9d896890c344b3563228dfce48b, type: 3}
-  m_Name: OutdoorObjects2x
+  m_Name: 1x
   m_EditorClassIdentifier: 
   objects:
-  - {fileID: 3328908860446270438, guid: 5466327a73be64c45919fd1e2816572b, type: 3}
-  - {fileID: 7249590707608821948, guid: ea717b184573607448855bbf11936e10, type: 3}
-  - {fileID: 9125076255598138344, guid: 7dcbbba2eb997b841bd1b3670093c9c7, type: 3}
-  offset: {x: 0, y: 0, z: 0}
+  - {fileID: 4747751047141953970, guid: 49c29b17a2ae62f44861547569a459ce, type: 3}
+  - {fileID: 1420485427572083310, guid: 97f2b481bac6f374c9ef9c7eeddb28c6, type: 3}
+  - {fileID: 4585836077222211218, guid: 2b300548f56134847a4cc34a98b68bb7, type: 3}
+  - {fileID: 6238357771131152966, guid: 61f58354c1666d84ea89c70ac79c2ef3, type: 3}
+  offset: {x: 1, y: 0, z: 1}
