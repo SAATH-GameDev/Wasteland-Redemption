@@ -41,12 +41,17 @@ namespace Grids
             displayGridEntity.GridPosition = Grid.CursorGridPosition;
             displayGridEntity.offset = palette.Painter.offset;
             displayGridEntity.UpdatePosition();
+
+            UpdateDisplayObject(ref palette);
         }
 
         public void UpdateDisplayObject(ref Palette palette)
         {
             if(!displayObject)
+            {
+                SetupDisplayObject(ref palette);
                 return;
+            }
 
             displayObject.transform.rotation = Quaternion.Euler(0.0f, palette.rotationYOffset, 0.0f);
         }
